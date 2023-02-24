@@ -1,0 +1,31 @@
+.hero1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 90vh;
+  width: 100vw;
+  gap: 1.5rem;
+  padding: 1rem;
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .hero1{ 
+    background-image: url(../../../public/backgroundMobile.png);
+    background-size: cover;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    width: 100vw;
+    height: 100vh;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .hero1 {
+    width: 100vw;
+    height: 100vh;
+  }
+}

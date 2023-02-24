@@ -1,0 +1,107 @@
+
+.background-span {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 0px;
+  gap: 10px;
+  width: 40%;
+}
+
+.title-background {
+  font-size: 3.5rem;
+  width: 65rem;
+}
+
+.background-action {
+  border-radius: 6px;
+  width: 70%;
+  height: 25rem;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-image: url(../../../public/backgroundH1.png);
+}
+
+.background-action span {
+  width: 80%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: 1rem;
+  gap: 1rem;
+  line-height: 95.19%;
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .background-action {
+    background-image: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 85vw;
+    height: 100%;
+    
+  }
+
+  .background-action span { 
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .title-background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    font-size: 30px;
+    line-height: 32px;
+  }
+ 
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .background-action { 
+    background-size: cover;
+    background-position: center;
+    height: 25rem;
+  }
+
+  .background-action span {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .title-background{ 
+    display: flex;
+    align-items: center;
+    width: 100%;
+    line-height: 2.1rem;
+    font-size: 30px;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1440px) {
+  .background-action {
+    background-size: cover;
+    width: 90%;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .title-background{
+    font-size: 36px;
+  }
+
+
+  
+}
+
+
