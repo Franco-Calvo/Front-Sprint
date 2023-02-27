@@ -24,14 +24,15 @@ button:hover {
   height: 3rem;
   font-size: 1rem;
   font-weight: 500;
-  box-shadow: 4px 4px 0px #F4B333;
+  box-shadow: 4px 4px 0px #f4b333;
   color: white;
 }
 
 .style-1:hover {
   box-shadow: 5px 5px 0px #b88727;
-  
 }
+
+
 
 @media (min-width: 320px) and (max-width: 767px) {
   button {

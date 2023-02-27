@@ -4,7 +4,7 @@ import InputGeneral from "../InputGeneral/InputGeneral";
 import ButtonGeneral from "../ButtonGeneral/ButtonGeneral";
 import axios from "axios";
 
-export default function FormGeneral() {
+export default function FormRegister() {
   const name = useRef();
   const email = useRef();
   const password = useRef();
@@ -12,7 +12,7 @@ export default function FormGeneral() {
   const formRef = useRef();
 
   async function handleSubmit(e) {
-    e.preventDefault(); 
+    e.preventDefault();
 
     let data = {
       [name.current.name]: name.current.value,
@@ -30,7 +30,8 @@ export default function FormGeneral() {
         console.log("Ocurrió un error!");
       }
     } else {
-      alert("Contraseñas no coinciden");
+      confirmpassword.current.type = "text";
+      confirmpassword.current.value = "Passwords do not match";
     }
   }
 
@@ -92,7 +93,7 @@ export default function FormGeneral() {
         Already have an account? <a href="#"> Log in</a>
       </span>
       <span className="span-login">
-        Go back to 
+        Go back to
         <a href="#"> home page</a>
       </span>
     </form>
