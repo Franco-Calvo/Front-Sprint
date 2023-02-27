@@ -5,3 +5,9 @@ i img {
   background: white;
   display: block;
 }
+
+@media (min-width: 320px) and (max-width: 767px) {
+  i img {
+    background: none;
+  }
+}
