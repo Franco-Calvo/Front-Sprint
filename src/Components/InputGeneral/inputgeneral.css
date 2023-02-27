@@ -1,0 +1,36 @@
+input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  border: none;
+  height: 2rem;
+  padding: 10px;
+  width: 100%;
+}
+
+label {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.style-checkbox {
+  width: 16px;
+}
+
+.style-3 {
+  background: #ebebeb;
+  opacity: 0.5;
+  border: 1px solid #1f1f1f;
+  border-radius: 10px;
+  width: 90%;
+  height: 3rem;
+  color: #1F1F1F;
+}
+
+.style-3 img{
+  width: 24px;
+  height: 24px;
+}

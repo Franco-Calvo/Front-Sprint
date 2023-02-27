@@ -17,6 +17,22 @@ button:hover {
   box-shadow: 0px 0px 5px rgba(248, 149, 204, 0.74);
 }
 
+.style-1 {
+  background: linear-gradient(153.39deg, #f9a8d4 -13.9%, #f472b6 58.69%);
+  border-radius: 10px;
+  width: 90%;
+  height: 3rem;
+  font-size: 1rem;
+  font-weight: 500;
+  box-shadow: 4px 4px 0px #F4B333;
+  color: white;
+}
+
+.style-1:hover {
+  box-shadow: 5px 5px 0px #b88727;
+  
+}
+
 @media (min-width: 320px) and (max-width: 767px) {
   button {
     background: linear-gradient(153.39deg, #f9a8d4 -13.9%, #f472b6 58.69%);

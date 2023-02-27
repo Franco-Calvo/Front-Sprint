@@ -1,0 +1,57 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.heroRegister {
+  display: flex;
+  align-items: center;
+}
+
+.welcome {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 50vw;
+  height: 100vh;
+  gap: 1rem;
+}
+
+.container-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 70%;
+  gap: 1rem;
+}
+
+.container-content p {
+  text-align: center;
+}
+
+.background {
+  width: 50vw;
+  height: 100vh;
+  background-image: url(../../../public/backgroundRegister.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  object-fit: cover;
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .background {
+    display: none;
+  }
+
+  .welcome {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+  }
+ 
+}
