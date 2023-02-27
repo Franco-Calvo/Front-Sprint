@@ -12,7 +12,7 @@ export default function FormGeneral() {
   const formRef = useRef();
 
   async function handleSubmit(e) {
-    e.preventDefault();
+    e.preventDefault(); 
 
     let data = {
       [name.current.name]: name.current.value,
