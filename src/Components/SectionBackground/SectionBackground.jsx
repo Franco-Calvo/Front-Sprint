@@ -9,7 +9,7 @@ export default function SectionBackground() {
         <h1 className="title-background">Live the emotion of the manga</h1>
         <p>Find the perfect manga for you</p>
         <p id="MingaHash">#MingaForever🔥</p>
-        <ButtonGeneral className="style-2" />
+        <ButtonGeneral text="Explore"/>
       </span>
     </div>
   );
