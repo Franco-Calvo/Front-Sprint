@@ -9,7 +9,7 @@ export default function FormGeneral() {
   const email = useRef();
   const password = useRef();
   const confirmpassword = useRef();
-  let form = document.querySelector('form')
+  const formRef = useRef();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -24,7 +24,7 @@ export default function FormGeneral() {
     if (password.current.value == confirmpassword.current.value) {
       try {
         await axios.post(url, data);
-        form.reset();
+        formRef.current.reset();
       } catch (error) {
         console.log(error);
         console.log("Ocurrió un error!");
@@ -35,7 +35,7 @@ export default function FormGeneral() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form ref={formRef} onSubmit={handleSubmit}>
       <fieldset>
         <legend>Name</legend>
         <input ref={name} type="text" id="name" name="name" required />
