@@ -1,5 +1,5 @@
 import React from "react";
-import FormRegister from "../FormRegister/FormRegister";
+import FormRegister from "../../Components/FormRegister/FormRegister";
 import "./heroregister.css";
 
 export default function HeroRegister() {
