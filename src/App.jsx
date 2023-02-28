@@ -1,13 +1,10 @@
 import React from "react";
 import "./App.css";
-import HeroMain from "./Components/HeroMain/HeroMain";
-import HeroRegister from "./Components/HeroRegister/HeroRegister";
+import {router} from "./Pages/index"
+import { RouterProvider } from "react-router-dom";
 
 export default function App() {
   return (
-    <>
-      <HeroMain/>
-      <HeroRegister/>
-    </>
+    <RouterProvider router ={router}/>
   );
 }
