@@ -1,13 +1,18 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import "./formlogin.css";
 import InputGeneral from "../InputGeneral/InputGeneral";
 import ButtonGeneral from "../ButtonGeneral/ButtonGeneral";
 import axios from "axios";
+import { Link as Anchor, useNavigate, useLocation } from "react-router-dom";
+import Swal from "sweetalert2";
 
-export default function FormLogin() {
+export default function FormLogin({ handleRender }) {
   const email = useRef();
   const password = useRef();
   const formRef = useRef();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { pathname } = location;
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -22,12 +27,13 @@ export default function FormLogin() {
     let url = "http://localhost:8080/auth/signin";
 
     try {
-      await axios.post(url, data, headers)
-      let res = await axios.post(url, data, headers)
-      localStorage.setItem(`token`, res.data.token)
+      if (email) await axios.post(url, data, headers);
+      let res = await axios.post(url, data, headers);
+      navigate("/signup");
+      localStorage.setItem(`token`, res.data.token);
     } catch (error) {
       console.log(error);
-      console.log("Ocurrió un error!");
+      Swal.fire(error.response.data.message);
     }
   }
 
@@ -72,11 +78,22 @@ export default function FormLogin() {
           text="Sign in with Google"
         />
         <span className="span-login">
-          You don't have an account yet? <a href="#"> Sign up</a>
+          You don't have an account yet?
+          <span
+            onClick={() => {
+              if (pathname === "/signin") {
+                navigate("/signup");
+              } else {
+                handleRender();
+              }
+            }}
+          >
+            Sign up
+          </span>
         </span>
         <span className="span-login">
           Go back to
-          <a href="#"> home page</a>
+          <Anchor to={`/`}> home page</Anchor>
         </span>
       </form>
     </div>
