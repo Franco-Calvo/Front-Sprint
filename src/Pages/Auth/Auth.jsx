@@ -1,6 +1,6 @@
 import React from "react";
 import "./auth.css";
-import FormLogin from "../FormLogin/FormLogin";
+import FormLogin from "../../Components/FormLogin/FormLogin";
 
 export default function Auth() {
   return (

@@ -4,11 +4,32 @@ import InputGeneral from "../InputGeneral/InputGeneral";
 import ButtonGeneral from "../ButtonGeneral/ButtonGeneral";
 import axios from "axios";
 
-export default function FormRegister() {
-
+export default function FormLogin() {
   const email = useRef();
   const password = useRef();
   const formRef = useRef();
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    let token = localStorage.getItem("token");
+    let headers = { headers: { Authorization: `Bearer ${token}` } };
+    let data = {
+      [email.current.name]: email.current.value,
+      [password.current.name]: password.current.value,
+    };
+
+    let url = "http://localhost:8080/auth/signin";
+
+    try {
+      await axios.post(url, data, headers)
+      let res = await axios.post(url, data, headers)
+      localStorage.setItem(`token`, res.data.token)
+    } catch (error) {
+      console.log(error);
+      console.log("Ocurrió un error!");
+    }
+  }
 
   return (
     <div className="container-form-general">
@@ -20,10 +41,10 @@ export default function FormRegister() {
         </p>
       </span>
 
-      <form ref={formRef}>
+      <form ref={formRef} onSubmit={handleSubmit}>
         <fieldset>
           <legend>Email</legend>
-          <input ref={email} type="email" id="mail" name="mail" required />
+          <input ref={email} type="email" id="email" name="email" required />
           <img src="./email.png" alt="" />
         </fieldset>
 
@@ -42,7 +63,7 @@ export default function FormRegister() {
         <InputGeneral
           type="submit"
           value="Sign in"
-          id="sign-up"
+          id="sign-in"
           style="style-1"
         />
         <ButtonGeneral

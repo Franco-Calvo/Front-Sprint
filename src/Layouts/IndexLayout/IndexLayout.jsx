@@ -9,7 +9,6 @@ export default function IndexLayout() {
   
   return (
     <>
-      <Header/>
       <Outlet/>
     </>
   )
