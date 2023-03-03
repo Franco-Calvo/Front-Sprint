@@ -1,7 +1,28 @@
-import React from "react";
+import React, { useRef } from "react";
 import "./navindex.css";
+import axios from "axios";
 
 export default function NavIndex({ handleRender }) {
+
+  const name = useRef();
+  const email = useRef();
+  const photo = useRef();
+
+  async function User(e) {
+    let url = "http://localhost:8080/auth/signin";
+
+    let data = {
+      [name.current.name]: name.current.value,
+      [email.current.name]: email.current.value,
+      [photo.current.name]: photo.current.value,
+    };
+
+    try {
+      await axios.post(url, data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
   return (
     <nav>
       <div className="profile">
@@ -30,11 +51,21 @@ export default function NavIndex({ handleRender }) {
         </div>
 
         <div className="a-links">
-          <a className="a-nav" href="#">Home</a>
-          <a className="a-nav" href="#">Mangas</a>
-          <a className="a-nav" href="#">My Mangas</a>
-          <a className="a-nav" href="#">Favourites</a>
-          <a className="a-nav" href="#">Logout</a>
+          <a className="a-nav" href="#">
+            Home
+          </a>
+          <a className="a-nav" href="#">
+            Mangas
+          </a>
+          <a className="a-nav" href="#">
+            My Mangas
+          </a>
+          <a className="a-nav" href="#">
+            Favourites
+          </a>
+          <a className="a-nav" href="#">
+            Logout
+          </a>
         </div>
       </div>
     </nav>
