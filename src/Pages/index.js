@@ -2,11 +2,10 @@ import NotFound from "./NotFound/NotFound";
 import Index from "./Index/Index";
 import IndexLayout from "../Layouts/IndexLayout/IndexLayout";
 import MainLayout from "../Layouts/MainLayout/MainLayout";
-
 import {createBrowserRouter} from "react-router-dom";
+import HeroRegister from "./HeroRegister/HeroRegister";
+import Auth from "./Auth/Auth";
 import AuthorForm from "./AuthorForm/AuthorForm";
-
-// @createBrowserRouter recibe un array de objetos, cada objeto tiene dos propiedades @Path la ruta @Element el elemento (componente de página que se renderizará en esa ruta)
 
 export const router = createBrowserRouter([
   {
@@ -30,6 +29,14 @@ export const router = createBrowserRouter([
       {
         path: "/author-form",
         element: <AuthorForm />,
+      },
+      {
+        path: "/signup",
+        element: <HeroRegister />,
+      },
+      {
+        path: "/signin",
+        element: <Auth />,
       },
       {
         path: "/*",
