@@ -2,6 +2,7 @@ import {useRef} from "react";
 import "./AuthorForm.css";
 import axios from "axios";
 import swal from "sweetalert";
+import {element} from "prop-types";
 
 export default function AuthorForm() {
   const firstName = useRef();
@@ -25,7 +26,6 @@ export default function AuthorForm() {
         ["country"]: country,
         [date.current.name]: date.current.value,
         [urlProfile.current.name]: urlProfile.current.value,
-        ["user_id"]: "63fe72b7c75248e38d293139",
         ["active"]: true,
       };
       let url = "http://localhost:8080/authors";
@@ -70,6 +70,7 @@ export default function AuthorForm() {
           className="inputAuthorForm"
           type="text"
           placeholder="First Name"
+          required
         />
         <input
           ref={lastName}
@@ -77,6 +78,7 @@ export default function AuthorForm() {
           className="inputAuthorForm"
           type="text"
           placeholder="Last Name"
+          required
         />
         <input
           ref={cityCountry}
@@ -84,14 +86,22 @@ export default function AuthorForm() {
           className="inputAuthorForm"
           type="text"
           placeholder="City, Country"
+          required
         />
-        <input name="date" ref={date} className="inputAuthorForm" type="date" />
+        <input
+          name="date"
+          ref={date}
+          className="inputAuthorForm"
+          type="date"
+          required
+        />
         <input
           ref={urlProfile}
           name="photo"
           className="inputAuthorForm"
           type="text"
           placeholder="URL Profile Image"
+          required
         />
         <input id="button-author" type="submit" value="Send" />
       </form>
