@@ -2,7 +2,6 @@ import {useRef} from "react";
 import "./AuthorForm.css";
 import axios from "axios";
 import swal from "sweetalert";
-import {element} from "prop-types";
 
 export default function AuthorForm() {
   const firstName = useRef();
