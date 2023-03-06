@@ -18,8 +18,8 @@ form {
   color: #1f1f1f;
 }
 
-fieldset {
-  width: 90%;
+.input-sim {
+  width: 90% ;
   height: 4rem;
   display: flex;
   justify-content: center;
@@ -28,13 +28,13 @@ fieldset {
   border-radius: 10px;
 }
 
-fieldset legend {
+.input-sim legend {
   font-size: 12px;
   margin-left: 13px;
   color: #f472b6;
 }
 
-fieldset img {
+.input-sim img {
   margin-right: 10px;
   width: 16px;
   height: 16px;
