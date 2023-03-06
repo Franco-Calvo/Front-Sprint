@@ -115,7 +115,7 @@ export default function FormRegister(props) {
             }
           }}
         >
-          Log in
+          <b className="action-render">Log in</b>
         </span>
       </span>
       <span className="span-login">
