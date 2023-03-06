@@ -1,4 +1,4 @@
-import {useRef} from "react";
+import { useRef } from "react";
 import "./AuthorForm.css";
 import axios from "axios";
 import swal from "sweetalert";
@@ -14,7 +14,7 @@ export default function AuthorForm() {
   async function handleSubmit(e) {
     e.preventDefault();
     let token = localStorage.getItem("token");
-    let headers = {headers: {Authorization: `Bearer ${token}`}};
+    let headers = { headers: { Authorization: `Bearer ${token}` } };
     if (cityCountry.current.value.includes(",")) {
       let city = cityCountry.current.value.split(",")[0].trim();
       let country = cityCountry.current.value.split(",")[1].trim();
