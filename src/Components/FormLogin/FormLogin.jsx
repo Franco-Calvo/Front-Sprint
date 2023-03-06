@@ -29,7 +29,7 @@ export default function FormLogin({ handleRender }) {
     try {
       if (email) await axios.post(url, data, headers);
       let res = await axios.post(url, data, headers);
-      navigate("/signup");
+      navigate("/");
       localStorage.setItem(`token`, res.data.token);
       localStorage.setItem(
         `user`,
@@ -86,7 +86,7 @@ export default function FormLogin({ handleRender }) {
           text="Sign in with Google"
         />
         <span className="span-login">
-          You don't have an account yet?
+          You don't have an account yet? 
           <span
             onClick={() => {
               if (pathname === "/signin") {
@@ -96,12 +96,12 @@ export default function FormLogin({ handleRender }) {
               }
             }}
           >
-            <b>Sign up</b>
+            <b className="action-render"> Sign up</b>
           </span>
         </span>
         <span className="span-login">
           Go back to
-          <Anchor to={`/`}> home page</Anchor>
+          <Anchor to="/"> home page</Anchor>
         </span>
       </form>
     </div>
