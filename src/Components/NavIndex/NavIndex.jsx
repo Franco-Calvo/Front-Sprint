@@ -45,6 +45,9 @@ export default function NavIndex({handleRender}) {
           <Anchor className="a-nav" to="/author-form">
             Author
           </Anchor>
+          <Anchor className="a-nav" to="/chapher-form/:manga_id">
+           Chapter
+          </Anchor>
           <Anchor className="a-nav" to="/">
             Logout
           </Anchor>
