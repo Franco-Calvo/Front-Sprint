@@ -2,7 +2,7 @@ import React from "react";
 import FormRegister from "../../Components/FormRegister/FormRegister";
 import "./heroregister.css";
 
-export default function HeroRegister() {
+export default function HeroRegister({handleRender}) {
   return (
     <>
       <div className="heroRegister">
@@ -13,7 +13,7 @@ export default function HeroRegister() {
               Discover manga, manhua and manhwa, track your progress, have fun,
               read manga.
             </p>
-            <FormRegister />
+            <FormRegister handleRender={handleRender}/>
           </div>
         </div>
 
