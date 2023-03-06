@@ -4,6 +4,7 @@ import IndexLayout from "../Layouts/IndexLayout/IndexLayout";
 import MainLayout from "../Layouts/MainLayout/MainLayout";
 import { createBrowserRouter } from "react-router-dom";
 import HeroRegister from "./HeroRegister/HeroRegister";
+import MangaForm from '../Pages/MangaForm/Mangaform'
 import Auth from "./Auth/Auth";
 import AuthorForm from "./AuthorForm/AuthorForm";
 
@@ -17,7 +18,7 @@ export const router = createBrowserRouter([
         element: <Index />,
       },
       {
-        path: "/*",
+        path: "/",
         element: <NotFound />,
       },
     ],
@@ -39,7 +40,11 @@ export const router = createBrowserRouter([
         element: <Auth />,
       },
       {
-        path: "/*",
+        path: "/mangas",
+        element: <MangaForm />
+      },
+      {
+        path: "/",
         element: <NotFound />,
       },
     ],
