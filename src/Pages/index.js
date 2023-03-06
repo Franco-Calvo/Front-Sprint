@@ -2,7 +2,7 @@ import NotFound from "./NotFound/NotFound";
 import Index from "./Index/Index";
 import IndexLayout from "../Layouts/IndexLayout/IndexLayout";
 import MainLayout from "../Layouts/MainLayout/MainLayout";
-import {createBrowserRouter} from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import HeroRegister from "./HeroRegister/HeroRegister";
 import Auth from "./Auth/Auth";
 import AuthorForm from "./AuthorForm/AuthorForm";
@@ -44,5 +44,5 @@ export const router = createBrowserRouter([
       },
     ],
   },
-  {path: "/notfound", element: <NotFound />},
+  { path: "/notfound", element: <NotFound /> },
 ]);
