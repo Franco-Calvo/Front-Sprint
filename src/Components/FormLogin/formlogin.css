@@ -22,3 +22,19 @@
   width: 50%;
   text-align: center;
 }
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .container-form-general{ 
+    width: 100%;
+  }
+
+  .container-form-general form {
+    width: 70%;
+  }
+  
+  .title-login {
+    width: 90%;
+  }
+
+ 
+}

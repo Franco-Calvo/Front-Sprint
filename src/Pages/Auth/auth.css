@@ -13,3 +13,9 @@
   width: 50vw;
   height: 100vh;
 }
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .background-login{ 
+    display: none;
+  }
+}

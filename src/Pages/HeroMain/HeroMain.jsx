@@ -6,7 +6,6 @@ import Header from "../../Components/Header/Header";
 export default function HeroMain() {
   return (
     <div className="hero1">
-      <Header/>
       <SectionManga />
       <SectionBackground />
     </div>
