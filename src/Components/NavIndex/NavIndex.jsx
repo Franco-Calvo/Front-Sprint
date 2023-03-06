@@ -122,7 +122,7 @@ export default function NavIndex({ handleRender }) {
             Favourites
           </Anchor>
   
-          <Anchor className="a-nav" to="/chapher-form/:manga_id">
+          <Anchor className="a-nav" to="/chapher-form/63ff9d4e04c1a2dc7b9914eb">
            Chapter
           </Anchor>
         

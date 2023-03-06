@@ -8,7 +8,7 @@ import { useParams } from 'react-router-dom';
 export default function FormChapter() {
 
     const {manga_id}=useParams()
-    console.log(manga_id)
+    
 
     const title = useRef();
     const order = useRef();
@@ -23,13 +23,13 @@ export default function FormChapter() {
         
         let chapter = {  
           [title.current.name]: title.current.value,
-          [order.current.name]: order.current.value,             
-          [pages.current.name]: pages.current.value,          
+          [pages.current.name]: pages.current.value,       
+          [ "manga_id"]: manga_id
          
           }     
-          //   if (order.current.value) { 
-          //    chapter[order.current.name] = order.current.value
-          //  }
+            if (order.current.value) { 
+             chapter[order.current.name] = order.current.value
+           }
         console.log(chapter)
     
         let url = "http://localhost:8080/chapters";
@@ -87,12 +87,14 @@ export default function FormChapter() {
           })
             
           } catch (error) {
+            
             console.log(error);
             console.log("Ocurrió un error!");
             Swal.fire({
               icon: 'error',
               title: 'ERROR',
-              text: error,
+              
+              text: error.response.data.message,
           })
 
         
@@ -111,7 +113,7 @@ export default function FormChapter() {
             <form className='formchapter' ref={formRef} onSubmit={handleSubmit}>
 
             <input ref={title} type="text" id="title" name="title" required  placeholder='insert title' />
-            <input ref={order} type="number" id="order" name="order" required  placeholder='insert order' />
+            <input ref={order} type="number" id="order" name="order"  placeholder='insert order' />
             <input ref={pages} type="text" id="pages" name="pages" required  placeholder='insert pages' />
           
 
