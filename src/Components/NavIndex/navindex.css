@@ -117,11 +117,10 @@ nav {
     width: 100%;
   }
 
-  .a-links{
+  .a-links {
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 24px;
-
   }
 }
