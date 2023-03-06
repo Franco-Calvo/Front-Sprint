@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import "./formlogin.css";
 import InputGeneral from "../InputGeneral/InputGeneral";
 import ButtonGeneral from "../ButtonGeneral/ButtonGeneral";
@@ -31,6 +31,14 @@ export default function FormLogin({ handleRender }) {
       let res = await axios.post(url, data, headers);
       navigate("/signup");
       localStorage.setItem(`token`, res.data.token);
+      localStorage.setItem(
+        `user`,
+        JSON.stringify({
+          name: res.data.user.name,
+          email: res.data.user.email,
+          photo: res.data.user.photo,
+        })
+      );
     } catch (error) {
       console.log(error);
       Swal.fire(error.response.data.message);
@@ -88,7 +96,7 @@ export default function FormLogin({ handleRender }) {
               }
             }}
           >
-            Sign up
+            <b>Sign up</b>
           </span>
         </span>
         <span className="span-login">
