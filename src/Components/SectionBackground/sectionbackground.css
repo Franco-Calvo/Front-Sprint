@@ -9,14 +9,16 @@
 }
 
 .title-background {
-  font-size: 3.5rem;
+  font-weight: 700;
+  font-size: 50px;
+  line-height: 95.19%;
   width: 100%;
 }
 
 .background-action {
   border-radius: 6px;
   width: 70%;
-  height: 25rem;
+  height: 22rem;
   color: white;
   display: flex;
   justify-content: center;
