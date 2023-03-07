@@ -14,6 +14,18 @@ export default function FormLogin({ handleRender }) {
   const location = useLocation();
   const { pathname } = location;
 
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    },
+  });
+
   async function handleSubmit(e) {
     e.preventDefault();
 
@@ -29,7 +41,12 @@ export default function FormLogin({ handleRender }) {
     try {
       if (email) await axios.post(url, data, headers);
       let res = await axios.post(url, data, headers);
+      Toast.fire({
+        icon: "success",
+        title: "Signed in successfully",
+      });
       navigate("/");
+      formRef.current.reset();
       localStorage.setItem(`token`, res.data.token);
       localStorage.setItem(
         `user`,
@@ -56,13 +73,13 @@ export default function FormLogin({ handleRender }) {
       </span>
 
       <form ref={formRef} onSubmit={handleSubmit}>
-        <fieldset>
+        <fieldset className="input-sim">
           <legend>Email</legend>
           <input ref={email} type="email" id="email" name="email" required />
           <img src="./email.png" alt="" />
         </fieldset>
 
-        <fieldset>
+        <fieldset className="input-sim">
           <legend>Password</legend>
           <input
             ref={password}
