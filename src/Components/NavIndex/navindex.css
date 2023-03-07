@@ -9,13 +9,19 @@
 
 nav {
   background: linear-gradient(153.39deg, #f9a8d4 -13.9%, #f472b6 58.69%);
-  border-radius: 10px;
+  border-radius: 0px 10px 10px 0px;
   height: 100vh;
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   width: 26.875rem;
   z-index: 100;
+}
+
+.span-container-profile{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .profile {
@@ -26,6 +32,21 @@ nav {
   width: 23.875rem;
   padding: 1.4rem;
   gap: 2rem;
+}
+
+.action-render {
+  color: #f472b6;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.action-render:hover {
+  text-decoration: underline;
+}
+
+svg {
+  cursor: pointer;
+  
 }
 
 .profile img {
@@ -99,7 +120,6 @@ nav {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    position: absolute;
     height: 100vh;
     top: 0;
     z-index: 100;
