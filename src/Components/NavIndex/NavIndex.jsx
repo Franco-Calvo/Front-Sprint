@@ -111,7 +111,8 @@ export default function NavIndex({handleRender}) {
             {" "}
             Home
           </Anchor>
-          <Anchor className="a-nav" to="/">
+
+          <Anchor className="a-nav" to="/mangas">
             Mangas
           </Anchor>
           <Anchor className="a-nav" to="/">

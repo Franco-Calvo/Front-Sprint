@@ -53,8 +53,8 @@ export default function CreateManga() {
     return (
         <div className='contenedor'>
             <div className='formcontent'>
-                <section className='title'>
-                    <h2>New Manga</h2>
+                <section >
+                    <h2 className='title'>New Manga</h2>
                 </section>
                 <form ref={formulario} className='form' onSubmit={handleSubmit}>
                     <input className='forminput' type='text' placeholder='Insert title' ref={title} />
@@ -64,12 +64,7 @@ export default function CreateManga() {
                     </select>
                     <input className='forminput' type='text' placeholder='Insert description' ref={description} />
                     <input className='forminput' type='text' placeholder='Insert cover photo' ref={coverPhoto} />
-                    <InputGeneral
-                        type="submit"
-                        value="Send"
-                        id="send"
-                        style="style-1"
-                    />
+                    <input id="button-manga" type="submit" value="Send" />
                 </form>
             </div>
         </div>
