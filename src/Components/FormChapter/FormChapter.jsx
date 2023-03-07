@@ -8,8 +8,6 @@ import { useParams } from 'react-router-dom';
 export default function FormChapter() {
 
     const {manga_id}=useParams()
-    
-
     const title = useRef();
     const order = useRef();
     const pages = useRef();
@@ -35,7 +33,7 @@ export default function FormChapter() {
         let url = "http://localhost:8080/chapters";
 
        
-          if (title.current.value.length < 4 && !pages.current.value.startsWith("http")) {
+          if (title.current.value.length < 4 && !pages.current.value.startsWith("")) {
 
            Swal.fire({
             icon: 'error',
@@ -43,7 +41,7 @@ export default function FormChapter() {
            text: 'The title must be at least 4 characteres y Pages must be a valid URL.',
             })
           return
-          }else if  (title.current.value.length > 30 && !pages.current.value.startsWith("http")) {
+          }else if  (title.current.value.length > 30 && !pages.current.value.startsWith("")) {
             Swal.fire({
              icon: 'error',
             title: 'Error',
@@ -67,7 +65,7 @@ export default function FormChapter() {
             return
             }
 
-             else if (!pages.current.value.startsWith("http")){
+             else if (!pages.current.value.startsWith("")){
              Swal.fire({
               icon: 'error',
               title: 'Error',
