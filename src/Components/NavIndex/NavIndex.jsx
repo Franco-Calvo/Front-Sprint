@@ -122,6 +122,11 @@ export default function NavIndex({ handleRender }) {
           <Anchor className="a-nav" to="/">
             Favourites
           </Anchor>
+  
+          <Anchor className="a-nav" to="/chapher-form/63ff9d4e04c1a2dc7b9914eb">
+           Chapter
+          </Anchor>
+        
           {token ? (
             <Anchor className="a-nav" to="/author-form">
               Author

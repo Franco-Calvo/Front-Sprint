@@ -1,0 +1,56 @@
+.chapter-contain{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: -7vh;
+}
+
+.formchapter{
+    width: 40rem;
+    height: 75vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;  
+}
+
+
+
+.formchapter input{
+    width:80%;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #424242;
+    
+}
+
+
+.swal2-title {
+    margin: 0 auto !important;
+}
+.swal2-styled.swal2-confirm {
+    background: linear-gradient(153.39deg, #F9A8D4 -13.9%, #F472B6 58.69%) !important;
+}
+.swal2-footer{
+    background-color: azure;
+}
+
+
+@media (min-width: 320px) and (max-width: 767px){
+
+
+    .formchapter input{
+        width: 55%;
+       
+    }
+
+    .chapter-contain{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        
+    }
+}
+
