@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import InputGeneral from '../../Components/InputGeneral/InputGeneral'
 import { useRef } from 'react';
 import '../MangaForm/mangaform.css';
 import axios from 'axios';
@@ -8,6 +7,7 @@ import Swal from 'sweetalert2';
 
 export default function CreateManga() {
     const [categorias, setCategorias] = useState([])
+    const [categoria, setCategoria] = useState(null)
     let title = useRef();
     let category = useRef();
     let description = useRef();
@@ -16,12 +16,12 @@ export default function CreateManga() {
 
     async function handleSubmit(e) {
         e.preventDefault();
+        const filteredCategory = categorias.find((category) => (category.name == categoria))
         let manga = {
             title: title.current.value,
-            // category: category.current.value,
             description: description.current.value,
             cover_photo: coverPhoto.current.value,
-            category_id: "63fe8112f09373806fd89fe5"
+            category_id: filteredCategory._id
         };
         const url = 'http://localhost:8080/mangas'
         let token = localStorage.getItem('token')
@@ -35,18 +35,18 @@ export default function CreateManga() {
                 title: "Manga created successfully",
                 showConfirmButton: false,
                 timer: 1500
-              })
+            })
         } catch (error) {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
                 text: error.response.data.message[0],
-              })
+            })
         }
     }
 
     async function renderCategory() {
-        await axios.get('http://localhost:8080/mangas').then((response) => { setCategorias(response.data.categories) })
+        await axios.get('http://localhost:8080/mangas').then((response) => { setCategorias(response.data.categories) })//*/
     }
     //console.log(categorias)
 
@@ -58,9 +58,16 @@ export default function CreateManga() {
                 </section>
                 <form ref={formulario} className='form' onSubmit={handleSubmit}>
                     <input className='forminput' type='text' placeholder='Insert title' ref={title} />
-                    <select className='forminput' id='selectMove' ref={category} onClick={renderCategory}>
-                        <option value=''> Insert category</option>
-                        {categorias.map(categoria => <option key={categoria.name} value={categoria.name}>{categoria.name}</option>)}
+                    <select
+                        className="manga-input"
+                        id="selectMove"
+                        ref={category}
+                        onClick={renderCategory}
+                        onChange={(e) => setCategoria(e.target.value)}
+                    >
+                        <option value=""> Insert category</option>
+                        {categorias.map((categoria) => (
+                            <option key={categoria.name} value={categoria.name}>{categoria.name}</option>))}
                     </select>
                     <input className='forminput' type='text' placeholder='Insert description' ref={description} />
                     <input className='forminput' type='text' placeholder='Insert cover photo' ref={coverPhoto} />
