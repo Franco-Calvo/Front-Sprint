@@ -1,4 +1,5 @@
-i img {
+i img,
+i {
   width: 3.563rem;
   height: 3.438rem;
   z-index: 100;
