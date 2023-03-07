@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import InputGeneral from '../../Components/InputGeneral/InputGeneral'
 import { useRef } from 'react';
 import '../MangaForm/mangaform.css';
 import axios from 'axios';
