@@ -54,10 +54,12 @@
 #selectMove {
     border: 0;
     width: 70%;
+    height: 2rem;
     color: gray;
     font-size: 0.9rem;
     background-color: transparent;
     border-bottom: 1px solid black;
+    margin-top: 0.2rem;
 }
 
 fieldset {
@@ -66,7 +68,7 @@ fieldset {
 
 #button-manga {
     background: linear-gradient(153.39deg, #f9a8d4 -13.9%, #f472b6 58.69%);
-    border-radius: 50000px;
+    border-radius:40px;
     width: 60%;
     height: 3rem;
     margin-top: 1rem;
@@ -115,11 +117,13 @@ fieldset {
 
     #selectMove {
         border: 0;
+        height: 2rem;
         width: 90%;
         color: gray;
         font-size: 0.9rem;
         background-color: transparent;
         border-bottom: 1px solid black;
+        margin-top: 0.2rem;
     }
 
 }
