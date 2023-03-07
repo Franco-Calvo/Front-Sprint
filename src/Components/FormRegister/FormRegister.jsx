@@ -44,7 +44,7 @@ export default function FormRegister(props) {
       await axios.post(url, data);
       Toast.fire({
         icon: "success",
-        title: "Signed in successfully",
+        title: "Registered Successfully",
       });
       formReg.current.reset();
       navigate("/signin");
@@ -57,25 +57,25 @@ export default function FormRegister(props) {
 
   return (
     <form ref={formReg} onSubmit={handleSubmit}>
-      <fieldset>
+      <fieldset className="input-sim">
         <legend>Name</legend>
         <input ref={name} type="text" id="name" name="name" required />
         <img src="./Profile.png" alt="" />
       </fieldset>
 
-      <fieldset>
+      <fieldset className="input-sim">
         <legend>Email</legend>
         <input ref={email} type="email" id="email" name="email" required />
         <img src="./email.png" alt="" />
       </fieldset>
 
-      <fieldset>
+      <fieldset className="input-sim">
         <legend>Photo</legend>
         <input ref={photo} type="text" id="photo" name="photo" required />
         <img src="./camera.png" alt="" />
       </fieldset>
 
-      <fieldset>
+      <fieldset className="input-sim">
         <legend>Password</legend>
         <input
           ref={password}
@@ -115,7 +115,7 @@ export default function FormRegister(props) {
             }
           }}
         >
-          Log in
+          <b className="action-render">Log in</b>
         </span>
       </span>
       <span className="span-login">
