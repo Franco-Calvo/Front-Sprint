@@ -7,6 +7,8 @@
   height: 100vh;
   width: 100%;
   gap: 1.5rem;
+  /* padding: 1rem;
+  margin-top: 10rem; */
 }
 
 @media (min-width: 320px) and (max-width: 767px) {

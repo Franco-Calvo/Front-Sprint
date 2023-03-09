@@ -44,7 +44,7 @@ export default function FormRegister(props) {
       await axios.post(url, data);
       Toast.fire({
         icon: "success",
-        title: "Registered Successfully",
+        title: "Session Successfully",
       });
       formReg.current.reset();
       navigate("/signin");
