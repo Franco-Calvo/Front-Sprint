@@ -1,18 +1,12 @@
-import React from "react";
 import {useParams} from "react-router-dom";
-import {useEffect, useState} from "react";
+import {useEffect, useState, useRef} from "react";
 import axios from "axios";
 import "./Author.css";
 
 export default function Author() {
   const {id} = useParams();
   const [data, setData] = useState([]);
-  const options = {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  };
+  const check = useRef();
   useEffect(() => {
     axios.get("http://localhost:8080/authors/" + id).then((res) => {
       res.data.data.createdAt = res.data.data.createdAt
@@ -23,31 +17,50 @@ export default function Author() {
       setData(res.data.data);
     });
   }, []);
-
+  function handleChange() {
+    console.log(check);
+  }
   return (
     <div id="author-container">
-      <section>
+      <section id="section-profile">
         <div>
-          <img src={data.photo} alt="profile" />
+          <img id="profile-img" src={data.photo} alt="profile" />
           <div>
-            <p>{data.name}</p>
-            <p>
-              <img src="./location-author.png" alt="location" /> {data.country},{" "}
-              {data.city}
+            <p id="name-author">
+              {data.name[0].toUpperCase() + data.name.substring(1)}
             </p>
-            <p>
-              <img src="./date-author.png" alt="date" /> {data.createdAt}
+            <p id="location-author">
+              <img
+                className="icon1"
+                src="../location-author.png"
+                alt="location"
+              />{" "}
+              {data.country}, {data.city}
+            </p>
+            <p id="date-author">
+              <img className="icon1" src="../date-author.png" alt="date" />{" "}
+              {data.createdAt}
             </p>
           </div>
-          <img src="./edit-author.png" alt="edit" />
+          <img className="icon2" src="../edit-author.png" alt="edit" />
         </div>
-        <p>Estudiante de diseño fanatico del manga, acuario, ascendente en</p>
+        <p id="description-author"></p>
       </section>
-      <section>
+      <section id="section-card">
         <div id="container-checkbox">
-          <label htmlFor="checkbox-author">New</label>
-          <input id="checkbox-author" type="checkbox" />
-          <label htmlFor="checkbox-author">Old</label>
+          <span className="text-check-author">new</span>
+          <label id="switch">
+            <input
+              ref={check}
+              id="checkbox-author"
+              type="checkbox"
+              onChange={handleChange}
+            />
+            <span id="slider">
+              <div id="slider-2"></div>
+            </span>
+          </label>
+          <span className="text-check-author">old</span>
         </div>
         <div id="container-card"></div>
       </section>

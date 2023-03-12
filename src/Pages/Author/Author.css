@@ -1,3 +1,103 @@
 #author-container {
   margin-top: 100px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.icon1 {
+  height: 13px;
+  width: 13px;
+}
+.icon2 {
+  height: 17px;
+  width: 17px;
+}
+#section-profile {
+  display: flex;
+  flex-direction: column;
+  height: 20%;
+  width: 80%;
+  align-items: center;
+  justify-content: space-evenly;
+}
+#section-profile > div {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 50px;
+}
+#profile-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50px;
+}
+/*Chekbox*/
+#container-checkbox {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  align-items: center;
+}
+#switch {
+  width: 48px;
+  height: 28px;
+}
+#checkbox-author {
+  display: none;
+}
+#slider {
+  width: 100%;
+  height: 100%;
+  background: #ccc;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 16px;
+  padding: 0 2px 0 2px;
+  transition: all 0.4s ease-in-out;
+}
+#slider-2 {
+  height: 22px;
+  width: 22px;
+  border-radius: 16px;
+  background: white;
+}
+#checkbox-author:checked + #slider {
+  background: rgb(9, 193, 9);
+  justify-content: flex-end;
+}
+#section-card {
+  border-top: 1px solid black;
+  width: 80%;
+  padding: 20px 0 0 0;
+}
+/*Text*/
+#name-author {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+}
+#location-author,
+#date-author,
+#description-author {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  color: #9d9d9d;
+}
+.text-check-author {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 15px;
+  color: #999999;
 }
