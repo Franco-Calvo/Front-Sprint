@@ -22,7 +22,7 @@ export default function FormChapter() {
         let chapter = {  
           [title.current.name]: title.current.value,
           [pages.current.name]: pages.current.value,       
-           ["manga_id"]: manga_id
+           "manga_id": manga_id
          
           }     
             if (order.current.value) { 

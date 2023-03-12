@@ -124,9 +124,11 @@ export default function NavIndex({handleRender}) {
           {token ? (
             <Anchor
               className="a-nav"
-              to="/chapher-form/63ff9d4e04c1a2dc7b9914eb">
+              to="/chapher-form/63fe8112f09373806fd89fe5">
               Chapter
             </Anchor>
+
+            
           ) : null}
           {token ? (
             <Anchor className="a-nav" to="/author-form">

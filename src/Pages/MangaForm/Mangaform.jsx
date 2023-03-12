@@ -47,7 +47,7 @@ export default function CreateManga() {
 
     async function renderCategory() {
         try{
-           const response = await axios.get('http://localhost:8080/mangas')
+           const response = await axios.get('http://localhost:8080/categories')
            setCategorias(response.data.categories)
         }catch(error){
             console.log(error)
