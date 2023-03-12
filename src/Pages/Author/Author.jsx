@@ -2,10 +2,13 @@ import {useParams} from "react-router-dom";
 import {useEffect, useState, useRef} from "react";
 import axios from "axios";
 import "./Author.css";
+import CardAuthor from "../../Components/CardAuthor/CardAuthor.jsx";
 
 export default function Author() {
   const {id} = useParams();
-  const [data, setData] = useState([]);
+  const [dataProfile, setDataProfile] = useState([]);
+  const [dataMangas, setDataMangas] = useState([]);
+  const [reload, serReload] = useState(false);
   const check = useRef();
   useEffect(() => {
     axios.get("http://localhost:8080/authors/" + id).then((res) => {
@@ -14,40 +17,51 @@ export default function Author() {
         .split("-")
         .reverse()
         .join("/");
-      setData(res.data.data);
+      setDataProfile(res.data.data);
     });
-  }, []);
+  }, [dataProfile.length != 0]);
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/mangas/authors/" + id + "?new=true")
+      .then((res) => {
+        console.log(res.data.data);
+        setDataMangas(res.data.data);
+      });
+  }, [dataMangas.length != 0]);
   function handleChange() {
     console.log(check);
   }
   return (
     <div id="author-container">
-      <section id="section-profile">
-        <div>
-          <img id="profile-img" src={data.photo} alt="profile" />
+      {dataProfile.length != 0 ? (
+        <section id="section-profile">
           <div>
-            <p id="name-author">
-              {data.name[0].toUpperCase() + data.name.substring(1)}
-            </p>
-            <p id="location-author">
-              <img
-                className="icon1"
-                src="../location-author.png"
-                alt="location"
-              />{" "}
-              {data.country}, {data.city}
-            </p>
-            <p id="date-author">
-              <img className="icon1" src="../date-author.png" alt="date" />{" "}
-              {data.createdAt}
-            </p>
+            <img id="profile-img" src={dataProfile.photo} alt="profile" />
+            <div>
+              <p id="name-author">
+                {dataProfile.name[0].toUpperCase() +
+                  dataProfile.name.substring(1)}
+              </p>
+              <p id="location-author">
+                <img
+                  className="icon1"
+                  src="../location-author.png"
+                  alt="location"
+                />{" "}
+                {dataProfile.country}, {dataProfile.city}
+              </p>
+              <p id="date-author">
+                <img className="icon1" src="../date-author.png" alt="date" />{" "}
+                {dataProfile.createdAt}
+              </p>
+            </div>
+            <img className="icon2" src="../edit-author.png" alt="edit" />
           </div>
-          <img className="icon2" src="../edit-author.png" alt="edit" />
-        </div>
-        <p id="description-author"></p>
-      </section>
+          <p id="description-author"></p>
+        </section>
+      ) : null}
       <section id="section-card">
-        <div id="container-checkbox">
+        <div id="container-checkbox-author">
           <span className="text-check-author">new</span>
           <label id="switch">
             <input
@@ -62,7 +76,11 @@ export default function Author() {
           </label>
           <span className="text-check-author">old</span>
         </div>
-        <div id="container-card"></div>
+        <div id="container-card-author">
+          {dataMangas?.map((each) => (
+            <CardAuthor key={each._id} data={each} />
+          ))}
+        </div>
       </section>
     </div>
   );

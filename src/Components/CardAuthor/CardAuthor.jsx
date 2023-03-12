@@ -4,9 +4,13 @@ import "./CardAuthor.css";
 
 export default function img({data}) {
   return (
-    <Anchor to={"/details/" + data._id}>
-      <img src={data.cover_photo} alt={data.title} />
-      <p>{data.title}</p>
+    <Anchor className="anchor-author" to={"/details/" + data._id}>
+      <img
+        className="author-card-img"
+        src={data.cover_photo}
+        alt={data.title}
+      />
+      <p className="author-card-title">{data.title}</p>
     </Anchor>
   );
 }
