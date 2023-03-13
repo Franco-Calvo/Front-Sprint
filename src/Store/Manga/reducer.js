@@ -1,5 +1,5 @@
 import actions from './actions'
-import { createReducer } from "@reduxjs/toolkit";
+import { createReducer } from "@reduxjs/toolkit"
 
 const { captureChapter, captureManga } = actions
 
@@ -14,6 +14,7 @@ const reducer = createReducer(
     .addCase(
         captureManga.fulfilled,
         (state,action)=> {
+            console.log(action)
             let newstate={
                 ...state,
                 manga: action.payload.manga
@@ -24,6 +25,7 @@ const reducer = createReducer(
         .addCase(
             captureChapter.fulfilled,
             (state, action) => {
+                console.log(action)
                 let newstate = {
                     ...state,
                    chapters: action.payload.chapter

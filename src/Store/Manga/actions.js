@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 
-let CaptureChapters = createAsyncThunk(
+let captureChapters = createAsyncThunk(
     'captureCahapter',
     async ({ manga_id, page }) => {
         try {
@@ -11,13 +11,14 @@ let CaptureChapters = createAsyncThunk(
                 chapters: response.data.chapters//si la peticion se realiza ok
             }
         } catch (error) {
+            console.log(error)
             return {
                 chapters: []
             }
         }
     }
 )
-let CaptureManga = createAsyncThunk(
+let captureManga = createAsyncThunk(
     'captureManga',
     async ({ manga_id}) => {
         try {
@@ -26,12 +27,13 @@ let CaptureManga = createAsyncThunk(
                 manga:response.data.manga
             }
         } catch (error) {
+            console.log(error)
             return {
                 manga: []
             }
         }
     }
 )
-const actions = { CaptureChapters, CaptureManga }
+const actions = { captureChapters, captureManga }
 
 export default actions  
