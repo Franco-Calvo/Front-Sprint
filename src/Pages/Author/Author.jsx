@@ -3,34 +3,43 @@ import {useEffect, useState, useRef} from "react";
 import axios from "axios";
 import "./Author.css";
 import CardAuthor from "../../Components/CardAuthor/CardAuthor.jsx";
+import {useDispatch, useSelector} from "react-redux";
+import checkActions from "../../store/CheckAuthor/actions";
+import authorActions from "../../store/Author/actions";
+
+const {capture} = checkActions;
+const {read_author} = authorActions;
 
 export default function Author() {
   const {id} = useParams();
-  const [dataProfile, setDataProfile] = useState([]);
   const [dataMangas, setDataMangas] = useState([]);
-  const [reload, serReload] = useState(false);
   const check = useRef();
+  const [reload, setReload] = useState(false);
+  const dispatch = useDispatch();
+  const defaultCheck = useSelector((store) => store.checkboxAuthor.checked);
+  const dataProfile = useSelector((store) => store.Author.author);
+
   useEffect(() => {
-    axios.get("http://localhost:8080/authors/" + id).then((res) => {
-      res.data.data.createdAt = res.data.data.createdAt
-        .slice(0, 10)
-        .split("-")
-        .reverse()
-        .join("/");
-      setDataProfile(res.data.data);
-    });
+    if (!dataProfile.length != 0) {
+      dispatch(read_author({author_id: id}));
+    }
   }, [dataProfile.length != 0]);
+
   useEffect(() => {
     axios
-      .get("http://localhost:8080/mangas/authors/" + id + "?new=true")
+      .get(
+        "http://localhost:8080/mangas/authors/" + id + "?new=" + defaultCheck
+      )
       .then((res) => {
-        console.log(res.data.data);
         setDataMangas(res.data.data);
       });
-  }, [dataMangas.length != 0]);
+  }, [reload]);
+
   function handleChange() {
-    console.log(check);
+    dispatch(capture({checked: check.current.checked}));
+    setReload(!reload);
   }
+  console.log(useSelector((store) => store));
   return (
     <div id="author-container">
       {dataProfile.length != 0 ? (
@@ -65,6 +74,7 @@ export default function Author() {
           <span className="text-check-author">new</span>
           <label id="switch">
             <input
+              defaultChecked={defaultCheck}
               ref={check}
               id="checkbox-author"
               type="checkbox"
