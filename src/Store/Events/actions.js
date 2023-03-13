@@ -1,10 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const read_events = createAsyncThunk("read_events", async ({ inputText }) => {
+const read_events = createAsyncThunk("read_events", async ({ inputText, captureChecks, pages }) => {
   try {
     let response = await axios.get(
-      "http://localhost:8080/mangas/view?title="+inputText.trim()
+      "http://localhost:8080/mangas/view?title="+inputText.trim()+"&category="+captureChecks+"&page="+pages,
     );
     return {
       events: response.data.mangas
