@@ -21,13 +21,13 @@ export default function Footer() {
             <a href="">Mangas</a>
           </span>
 
-          <img src="./logo.png" alt="" />
+          <img src="../logo.png" alt="" />
           <div className="social-media">
             <span className="icons-media">
-              <img src="./Facebook.png" alt="" />
-              <img src="./Twitter.png" alt="" />
-              <img src="./Vimeo.png" alt="" />
-              <img src="./Youtube.png" alt="" />
+              <img src="../Facebook.png" alt="" />
+              <img src="../Twitter.png" alt="" />
+              <img src="../Vimeo.png" alt="" />
+              <img src="../Youtube.png" alt="" />
             </span>
             <button className="button-suscribe">Donate ♡</button>
           </div>

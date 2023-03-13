@@ -2,9 +2,9 @@ import NotFound from "./NotFound/NotFound";
 import Index from "./Index/Index";
 import IndexLayout from "../Layouts/IndexLayout/IndexLayout";
 import MainLayout from "../Layouts/MainLayout/MainLayout";
-import { createBrowserRouter } from "react-router-dom";
+import {createBrowserRouter} from "react-router-dom";
 import HeroRegister from "./HeroRegister/HeroRegister";
-import MangaForm from '../Pages/MangaForm/Mangaform'
+import MangaForm from "../Pages/MangaForm/Mangaform";
 import Auth from "./Auth/Auth";
 import AuthorForm from "./AuthorForm/AuthorForm";
 import ChapterForm from "./ChapterForm/ChapterForm"
@@ -34,6 +34,10 @@ export const router = createBrowserRouter([
         element: <AuthorForm />,
       },
       {
+        path: "/author/:id",
+        element: <Author />,
+      },
+      {
         path: "/signup",
         element: <HeroRegister />,
       },
@@ -47,7 +51,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/mangas",
-        element: <MangaForm />
+        element: <MangaForm />,
       },
 
       {
@@ -60,5 +64,5 @@ export const router = createBrowserRouter([
       },
     ],
   },
-  { path: "/notfound", element: <NotFound /> },
+  {path: "/notfound", element: <NotFound />},
 ]);

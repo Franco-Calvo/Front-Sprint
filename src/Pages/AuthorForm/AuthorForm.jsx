@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import {useRef} from "react";
 import "./AuthorForm.css";
 import axios from "axios";
 import swal from "sweetalert";
@@ -15,18 +15,18 @@ export default function AuthorForm() {
   async function handleSubmit(e) {
     e.preventDefault();
     let token = localStorage.getItem("token");
-    let headers = { headers: { Authorization: `Bearer ${token}` } };
+    let headers = {headers: {Authorization: `Bearer ${token}`}};
     if (cityCountry.current.value.includes(",")) {
       let city = cityCountry.current.value.split(",")[0].trim();
       let country = cityCountry.current.value.split(",")[1].trim();
       let data = {
         [firstName.current.name]: firstName.current.value,
         [lastName.current.name]: lastName.current.value,
-        ["city"]: city,
-        ["country"]: country,
+        city: city,
+        country: country,
         [date.current.name]: date.current.value,
         [urlProfile.current.name]: urlProfile.current.value,
-        ["active"]: true,
+        active: true,
       };
       let url = "http://localhost:8080/authors";
       try {

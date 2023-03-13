@@ -126,8 +126,13 @@ export default function NavIndex({ handleRender }) {
             </Anchor>
           ) : null}
           {token ? (
-            <Anchor className="a-nav" to="/author-form">
+            <Anchor className="a-nav" to="/author/640b93d57f41e871c0ed6622">
               Author
+            </Anchor>
+          ) : null}
+          {token ? (
+            <Anchor className="a-nav" to="/author-form">
+              New Author
             </Anchor>
           ) : null}
           {token ? (
