@@ -9,6 +9,7 @@ import Auth from "./Auth/Auth";
 import AuthorForm from "./AuthorForm/AuthorForm";
 import ChapterForm from "./ChapterForm/ChapterForm";
 import Author from "./Author/Author";
+import MangasView from "./MangasView/MangasView";
 
 export const router = createBrowserRouter([
   {
@@ -52,6 +53,11 @@ export const router = createBrowserRouter([
       {
         path: "/mangas",
         element: <MangaForm />,
+      },
+
+      {
+        path: "/view-mangas",
+        element: <MangasView />,
       },
       {
         path: "/*",

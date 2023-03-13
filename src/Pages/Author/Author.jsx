@@ -4,9 +4,9 @@ import axios from "axios";
 import "./Author.css";
 import CardAuthor from "../../Components/CardAuthor/CardAuthor.jsx";
 import {useDispatch, useSelector} from "react-redux";
-import checkActions from "../../store/CheckAuthor/actions";
-import authorActions from "../../store/Author/actions";
-import mangasActions from "../../store/MangasAuthor/actions";
+import checkActions from "../../Store/CheckAuthor/actions";
+import authorActions from "../../Store/Author/actions";
+import mangasActions from "../../Store/MangasAuthor/actions";
 
 const {capture} = checkActions;
 const {read_author} = authorActions;
