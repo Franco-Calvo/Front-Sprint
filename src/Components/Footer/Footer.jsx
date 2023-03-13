@@ -30,7 +30,6 @@ export default function Footer() {
               <img src="./Youtube.png" alt="" />
             </span>
             <button className="button-suscribe">Donate ♡</button>
-
           </div>
         </div>
         <hr />
