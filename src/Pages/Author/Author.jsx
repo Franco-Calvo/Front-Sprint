@@ -6,18 +6,20 @@ import CardAuthor from "../../Components/CardAuthor/CardAuthor.jsx";
 import {useDispatch, useSelector} from "react-redux";
 import checkActions from "../../store/CheckAuthor/actions";
 import authorActions from "../../store/Author/actions";
+import mangasActions from "../../store/MangasAuthor/actions";
 
 const {capture} = checkActions;
 const {read_author} = authorActions;
+const {read_mangas} = mangasActions;
 
 export default function Author() {
   const {id} = useParams();
-  const [dataMangas, setDataMangas] = useState([]);
   const check = useRef();
   const [reload, setReload] = useState(false);
   const dispatch = useDispatch();
   const defaultCheck = useSelector((store) => store.checkboxAuthor.checked);
   const dataProfile = useSelector((store) => store.Author.author);
+  const dataMangas = useSelector((store) => store.MangasAuthor.mangas);
 
   useEffect(() => {
     if (!dataProfile.length != 0) {
@@ -26,13 +28,7 @@ export default function Author() {
   }, [dataProfile.length != 0]);
 
   useEffect(() => {
-    axios
-      .get(
-        "http://localhost:8080/mangas/authors/" + id + "?new=" + defaultCheck
-      )
-      .then((res) => {
-        setDataMangas(res.data.data);
-      });
+    dispatch(read_mangas({author_id: id, query: defaultCheck}));
   }, [reload]);
 
   function handleChange() {
