@@ -1,0 +1,21 @@
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
+
+const read_events = createAsyncThunk("read_events", async ({ inputText }) => {
+  try {
+    let response = await axios.get(
+      "http://localhost:8080/mangas/view?title="+inputText.trim()
+    );
+    return {
+      events: response.data.mangas
+    };
+  } catch (error) {
+    console.log(error);
+    return {
+      events: [],
+    };
+  }
+});
+
+const actions = { read_events };
+export default actions;

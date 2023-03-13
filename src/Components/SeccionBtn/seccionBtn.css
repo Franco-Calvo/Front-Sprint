@@ -1,0 +1,102 @@
+.btn-manga-chapter{
+    height: auto;
+    margin: 1rem;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.op-manga-chapter {
+    border-radius: 40px;
+    border: none;
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: row;
+}
+
+.opciones {
+    width: 100px;
+    height: 30px;
+   
+    border-radius: 40px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    color: #9D9D9D;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    margin: 0 12px;
+}
+
+.btn-select {
+    background: linear-gradient(153.39deg, #F9A8D4 -13.9%, #F472B6 58.69%);
+    color: #FFFFFF;
+    margin: 0px;
+    width: 200px;
+}
+.seccionChapters{
+    width: 80%;
+    height: auto;
+    margin: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    justify-items: center;
+    align-items: center;
+}
+.img-chapter{
+    width: 20%;
+    height: auto;
+}
+.seccion1-chapter{
+    width: 40%;
+    height: 10vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-content: space-around;
+    align-items: center;
+   
+}
+.seccion2-cahpters{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-content: space-around;
+    justify-content: space-around;
+
+}
+.puntitos{
+    width: 20%;
+    height: 2vh;
+    background-color: rgb(52, 50, 50);
+    background: #c1c1c1ad;
+    border-radius: 40px;
+    color: black;
+    font-family: 'Times New Roman';
+    font-size: 1rem;
+}
+.read{
+    width: 10vw;
+    height: 5vh;
+    border-radius: 40px;
+}
+.descripcion{
+    width: 80%;
+    height: auto;
+    font-family: "Montserrat", sans-serif;
+    font-style: normal;
+    text-align: justify;
+    font-size: 3vh;
+    color: #2a2a2a;
+}
+@media (max-width: 900px) {
+    .read{
+        width: 20vw;
+        height: 5vh;
+        border-radius: 40px;
+    }
+}

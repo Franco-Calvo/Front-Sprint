@@ -1,0 +1,112 @@
+.card-shonen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.03);
+  height: 180px;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.text-manga {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-left: 5px;
+  flex-direction: column;
+  width: 50%;
+  gap: 1rem;
+}
+
+.text-manga span{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  height: 100%;
+  margin-top: 2rem;
+}
+
+.category-manga{
+  display: flex;
+  justify-content: start;
+  color: #fc9c57;
+  width: 100%;
+}
+
+.category-manga2{
+  display: flex;
+  justify-content: start;
+  color: #EE8380;
+  width: 100%;
+}
+
+.category-manga3{
+  display: flex;
+  justify-content: start;
+  color: #F472B6;
+  width: 100%;
+}
+
+.category-manga4{
+  display: flex;
+  justify-content: start;
+  color: #ac57fc;
+  width: 100%;
+}
+
+
+.cont-manga-img{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width:50%;
+}
+
+.cont-img {
+  border-radius:35% 10px 10px 35%;
+  width: 100%;
+  height: 11rem;
+  object-fit: cover;
+}
+
+.button-read {
+  background: #d1fbf0;
+  color: #00ba88;
+  width: 92px;
+  border-radius: 50px;
+  margin-top: 1rem;
+}
+
+.seinen {
+  height: 75%;
+  width: 4px;
+  border: 1px solid #F97316;
+  background: #F97316;
+}
+
+.shonen {
+  height: 75%;
+  width: 4px;
+  border: 1px solid #EE8380;
+  background: #EE8380;
+}
+
+.shojo {
+  height: 75%;
+  width: 4px;
+  border: 1px solid #F472B6;
+  background: #F472B6;
+}
+
+.kodomo {
+  height: 75%;
+  width: 4px;
+  border: 1px solid #8883F0;
+  background: #8883F0;
+}
+
+.button-read:hover {
+  box-shadow: 0px 0px 10px 1px rgba(0, 186, 136, 0.2);
+  border: 1px solid #00ba88;
+}
