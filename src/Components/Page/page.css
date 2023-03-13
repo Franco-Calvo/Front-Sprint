@@ -1,15 +1,17 @@
 .container-page{
-    margin-top: 100px;
+    margin-top: 60px;
     display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(20px, auto));
     width: 100%;
     height: 100vh;
 	place-content: center;
+    gap: 3rem;
 }
 
 .capitulo-img img {
     width: 100%;
     height: 80vh;
+    
 }
 
 .text-capitulo {
@@ -56,12 +58,14 @@
     align-items: center;
     justify-content: flex-end;
     cursor: pointer;
+    
 }
 
 .next img {
     width: 2rem;
     padding: 0.1rem;
     cursor: pointer;
+    
 }
 
 
@@ -115,17 +119,36 @@
     display: flex;
     align-items: center;
     align-content: center;
+    align-items: center;
     justify-content: center;
     text-align: center;
+    
  }
 
 .coment p{
     z-index: 200000;
+    padding: 10px 50px;
     position: absolute;
 }
 
+.coment h6{
+    z-index: 200000;
+   
+}
 
+.coment-number{
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: -40px;
+}
 
+.coment-number h6{
+    margin-top: -40px;
+    font-size: 15px;
+}
 
 
 
@@ -145,8 +168,8 @@
 .prev {
     height: 100%;
     width: 50%;
-    position: relative;
-    left: 20%;
+    position: absolute;
+    left: 10%;
     display: flex;
     align-items: center;
     cursor: pointer;
@@ -159,8 +182,8 @@
 .next {
     height: 100%;
     width: 50%;
-    position: relative;
-    right: 20%;
+    position: absolute;
+    right: 10%;
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -180,12 +203,25 @@
 .capitulo-img img {
     width: 100%;
     height: 60vh;
+   
 }
 
 .container-page{
     margin-top: 60px;
+    gap: 0;
 }
 
+
+.coment {
+    width: 37px;
+ }
+
+ .coment-number{
+    margin-top: -70px;
+ }
+
+ 
+ 
 }
 
 
@@ -193,63 +229,3 @@
 
 
 
-
-
-
-
-
-
-
-/* 
-.chapters {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.image {
-    object-fit: contain;
-    height: 80%;
-    width: 100vh;
-
-}
-
-.prev {
-    height: 80%;
-    width: 21%;
-    position: relative;
-    left: 20%;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-}
-
-.prev img {
-    width: 0.8rem;
-   
-    padding: 0.1rem;    
-    cursor: pointer;
-}
-
-.next {
-    height: 80%;
-    width: 21%;
-    position: relative;
-    right: 20%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    cursor: pointer;
-}
-
-.next img {
-    width: 0.8rem;
-   
-    padding: 0.1rem;
-    cursor: pointer;
-}
-
-.img-text {
-    width: 100%;
-} */

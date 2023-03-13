@@ -8,7 +8,7 @@ import MangaForm from '../Pages/MangaForm/Mangaform'
 import Auth from "./Auth/Auth";
 import AuthorForm from "./AuthorForm/AuthorForm";
 import ChapterForm from "./ChapterForm/ChapterForm"
-import Pajes from "./PAJE/Pajes"
+import Pages from "./Page/Pages"
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -46,7 +46,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/chapters/:id/:page",
-        element: <Pajes />,
+        element: <Pages />,
       },
       {
 

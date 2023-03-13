@@ -1,68 +1,118 @@
-import { useState, useEffect } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
 import axios from 'axios';
+import React, { useEffect, useState } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
+import "./page.css"
 
-export default function Page() {
-  const { id, page } = useParams();
-  const history = useHistory();
-  const [chapter, setChapter] = useState(null);
-  const [currentPage, setCurrentPage] = useState(parseInt(page));
-  
-  useEffect(() => {
-    const getChapter = async () => {
-      try {
-        const res = await axios.get(`/api/chapters/${id}`);
-        setChapter(res.data.Chapter);
-      } catch (err) {
-        console.error(err);
-      }
+
+export default function Chapters() {
+
+    let navigate = useNavigate()
+    let url = `http://localhost:8080/chapters/`
+    let { id, page} = useParams()    
+    let [ chapter, setChapter ] = useState({})
+    let [ index, setIndex ] = useState(parseInt(page))
+
+    useEffect(() => {
+        axios.get(url+id)
+            .then(response => setChapter(response.data.chapter))
+            .catch(error => console.log(error))
+    }, [id, page, url])
+
+ 
+    let handlePrev = () => {
+        if (index > 0) {
+            setIndex(index - 1)
+            navigate(`/chapters/${id}/${index - 1}`)
+        } else {
+            navigate(`/mangas/${id}/${1}`)
+        }
     }
-    getChapter();
-  }, [id]);
 
-  const handlePrevPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-      history.push(`/chapters/${id}/${currentPage - 1}`);
+    let handleNext = () => {
+        if (index < chapter.pages?.length - 1) {
+            setIndex(index + 1)
+            navigate(`/chapters/${id}/${index + 1}`)
+        } else {
+            navigate(`/mangas/${id}/${1}`)
+        }
     }
-  }
 
-  const handleNextPage = () => {
-    if (currentPage < chapter.pages.length) {
-      setCurrentPage(currentPage + 1);
-      history.push(`/chapters/${id}/${currentPage + 1}`);
-    }
-  }
+    console.log(chapter)
+    return (
+        <div className='page'>
+          <div className='container-page'>
+           
+           <div className='prev' onClick={handlePrev}>
+               <img src='../../prev.png' alt='prevarrow'/>
+           </div>
+           
+          <div className='img-text'> 
+          <div className='text-capitulo'>
+               <h5>Capítulo {chapter.order} - {chapter.title}</h5>
+           </div>
+           <div className='capitulo-img'><img src={chapter.pages?.[index]} alt='comicimage'/></div>
+          </div>
 
-  const handleFirstPageLeft = () => {
-    if (currentPage === 1) {
-      history.push(`/chapters/${id}`);
-    }
-  }
+           <div className='next' onClick={handleNext}>
+               <img src='../../next.png' alt='nextarrow'/>
+           </div>
 
-  const handleLastPageRight = () => {
-    if (currentPage === chapter.pages.length) {
-      // Aquí necesitamos obtener el id del capítulo siguiente y redirigir a su primera página.
-      // Podríamos hacer esto usando una nueva llamada a la API o almacenando la información en el estado.
-    }
-  }
+           
+       </div>
+       <div className='coment-number'>
+       <div className='coment'> <p>...</p> </div>
+       <h6>24</h6>
+       </div>
+       
+       </div>
+    )
+}
 
-  if (!chapter) {
-    return <p>Loading...</p>;
-  }
 
-  const pageImage = chapter.pages[currentPage - 1];
 
-  return (
-    <div>
-      <img src={pageImage} alt={`Page ${currentPage}`} />
-      <div>
-        <button onClick={handlePrevPage}>PREV</button>
-        <button onClick={handleNextPage}>NEXT</button>
-      </div>
-      <div>
-        <button onClick={handleFirstPageLeft}>PREV</button>
-        <button onClick={handleLastPageRight}>NEXT</button>
-      </div>
-    </div>
-  ) }
+
+
+
+
+
+
+
+
+
+// let navigate = useNavigate()
+//     let url = `http://localhost:8080/chapters/`
+//     let { id, page} = useParams()    
+//     let [ chapter, setChapter ] = useState({})
+//     let [ index, setIndex ] = useState(parseInt(page))
+
+//     useEffect(() => {
+//         axios.get(url+id)
+//             .then(response => {
+//                 setChapter(response.data.chapter)
+//                 if (parseInt(page) >= response.data.chapter.pages.length) {
+//                     setIndex(response.data.chapter.pages.length - 1)
+//                 }
+//             })
+//             .catch(error => {
+//                 console.log(error)
+//                 alert('Ha ocurrido un error al obtener el capítulo.')
+//             })
+//     }, [id, page, url])
+
+    // let handlePrev = () => {
+    //     if (index > 0) {
+    //         setIndex(index - 1)
+    //         navigate(`/chapters/${id}/${index - 1}`)
+    //     } else {
+    //         navigate(`/mangas/${id}/${1}`)
+    //     }
+    // }
+
+    // let handleNext = () => {
+    //     if (index < chapter.pages?.length - 1) {
+    //         setIndex(index + 1)
+    //         navigate(`/chapters/${id}/${index + 1}`)
+    //     } else {
+    //         navigate(`/mangas/${id}/${1}`)
+    //     }
+    // }
