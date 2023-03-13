@@ -2,20 +2,36 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 
-let captureChapters = createAsyncThunk(
+let CaptureChapters = createAsyncThunk(
     'captureCahapter',
-    async ({ chapters }) => {
+    async ({ manga_id, page }) => {
         try {
-            let response = await axios.get('http://localhost:8080/mangas/' + chapters.trim())
+            let response = await axios.get(`http://localhost:8080/chapters?manga_id=${manga_id}&page=${page}`)
             return {
-                chapter: response//si la peticion se realiza ok
+                chapters: response.data.chapters//si la peticion se realiza ok
             }
         } catch (error) {
             return {
-                chapter: []//cuando la peticion no se puso hacer
+                chapters: []
             }
         }
     }
 )
-const actions = { captureChapters }
+let CaptureManga = createAsyncThunk(
+    'captureManga',
+    async ({ manga_id}) => {
+        try {
+            let response = await axios.get(`http://localhost:8080/mangas/`+ manga_id )
+            return {
+                manga:response.data.manga
+            }
+        } catch (error) {
+            return {
+                manga: []
+            }
+        }
+    }
+)
+const actions = { CaptureChapters, CaptureManga }
+
 export default actions  

@@ -33,10 +33,10 @@ export const router = createBrowserRouter([
         path: "/author-form",
         element: <AuthorForm />,
       },
-      {
+      /* {
         path: "/author/:id",
         element: <Author />,
-      },
+      }, */
       {
         path: "/signup",
         element: <HeroRegister />,

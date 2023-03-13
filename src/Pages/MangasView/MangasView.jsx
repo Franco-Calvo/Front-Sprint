@@ -57,7 +57,7 @@ export default function MangasView() {
   const data = useSelector((store) => store.events.events);
 
   useEffect(() => {
-    if (!data) {
+    if (data) {
       dispatch(read_events({ inputText: text.current.value }));
     }
   }, [reload]);

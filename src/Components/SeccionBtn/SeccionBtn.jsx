@@ -1,7 +1,5 @@
-import React from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import './seccionBtn.css'
-import { useRef } from 'react'
-import{ useState, useEffect } from 'react';
 import { Link as Anchor } from 'react-router-dom'
 import axios from 'axios';
 import ImgManga from '../../imagenes/imgstatic.png'
@@ -10,10 +8,29 @@ export default function SeccionBtn(props) {
 
     let btnManga = useRef()
     let btnChapters = useRef()
-    function selectboton() {
-        btnChapters.current.classList.toggle('btn-select')
-        btnManga.current.classList.toggle('btn-select')
-    }
+
+    useEffect(() => {
+        const selectboton = (event) => {
+            if (event.target === btnManga.current) {
+               
+                document.querySelector('descripcion').style.display = 'block';
+                document.querySelector('.seccionChapters').style.display = 'none';
+            } else if (event.target === btnChapters.current) {
+               
+                document.querySelector('descripcion').style.display = 'none';
+                document.querySelector('.seccionChapters').style.display = 'block';
+            }
+        };
+
+        btnManga.current.classList.add('btn-select'); 
+        btnManga.current.addEventListener('click', selectboton);
+        btnChapters.current.addEventListener('click', selectboton);
+
+        return () => {
+            btnManga.current.removeEventListener('click', selectboton);
+            btnChapters.current.removeEventListener('click', selectboton);
+        }
+    }, [btnManga, btnChapters]);
 
     const [manga, setManga] = useState({});
     useEffect(() => {
@@ -32,23 +49,22 @@ export default function SeccionBtn(props) {
 
     return (
         <>
-
             <div className="btn-manga-chapter" >
                 <div className='op-manga-chapter'>
-                    <Anchor className='opciones btn-select' ref={btnManga} onClick={selectboton}>Manga</Anchor>
-                    <Anchor className='opciones ' ref={btnChapters} onClick={selectboton}>Chapters</Anchor>
+                    <Anchor className='opciones' ref={btnManga}>Manga</Anchor>
+                    <Anchor className='opciones' ref={btnChapters}>Chapters</Anchor>
                 </div>
             </div>
             <div className="descripcion" >
                 <p>{manga.description}</p>
             </div>
             <div className="seccionChapters" >
-               {/*  <img className="img-chapter" src={ImgManga} /> */}
+                <img className="img-chapter" src={ImgManga} />
                 <div className="seccion1-chapter" >
-                    <p>chapter#1</p>
+                    <p>{manga.order}</p>
                     <div className="seccion2-cahpters">
                         <button className="puntitos">. . .</button>
-                        <h4>n° pagina</h4>
+                        <h4>{manga.pages}</h4>
                     </div>
                 </div>
                 <button className="read" >Read</button>
@@ -56,5 +72,4 @@ export default function SeccionBtn(props) {
         </>
     )
 }
-
 
