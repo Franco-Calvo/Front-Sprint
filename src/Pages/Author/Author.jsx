@@ -1,41 +1,44 @@
 import {useParams} from "react-router-dom";
-import {useEffect, useState, useRef} from "react";
-import axios from "axios";
+import {useEffect, useRef} from "react";
 import "./Author.css";
 import CardAuthor from "../../Components/CardAuthor/CardAuthor.jsx";
 import {useDispatch, useSelector} from "react-redux";
-import checkActions from "../../store/CheckAuthor/actions";
-import authorActions from "../../store/Author/actions";
-import mangasActions from "../../store/MangasAuthor/actions";
+import checkActions from "../../Store/CheckAuthor/actions";
+import authorActions from "../../Store/Author/actions";
+import mangasActions from "../../Store/MangasAuthor/actions";
 
 const {capture} = checkActions;
 const {read_author} = authorActions;
 const {read_mangas} = mangasActions;
 
 export default function Author() {
-  const {id} = useParams();
-  const check = useRef();
-  const [reload, setReload] = useState(false);
   const dispatch = useDispatch();
   const defaultCheck = useSelector((store) => store.checkboxAuthor.checked);
   const dataProfile = useSelector((store) => store.Author.author);
-  const dataMangas = useSelector((store) => store.MangasAuthor.mangas);
+  const dataMangasAll = useSelector((store) => store.MangasAuthor);
+  const dataMangas = defaultCheck ? dataMangasAll.new : dataMangasAll.old;
+  const {id} = useParams();
+  const check = useRef();
 
   useEffect(() => {
-    if (!dataProfile.length != 0) {
+    if (dataProfile.length === 0) {
       dispatch(read_author({author_id: id}));
+      console.log("Peticion author");
+      console.log(dataProfile);
     }
-  }, [dataProfile.length != 0]);
+  }, []);
 
   useEffect(() => {
-    dispatch(read_mangas({author_id: id, query: defaultCheck}));
-  }, [reload]);
+    if (dataMangas.length === 0) {
+      dispatch(read_mangas({author_id: id}));
+      console.log("Peticion mangas");
+      console.log(dataProfile);
+    }
+  }, []);
 
   function handleChange() {
     dispatch(capture({checked: check.current.checked}));
-    setReload(!reload);
   }
-  console.log(useSelector((store) => store));
   return (
     <div id="author-container">
       {dataProfile.length != 0 ? (

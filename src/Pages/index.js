@@ -9,6 +9,7 @@ import Auth from "./Auth/Auth";
 import AuthorForm from "./AuthorForm/AuthorForm";
 import ChapterForm from "./ChapterForm/ChapterForm";
 import Manga from "./Manga/Manga";
+import Author from "./Author/Author";
 import MangasView from "./MangasView/MangasView";
 export const router = createBrowserRouter([
   {
@@ -33,10 +34,10 @@ export const router = createBrowserRouter([
         path: "/author-form",
         element: <AuthorForm />,
       },
-      /* {
+      {
         path: "/author/:id",
-        element: <Author />,
-      }, */
+         element: <Author />,
+      },
       {
         path: "/signup",
         element: <HeroRegister />,
@@ -56,7 +57,7 @@ export const router = createBrowserRouter([
 
       {
         path: "/view-mangas",
-        element: <MangasView/>
+        element: <MangasView />,
       },
       {
         path: "/manga/:id/:page",

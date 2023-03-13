@@ -2,6 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 40%;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.03);
   height: 180px;
   border-radius: 10px;
@@ -70,12 +71,17 @@
   object-fit: cover;
 }
 
-.button-read {
+.text-manga a {
   background: #d1fbf0;
   color: #00ba88;
   width: 92px;
   border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: .5rem;
   margin-top: 1rem;
+  text-decoration: none;
 }
 
 .seinen {
@@ -106,7 +112,7 @@
   background: #8883F0;
 }
 
-.button-read:hover {
-  box-shadow: 0px 0px 10px 1px rgba(0, 186, 136, 0.2);
-  border: 1px solid #00ba88;
+.text-manga a:hover {
+  box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.2);
+  background: #bee6db;
 }
