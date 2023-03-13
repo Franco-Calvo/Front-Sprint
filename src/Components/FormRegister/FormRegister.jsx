@@ -5,6 +5,10 @@ import ButtonGeneral from "../ButtonGeneral/ButtonGeneral";
 import axios from "axios";
 import { Link as Anchor, useNavigate, useLocation } from "react-router-dom";
 import Swal from "sweetalert2";
+import { useDispatch, useSelector } from "react-redux";
+import alertActions from "../../Store/Alert/actions";
+
+const { open } = alertActions;
 
 export default function FormRegister(props) {
   const name = useRef();
@@ -15,18 +19,8 @@ export default function FormRegister(props) {
   const navigate = useNavigate();
   const location = useLocation();
   const { pathname } = location;
-
-  const Toast = Swal.mixin({
-    toast: true,
-    position: "top-end",
-    showConfirmButton: false,
-    timer: 3000,
-    timerProgressBar: true,
-    didOpen: (toast) => {
-      toast.addEventListener("mouseenter", Swal.stopTimer);
-      toast.addEventListener("mouseleave", Swal.resumeTimer);
-    },
-  });
+  const store = useSelector((store) => store);
+  let dispatch = useDispatch();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -42,16 +36,23 @@ export default function FormRegister(props) {
 
     try {
       await axios.post(url, data);
-      Toast.fire({
+      let dataAlert = {
         icon: "success",
-        title: "Session Successfully",
-      });
+        title: "Session successfully",
+      };
+      dispatch(open(dataAlert));
       formReg.current.reset();
       navigate("/signin");
     } catch (error) {
       console.log(error);
-      // Swal.fire(error.response.data.message);
-      Swal.fire(error.response.data.message[0]);
+      let dataAlert = {
+        icon: "error",
+        title: "",
+      };
+      error.response.data.message.forEach((err) => {
+        dataAlert.title += err + "\n";
+      });
+      dispatch(open(dataAlert));
     }
   }
 
