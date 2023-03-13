@@ -6,46 +6,41 @@ import "./page.css"
 
 export default function Chapters() {
 
-    let navigate = useNavigate()
-    let url = `http://localhost:8080/chapters/`
-    let { id, page} = useParams()    
-    let [ chapter, setChapter ] = useState({})
-    let [ index, setIndex ] = useState(parseInt(page))
+    
+    const navigate = useNavigate()
+    const { id, page } = useParams()
+    const url = `http://localhost:8080/chapters/${id}`
+    const [chapter, setChapter] = useState({})
+    const [index, setIndex] = useState(Number(page))
+    const maxIndex = (chapter?.pages?.length || 0) - 1
 
     useEffect(() => {
-        axios.get(url+id)
-            .then(response => setChapter(response.data.chapter))
-            .catch(error => console.log(error))
-    }, [id, page, url])
+        axios.get(url).then(res => {
+        setChapter(res.data.chapter);
+        setIndex(Number(page));
+    }).catch(error => console.log(error));
+    }, [id, page, url]);
 
-
-    
-    let handlePrev = () => {
-        setIndex( index - 1)
-        navigate(`/chapters/${id}/${index - 1}`) 
-        if( index <= 0){
-            navigate(`/mangas/${id}/${1}`)
-        }
-
-    }
-
-    let handleNext = () => {
-        setIndex( index + 1)
-        navigate(`/chapters/${id}/${index + 1}`) 
-        if( index > chapter.pages?.length){
-            axios.get(`http://localhost:8080/chapters/${parseInt(id)+1}`)
-            .then(response => {
-                setChapter(response.data.chapter)
-                setIndex(1)
-                navigate(`/chapters/${parseInt(id)+1}/1`)
-            })
-            .catch(error => console.log(error))
+function handlePrev() {
+    const newIndex = index - 1
+    if (newIndex < 0) {
+        navigate(`/mangas/${id}/1`)
     } else {
-        navigate(`/chapters/${id}/${index + 1}`)
-        }
+        setIndex(newIndex)
+        navigate(`/chapters/${id}/${newIndex}`)
     }
+}
 
-    console.log(chapter)
+function handleNext() {
+    const newIndex = index + 1
+    if (newIndex > maxIndex) {
+        navigate(`/chapters/640b93d67f41e871c0ed663d/0`)
+    } else {
+        setIndex(newIndex)
+        navigate(`/chapters/${id}/${newIndex}`)
+    }
+}
+
     return (
         <div className='page'>
           <div className='container-page'>
@@ -56,7 +51,7 @@ export default function Chapters() {
            
           <div className='img-text'> 
           <div className='text-capitulo'>
-               <h5>Capítulo {chapter.order} - {chapter.title}</h5>
+               <h5>Capítulo {chapter.order} - {chapter.title} - Page {index} </h5>
            </div>
            <div className='capitulo-img'><img src={chapter.pages?.[index]} alt='comicimage'/></div>
           </div>
@@ -76,51 +71,3 @@ export default function Chapters() {
     )
 }
 
-
-
-
-
-
-
-
-
-
-
-
-// let navigate = useNavigate()
-//     let url = `http://localhost:8080/chapters/`
-//     let { id, page} = useParams()    
-//     let [ chapter, setChapter ] = useState({})
-//     let [ index, setIndex ] = useState(parseInt(page))
-
-//     useEffect(() => {
-//         axios.get(url+id)
-//             .then(response => {
-//                 setChapter(response.data.chapter)
-//                 if (parseInt(page) >= response.data.chapter.pages.length) {
-//                     setIndex(response.data.chapter.pages.length - 1)
-//                 }
-//             })
-//             .catch(error => {
-//                 console.log(error)
-//                 alert('Ha ocurrido un error al obtener el capítulo.')
-//             })
-//     }, [id, page, url])
-
-    // let handlePrev = () => {
-    //     if (index > 0) {
-    //         setIndex(index - 1)
-    //         navigate(`/chapters/${id}/${index - 1}`)
-    //     } else {
-    //         navigate(`/mangas/${id}/${1}`)
-    //     }
-    // }
-
-    // let handleNext = () => {
-    //     if (index < chapter.pages?.length - 1) {
-    //         setIndex(index + 1)
-    //         navigate(`/chapters/${id}/${index + 1}`)
-    //     } else {
-    //         navigate(`/mangas/${id}/${1}`)
-    //     }
-    // }
