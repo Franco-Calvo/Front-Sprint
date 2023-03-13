@@ -68,6 +68,7 @@ export default function MangasView() {
     SetReload(!reload);
     dispatch(captureText({ inputText: text.current.value }));
   };
+  console.log(data);
 
   useEffect(() => {
     axios
