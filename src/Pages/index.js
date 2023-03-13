@@ -7,7 +7,8 @@ import HeroRegister from "./HeroRegister/HeroRegister";
 import MangaForm from "../Pages/MangaForm/Mangaform";
 import Auth from "./Auth/Auth";
 import AuthorForm from "./AuthorForm/AuthorForm";
-import ChapterForm from "./ChapterForm/ChapterForm"
+import ChapterForm from "./ChapterForm/ChapterForm";
+import Author from "./Author/Author";
 import MangasView from "./MangasView/MangasView";
 
 export const router = createBrowserRouter([
@@ -56,7 +57,7 @@ export const router = createBrowserRouter([
 
       {
         path: "/view-mangas",
-        element: <MangasView/>
+        element: <MangasView />,
       },
       {
         path: "/*",
