@@ -4,11 +4,15 @@ import IndexLayout from "../Layouts/IndexLayout/IndexLayout";
 import MainLayout from "../Layouts/MainLayout/MainLayout";
 import { createBrowserRouter } from "react-router-dom";
 import HeroRegister from "./HeroRegister/HeroRegister";
-import MangaForm from '../Pages/MangaForm/Mangaform'
+import MangaForm from "../Pages/MangaForm/Mangaform";
 import Auth from "./Auth/Auth";
 import AuthorForm from "./AuthorForm/AuthorForm";
-import ChapterForm from "./ChapterForm/ChapterForm"
-import Pages from "./Page/Pages"
+import ChapterForm from "./ChapterForm/ChapterForm";
+import Author from "./Author/Author";
+import MangasView from "./MangasView/MangasView";
+import Page from "./Page/Pages";
+
+
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -33,6 +37,10 @@ export const router = createBrowserRouter([
         element: <AuthorForm />,
       },
       {
+        path: "/author/:id",
+        element: <Author />,
+      },
+      {
         path: "/signup",
         element: <HeroRegister />,
       },
@@ -45,13 +53,17 @@ export const router = createBrowserRouter([
         element: <ChapterForm />,
       },
       {
-        path: "/chapters/:id/:page",
-        element: <Pages />,
+        path: "/mangas",
+        element: <MangaForm />,
+      },
+
+      {
+        path: "/view-mangas",
+        element: <MangasView />,
       },
       {
-
-        path: "/mangas",
-        element: <MangaForm />
+        path: "/chapters/:id/:page",
+        element: <Page />
       },
       {
         path: "/*",

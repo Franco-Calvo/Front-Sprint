@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import "./header.css";
 import NavButton from "../NavButton/NavButton";
 import NavIndex from "../NavIndex/NavIndex";
@@ -13,7 +13,7 @@ export default function Header() {
       <div className="container">
         <NavButton onClick={handleRender} />
         {render && <NavIndex handleRender={handleRender} />}
-        <img src="./logo.png" alt="" />
+        <img src="../logo.png" alt="" />
       </div>
     </header>
   );

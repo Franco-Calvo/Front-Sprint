@@ -18,22 +18,30 @@ export default function Chapters() {
             .catch(error => console.log(error))
     }, [id, page, url])
 
- 
+
+    
     let handlePrev = () => {
-        if (index > 0) {
-            setIndex(index - 1)
-            navigate(`/chapters/${id}/${index - 1}`)
-        } else {
+        setIndex( index - 1)
+        navigate(`/chapters/${id}/${index - 1}`) 
+        if( index <= 0){
             navigate(`/mangas/${id}/${1}`)
         }
+
     }
 
     let handleNext = () => {
-        if (index < chapter.pages?.length - 1) {
-            setIndex(index + 1)
-            navigate(`/chapters/${id}/${index + 1}`)
-        } else {
-            navigate(`/mangas/${id}/${1}`)
+        setIndex( index + 1)
+        navigate(`/chapters/${id}/${index + 1}`) 
+        if( index > chapter.pages?.length){
+            axios.get(`http://localhost:8080/chapters/${parseInt(id)+1}`)
+            .then(response => {
+                setChapter(response.data.chapter)
+                setIndex(1)
+                navigate(`/chapters/${parseInt(id)+1}/1`)
+            })
+            .catch(error => console.log(error))
+    } else {
+        navigate(`/chapters/${id}/${index + 1}`)
         }
     }
 
