@@ -1,10 +1,11 @@
-import {configureStore} from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 import authorReducer from "./Author/reducer";
 import checkReducer from "./CheckAuthor/reducer";
 import mangasReducer from "./MangasAuthor/reducer";
 import alertReducer from "./Alert/reducer";
 import textReducer from "./Text/reducer";
 import eventReducer from "./Events/reducer";
+import checksReducer from "./Checks/reducer";
 
 export const store = configureStore({
   reducer: {
@@ -14,5 +15,6 @@ export const store = configureStore({
     MangasAuthor: mangasReducer,
     text: textReducer,
     events: eventReducer,
+    checks: checksReducer,
   },
 });

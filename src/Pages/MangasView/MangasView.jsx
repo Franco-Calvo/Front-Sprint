@@ -1,11 +1,16 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./mangasview.css";
+import axios from "axios";
 import CardManga from "../../Components/CardManga/CardManga";
 import { useDispatch, useSelector } from "react-redux";
-import actions from "../../Store/Text/actions.js";
+import actions from "../../Store/Text/actions";
 import eventActions from "../../Store/Events/actions.js";
+import actionsChecks from "../../Store/Checks/actions.js";
 const { read_events } = eventActions;
 const { captureText } = actions;
+const { captureChecks } = actionsChecks;
+let categoriasCheck = [];
+
 export default function MangasView() {
   function returnclassName(value) {
     switch (value) {
@@ -38,7 +43,7 @@ export default function MangasView() {
   function returnCategory(value) {
     switch (value) {
       case "640b93d47f41e871c0ed6613":
-        return "Kodomo";
+        return "Comic";
       case "640b93d47f41e871c0ed6615":
         return "Seinen";
       case "640b93d47f41e871c0ed6612":
@@ -53,21 +58,61 @@ export default function MangasView() {
   const [reload, SetReload] = useState(false);
   const dispatch = useDispatch();
   const text = useRef("");
+  const [cate, setCate] = useState([]);
+  const [pages, setPages] = useState(1);
   const defaultText = useSelector((store) => store.text.text);
   const data = useSelector((store) => store.events.events);
+  const categorias = useSelector((store) => store.checks.category);
 
-  useEffect(() => {
-    if (!data) {
-      dispatch(read_events({ inputText: text.current.value }));
-    }
-  }, [reload]);
-
-  const handleSearch = (event) => {
+  const handleSearch = () => {
     SetReload(!reload);
     dispatch(captureText({ inputText: text.current.value }));
   };
+  console.log(data);
 
-  console.log(useSelector((store) => store.events));
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/mangas")
+      .then((response) => {
+        setCate(response.data.categories);
+      })
+      .catch((error) => console.log(error));
+  }, []);
+
+  function checks(e) {
+    cate.forEach((cate) => {
+      if (cate.name === e.target.value) {
+        if (categoriasCheck.includes(cate._id)) {
+          categoriasCheck = categoriasCheck.filter((e) => e !== cate._id);
+        } else {
+          categoriasCheck.push(cate._id);
+        }
+        dispatch(captureChecks({ categories: categoriasCheck.join() }));
+      }
+    });
+  }
+
+  useEffect(() => {
+    if (data) {
+      dispatch(
+        read_events({
+          inputText: text.current.value,
+          captureChecks: categorias,
+          pages,
+        })
+      );
+    }
+    console.log(categorias);
+  }, [reload, categorias, pages]);
+
+  function handlePrevClick() {
+    setPages((prevPages) => prevPages - 1);
+    SetReload(true);
+  }
+  function handleNextClick() {
+    setPages((prevPages) => prevPages + 1);
+    SetReload(true);
+  }
 
   return (
     <div className="container-manga">
@@ -90,25 +135,41 @@ export default function MangasView() {
         <div className="container-check-cards">
           <div className="center-items">
             <div className="checkbox-container-mangas">
-              <label class="category-button">
-                <input type="checkbox" name="category" value="all" />
-                <span class="category-label">All</span>
-              </label>
               <label class="category-button2">
-                <input type="checkbox" name="category" value="all" />
-                <span class="category-label">Shōnen</span>
+                <input
+                  type="checkbox"
+                  name="category"
+                  value="shonen"
+                  onClick={checks}
+                />
+                <span class="category-label">shonen</span>
               </label>
               <label class="category-button3">
-                <input type="checkbox" name="category" value="all" />
-                <span class="category-label">Seinen</span>
+                <input
+                  type="checkbox"
+                  name="category"
+                  value="seinen"
+                  onClick={checks}
+                />
+                <span class="category-label">seinen</span>
               </label>
               <label class="category-button4">
-                <input type="checkbox" name="category" value="all" />
-                <span class="category-label">Shōjo</span>
+                <input
+                  type="checkbox"
+                  name="category"
+                  value="shojo"
+                  onClick={checks}
+                />
+                <span class="category-label">shojo</span>
               </label>
               <label class="category-button5">
-                <input type="checkbox" name="category" value="all" />
-                <span class="category-label">Kodomo</span>
+                <input
+                  type="checkbox"
+                  name="category"
+                  value="comic"
+                  onClick={checks}
+                />
+                <span class="category-label">comic</span>
               </label>
             </div>
 
@@ -120,6 +181,7 @@ export default function MangasView() {
                     style3={returnStyle(manga.category_id)}
                     style2={returnclassName(manga.category_id)}
                     category={returnCategory(manga.category_id)}
+                    id={manga._id}
                     text={manga.title}
                     img={manga.cover_photo}
                   />
@@ -128,6 +190,23 @@ export default function MangasView() {
                 <p>No result founds</p>
               )}
             </div>
+          </div>
+          <div className="prev-next">
+            {pages < 2 ? (
+              ""
+            ) : (
+              <button className="prev-next-anchor" onClick={handlePrevClick}>
+                Prev
+              </button>
+            )}
+            <label>{pages}</label>
+            {data.length == 6 || data.length == 10 ? (
+              <button className="prev-next-anchor" onClick={handleNextClick}>
+                Next
+              </button>
+            ) : (
+              ""
+            )}
           </div>
         </div>
       </div>

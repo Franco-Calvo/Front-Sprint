@@ -35,8 +35,8 @@ export const router = createBrowserRouter([
         element: <AuthorForm />,
       },
       {
-        path: "/author/:id",
-        element: <Author />,
+        // path: "/author/:id",
+        // element: <Author />,
       },
       {
         path: "/signup",
