@@ -12,18 +12,18 @@ export default function SeccionBtn({ info }) {
   const [capitulo, setCapitulo] = useState(true);
 
   let chapters = useSelector(store => store.mangas.chapter);
-console.log(useSelector(store => store))
+console.log(chapters)
   useEffect(() => {
     dispatch(captureChapter({ manga_id: info._id, page: pagination }));
   }, [pagination]);
-
+console.log(info._id)
   return (
     <>
       <div className='details-btns'>
         <button className={capitulo === true ? 'manga-btn prueba' : 'manga-btn'} onClick={() => setCapitulo(true)}>Manga</button>
         <button className={capitulo === false ? 'manga-btn prueba' : 'manga-btn'} onClick={() => setCapitulo(false)}>Chapters</button>
       </div>
-
+    
       {capitulo === true ?
         <div className='description-manga'>
           <p>{info.description}</p>
@@ -41,7 +41,10 @@ console.log(useSelector(store => store))
                     <p>169</p>
                   </div>
                 </div>
+                
                 <button className='btn-read'>Read</button>
+               
+               
               </div>
             ))
             :
@@ -52,9 +55,7 @@ console.log(useSelector(store => store))
             {chapters.length === 4 && <Anchor to={'/mangas/' + info._id + '/' + (pagination + 1)}><button className='btn-chapter' onClick={() => setPagination(pagination + 1)}>next</button></Anchor>}
           </div>
         </section>
-      }
+      } 
     </>
   );
 }
-
- 
