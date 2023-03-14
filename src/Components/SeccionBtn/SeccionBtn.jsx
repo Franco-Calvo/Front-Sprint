@@ -1,27 +1,48 @@
 import React, { useEffect, useState } from 'react';
 import './seccionBtn.css';
-import { Link as Anchor } from 'react-router-dom';
+import { Link as Anchor, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import actions from '../../Store/Manga/actions';
+import action from '../../Store/Capture/actions'
 
 const { captureChapter } = actions;
+const {capturestate} = action;
 
 export default function SeccionBtn({ info }) {
+  const page = Number(useParams().page)
+
   const dispatch = useDispatch();
-  const [pagination, setPagination] = useState(1);
+  const [pagination, setPagination] = useState(page);
   const [capitulo, setCapitulo] = useState(true);
 
   let chapters = useSelector(store => store.mangas.chapter);
-  console.log(chapters)
+  let check = useSelector(store => store.checked.checked);
+
+
+function Manga(){
+  setCapitulo(true)
+  dispatch(capturestate({buttonState:false}))
+}
+
+function Chapter(){
+  setCapitulo(false)
+  dispatch(capturestate({buttonState:true}))
+}
+
   useEffect(() => {
     dispatch(captureChapter({ manga_id: info._id, page: pagination }));
-  }, [pagination]);
-  console.log(info._id)
+  }, [pagination,capitulo]);
+
+useEffect(()=>{
+  setCapitulo(!check)
+},[])
+
+
   return (
     <>
       <div className='details-btns'>
-        <button className={capitulo === true ? 'manga-btn prueba' : 'manga-btn'} onClick={() => setCapitulo(true)}>Manga</button>
-        <button className={capitulo === false ? 'manga-btn prueba' : 'manga-btn'} onClick={() => setCapitulo(false)}>Chapters</button>
+        <button className={capitulo === true ? 'manga-btn prueba' : 'manga-btn'} onClick={Manga} >Manga</button>
+        <button className={capitulo === false ? 'manga-btn prueba' : 'manga-btn'} onClick={Chapter}>Chapters</button>
       </div>
 
       {capitulo === true ?
@@ -30,7 +51,7 @@ export default function SeccionBtn({ info }) {
         </div>
         :
         <section className='card-chapter'>
-          {chapters.length > 0 ?
+          {chapters?.length > 0 ?
             chapters.map(chapter => (
               <div key={chapter._id} className='sectionChapter'>
                 <img className='selecChapter' src={chapter.manga_id.cover_photo} alt={chapter.title} />
@@ -42,7 +63,7 @@ export default function SeccionBtn({ info }) {
                   </div>
                 </div>
 
-                <Anchor className='btn-read' to={'/chapters/' + chapter._id}>
+                <Anchor className='btn-read' to={'/chapters/' + chapter._id + page}>
                   <button className='btn-read'>Read</button>
                 </Anchor>
 
@@ -54,7 +75,7 @@ export default function SeccionBtn({ info }) {
           }
           <div className='div-chapter'>
             {pagination !== 1 && <Anchor className='btn-chapter' to={'/mangas/' + info._id + '/' + (pagination - 1)}><button className='btn-chapter' onClick={() => setPagination(pagination - 1)}>prev</button></Anchor>}
-            {chapters.length === 4 && <Anchor className='btn-chapter' to={'/mangas/' + info._id + '/' + (pagination + 1)}><button className='btn-chapter' onClick={() => setPagination(pagination + 1)}>next</button></Anchor>}
+            {chapters?.length === 4 && <Anchor className='btn-chapter' to={'/mangas/' + info._id + '/' + (pagination + 1)}><button className='btn-chapter' onClick={() => setPagination(pagination + 1)}>next</button></Anchor>}
           </div>
         </section>
       }

@@ -7,6 +7,7 @@ import textReducer from "./Text/reducer";
 import eventReducer from "./Events/reducer";
 import checksReducer from "./Checks/reducer";
 import mangaReducer from './Manga/reducer';
+import captureState from './Capture/reducer';
 
 
 export const store = configureStore({
@@ -19,6 +20,7 @@ export const store = configureStore({
     events: eventReducer,
     checks: checksReducer,
     mangas: mangaReducer,
+    checked: captureState
   
   },
 });
