@@ -1,7 +1,7 @@
 import {createReducer} from "@reduxjs/toolkit";
 import mangasActions from "./actions";
 const {read_mangas} = mangasActions;
-const initialState = {new: [], old: []};
+const initialState = {new: [], old: [], count: 0};
 
 const mangasReducer = createReducer(initialState, (builder) => {
   builder.addCase(read_mangas.fulfilled, (state, action) => {
@@ -9,6 +9,7 @@ const mangasReducer = createReducer(initialState, (builder) => {
       ...state,
       new: action.payload.new,
       old: action.payload.old,
+      count: action.payload.count,
     };
     return newState;
   });
