@@ -2,7 +2,7 @@ import NotFound from "./NotFound/NotFound";
 import Index from "./Index/Index";
 import IndexLayout from "../Layouts/IndexLayout/IndexLayout";
 import MainLayout from "../Layouts/MainLayout/MainLayout";
-import {createBrowserRouter} from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import HeroRegister from "./HeroRegister/HeroRegister";
 import MangaForm from "../Pages/MangaForm/Mangaform";
 import Auth from "./Auth/Auth";
@@ -10,6 +10,8 @@ import AuthorForm from "./AuthorForm/AuthorForm";
 import ChapterForm from "./ChapterForm/ChapterForm";
 import Author from "./Author/Author";
 import MangasView from "./MangasView/MangasView";
+import Page from "./Page/Pages";
+
 
 export const router = createBrowserRouter([
   {
@@ -60,10 +62,14 @@ export const router = createBrowserRouter([
         element: <MangasView />,
       },
       {
+        path: "/chapters/:id/:page",
+        element: <Page />
+      },
+      {
         path: "/*",
         element: <NotFound />,
       },
     ],
   },
-  {path: "/notfound", element: <NotFound />},
+  { path: "/notfound", element: <NotFound /> },
 ]);
