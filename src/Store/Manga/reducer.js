@@ -1,37 +1,36 @@
-import actions from './actions'
 import { createReducer } from "@reduxjs/toolkit"
+import actions from './actions'
+
 
 const { captureChapter, captureManga } = actions
 
 const initialstate = {
    manga:[],
-   chapter:[]
+   chapter:[],
 }
 
 const reducer = createReducer(
     initialstate,
     (builder) => builder
     .addCase(
-        captureManga.fulfilled,
-        (state,action)=> {
-            console.log(action)
-            let newstate={
-                ...state,
-                manga: action.payload.manga
-            }
-            return newstate
-        }
-    )
-        .addCase(
-            captureChapter.fulfilled,
+            captureManga.fulfilled,
             (state, action) => {
-                console.log(action)
-                let newstate = {
+                let newState = {
                     ...state,
-                   chapters: action.payload.chapter
+                    manga: action.payload.manga
                 }
-                return newstate
+                return newState
             }
         )
+       .addCase(
+            captureChapter.fulfilled,
+            (state,action)=>{
+                let newState = {
+                    ...state,
+                    chapter: action.payload.chapter
+                }
+                return newState
+            }
+        ) 
 )
 export default reducer  

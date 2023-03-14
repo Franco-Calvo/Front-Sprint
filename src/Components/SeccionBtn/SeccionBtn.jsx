@@ -1,75 +1,60 @@
-import React, { useRef, useState, useEffect } from 'react'
-import './seccionBtn.css'
-import { Link as Anchor } from 'react-router-dom'
-import axios from 'axios';
-import ImgManga from '../../imagenes/imgstatic.png'
+import React, { useEffect, useState } from 'react';
+import './seccionBtn.css';
+import { Link as Anchor } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import actions from '../../Store/Manga/actions';
 
-export default function SeccionBtn(props) {
+const { captureChapter } = actions;
 
-    let btnManga = useRef()
-    let btnChapters = useRef()
+export default function SeccionBtn({ info }) {
+  const dispatch = useDispatch();
+  const [pagination, setPagination] = useState(1);
+  const [capitulo, setCapitulo] = useState(true);
 
-    useEffect(() => {
-        const selectboton = (event) => {
-            if (event.target === btnManga.current) {
-               
-                document.querySelector('descripcion').style.display = 'block';
-                document.querySelector('.seccionChapters').style.display = 'none';
-            } else if (event.target === btnChapters.current) {
-               
-                document.querySelector('descripcion').style.display = 'none';
-                document.querySelector('.seccionChapters').style.display = 'block';
-            }
-        };
+  let chapters = useSelector(store => store.mangas.chapter);
+console.log(useSelector(store => store))
+  useEffect(() => {
+    dispatch(captureChapter({ manga_id: info._id, page: pagination }));
+  }, [pagination]);
 
-        btnManga.current.classList.add('btn-select'); 
-        btnManga.current.addEventListener('click', selectboton);
-        btnChapters.current.addEventListener('click', selectboton);
+  return (
+    <>
+      <div className='details-btns'>
+        <button className={capitulo === true ? 'manga-btn prueba' : 'manga-btn'} onClick={() => setCapitulo(true)}>Manga</button>
+        <button className={capitulo === false ? 'manga-btn prueba' : 'manga-btn'} onClick={() => setCapitulo(false)}>Chapters</button>
+      </div>
 
-        return () => {
-            btnManga.current.removeEventListener('click', selectboton);
-            btnChapters.current.removeEventListener('click', selectboton);
-        }
-    }, [btnManga, btnChapters]);
-
-    const [manga, setManga] = useState({});
-    useEffect(() => {
-        async function fetchManga() {
-            const response = await axios.get('http://localhost:8080/mangas/' + props.info);
-
-            setManga(response.data.manga);
-        }
-
-        fetchManga();
-    }, []); console.log(manga)
-
-    if (!manga.description) {
-        return <div>Loading...</div>;
-    }
-
-    return (
-        <>
-            <div className="btn-manga-chapter" >
-                <div className='op-manga-chapter'>
-                    <Anchor className='opciones' ref={btnManga}>Manga</Anchor>
-                    <Anchor className='opciones' ref={btnChapters}>Chapters</Anchor>
+      {capitulo === true ?
+        <div className='description-manga'>
+          <p>{info.description}</p>
+        </div>
+        :
+        <section className='card-chapter'>
+          {chapters.length > 0 ?
+            chapters.map(chapter => (
+              <div key={chapter._id} className='sectionChapter'>
+                <img className='selecChapter' src={chapter.manga_id.cover_photo} alt={chapter.title} />
+                <div className='order-chapter'>
+                  <p className='p-chapter'>Chapter #{chapter.order}</p>
+                  <div className='coment-chapter'>
+                    <button className="puntitos">. . .</button>
+                    <p>169</p>
+                  </div>
                 </div>
-            </div>
-            <div className="descripcion" >
-                <p>{manga.description}</p>
-            </div>
-            <div className="seccionChapters" >
-                <img className="img-chapter" src={ImgManga} />
-                <div className="seccion1-chapter" >
-                    <p>{manga.order}</p>
-                    <div className="seccion2-cahpters">
-                        <button className="puntitos">. . .</button>
-                        <h4>{manga.pages}</h4>
-                    </div>
-                </div>
-                <button className="read" >Read</button>
-            </div>
-        </>
-    )
+                <button className='btn-read'>Read</button>
+              </div>
+            ))
+            :
+            <p>No Chapter found</p>
+          }
+          <div className='div-chapter'>
+            {pagination !== 1 && <Anchor to={'/mangas/' + info._id + '/' + (pagination - 1)}><button className='btn-chapter' onClick={() => setPagination(pagination - 1)}>prev</button></Anchor>}
+            {chapters.length === 4 && <Anchor to={'/mangas/' + info._id + '/' + (pagination + 1)}><button className='btn-chapter' onClick={() => setPagination(pagination + 1)}>next</button></Anchor>}
+          </div>
+        </section>
+      }
+    </>
+  );
 }
 
+ 
