@@ -12,21 +12,21 @@ export default function SeccionBtn({ info }) {
   const [capitulo, setCapitulo] = useState(true);
 
   let chapters = useSelector(store => store.mangas.chapter);
-console.log(chapters)
+  console.log(chapters)
   useEffect(() => {
     dispatch(captureChapter({ manga_id: info._id, page: pagination }));
   }, [pagination]);
-console.log(info._id)
+  console.log(info._id)
   return (
     <>
       <div className='details-btns'>
         <button className={capitulo === true ? 'manga-btn prueba' : 'manga-btn'} onClick={() => setCapitulo(true)}>Manga</button>
         <button className={capitulo === false ? 'manga-btn prueba' : 'manga-btn'} onClick={() => setCapitulo(false)}>Chapters</button>
       </div>
-    
+
       {capitulo === true ?
-        <div className='description-manga'>
-          <p>{info.description}</p>
+        <div className='seccionTexto'>
+          <p  className='description-manga'>{info.description}</p>
         </div>
         :
         <section className='card-chapter'>
@@ -41,21 +41,23 @@ console.log(info._id)
                     <p>169</p>
                   </div>
                 </div>
-                
-                <button className='btn-read'>Read</button>
-               
-               
+
+                <Anchor className='btn-read' to={'/chapters/' + chapter._id}>
+                  <button className='btn-read'>Read</button>
+                </Anchor>
+
+
               </div>
             ))
             :
             <p>No Chapter found</p>
           }
           <div className='div-chapter'>
-            {pagination !== 1 && <Anchor to={'/mangas/' + info._id + '/' + (pagination - 1)}><button className='btn-chapter' onClick={() => setPagination(pagination - 1)}>prev</button></Anchor>}
-            {chapters.length === 4 && <Anchor to={'/mangas/' + info._id + '/' + (pagination + 1)}><button className='btn-chapter' onClick={() => setPagination(pagination + 1)}>next</button></Anchor>}
+            {pagination !== 1 && <Anchor className='btn-chapter' to={'/mangas/' + info._id + '/' + (pagination - 1)}><button className='btn-chapter' onClick={() => setPagination(pagination - 1)}>prev</button></Anchor>}
+            {chapters.length === 4 && <Anchor className='btn-chapter' to={'/mangas/' + info._id + '/' + (pagination + 1)}><button className='btn-chapter' onClick={() => setPagination(pagination + 1)}>next</button></Anchor>}
           </div>
         </section>
-      } 
+      }
     </>
   );
 }
