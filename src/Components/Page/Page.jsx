@@ -7,39 +7,46 @@ import "./page.css"
 export default function Chapters() {
 
     
-    const navigate = useNavigate()
-    const { id, page } = useParams()
-    const url = `http://localhost:8080/chapters/${id}`
-    const [chapter, setChapter] = useState({})
-    const [index, setIndex] = useState(Number(page))
-    const maxIndex = (chapter?.pages?.length || 0) - 1
+    let navigate = useNavigate()
+    let url = `http://localhost:8080/chapters/`
+    let { id, page } = useParams()    
+    let [ chapter, setChapter ] = useState({})
+    let [ next, setNext ] = useState('')
+    let [ prev, setPrev ] = useState('')
+    let [ index, setIndex ] = useState(parseInt(page))
 
-    useEffect(() => {
-        axios.get(url).then(res => {
-        setChapter(res.data.chapter);
-        setIndex(Number(page));
-    }).catch(error => console.log(error));
-    }, [id, page, url]);
+        useEffect(
+            () => {
+                axios.get(url+id)
+                .then( response => { 
+                    setChapter( response.data.chapter)
+                    setPrev(response.data.prev);
+                    setNext( response.data.next)
+                })
+                .catch(error => console.log(error))
+            },
+            []
+        ) 
 
-function handlePrev() {
-    const newIndex = index - 1
-    if (newIndex < 0) {
-        navigate(`/mangas/${id}/1`)
-    } else {
-        setIndex(newIndex)
-        navigate(`/chapters/${id}/${newIndex}`)
-    }
-}
-
-function handleNext() {
-    const newIndex = index + 1
-    if (newIndex > maxIndex) {
-        navigate(`/chapters/640b93d67f41e871c0ed663d/0`)
-    } else {
-        setIndex(newIndex)
-        navigate(`/chapters/${id}/${newIndex}`)
-    }
-}
+        let handlePrev = () => {
+            setIndex( index - 1)
+            navigate(`/chapters/${id}/${index - 1}`) 
+            if( index <= 0 && chapter.order == 1){
+                navigate(`/mangas/${chapter.manga_id}/${1}`)
+            }
+            else if( index <= 0 ) {
+                navigate(`/chapters/${prev}/0`)
+                window.location.reload(true)
+            }
+        }
+        let handleNext = (e) => {
+            setIndex( index + 1)
+            navigate(`/chapters/${id}/${index + 1}`) 
+            if( index >= chapter.pages.length-1){
+                navigate(`/chapters/${next}/0`)
+                window.location.reload(true)    
+            } }
+        
 
     return (
         <div className='page'>
