@@ -16,6 +16,7 @@ export default function Author() {
   const defaultCheck = useSelector((store) => store.checkboxAuthor.checked);
   const dataProfile = useSelector((store) => store.Author.author);
   const dataMangasAll = useSelector((store) => store.MangasAuthor);
+  const count = useSelector((store) => store.MangasAuthor.count);
   const dataMangas = defaultCheck ? dataMangasAll.new : dataMangasAll.old;
   const {id} = useParams();
   const check = useRef();
@@ -23,16 +24,12 @@ export default function Author() {
   useEffect(() => {
     if (dataProfile.length === 0) {
       dispatch(read_author({author_id: id}));
-      console.log("Peticion author");
-      console.log(dataProfile);
     }
   }, []);
 
   useEffect(() => {
     if (dataMangas.length === 0) {
       dispatch(read_mangas({author_id: id}));
-      console.log("Peticion mangas");
-      console.log(dataProfile);
     }
   }, []);
 
@@ -69,22 +66,24 @@ export default function Author() {
         </section>
       ) : null}
       <section id="section-card">
-        <div id="container-checkbox-author">
-          <span className="text-check-author">new</span>
-          <label id="switch">
-            <input
-              defaultChecked={defaultCheck}
-              ref={check}
-              id="checkbox-author"
-              type="checkbox"
-              onChange={handleChange}
-            />
-            <span id="slider">
-              <div id="slider-2"></div>
-            </span>
-          </label>
-          <span className="text-check-author">old</span>
-        </div>
+        {count > 4 ? (
+          <div id="container-checkbox-author">
+            <span className="text-check-author">new</span>
+            <label id="switch">
+              <input
+                defaultChecked={defaultCheck}
+                ref={check}
+                id="checkbox-author"
+                type="checkbox"
+                onChange={handleChange}
+              />
+              <span id="slider">
+                <div id="slider-2"></div>
+              </span>
+            </label>
+            <span className="text-check-author">old</span>
+          </div>
+        ) : null}
         <div id="container-card-author">
           {dataMangas?.map((each) => (
             <CardAuthor key={each._id} data={each} />
