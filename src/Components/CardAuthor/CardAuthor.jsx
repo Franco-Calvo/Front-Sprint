@@ -4,7 +4,7 @@ import "./CardAuthor.css";
 
 export default function img({data}) {
   return (
-    <Anchor className="anchor-author" to={"/manga/" + data._id}>
+    <Anchor className="anchor-author" to={"/mangas/" + data._id + "/1"}>
       <img
         className="author-card-img"
         src={data.cover_photo}
