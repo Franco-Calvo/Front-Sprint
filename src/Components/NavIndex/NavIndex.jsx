@@ -108,8 +108,11 @@ export default function NavIndex({ handleRender }) {
             Home
           </Anchor>
 
-          <Anchor className="a-nav" to="/mangas">
+          <Anchor className="a-nav" to="/view-mangas">
             Mangas
+          </Anchor>
+          <Anchor className="a-nav" to="/mangas">
+            Create Mangas
           </Anchor>
           <Anchor className="a-nav" to="/">
             My Mangas
@@ -124,6 +127,8 @@ export default function NavIndex({ handleRender }) {
             >
               Chapter
             </Anchor>
+
+            
           ) : null}
           {token ? (
             <Anchor className="a-nav" to="/author/640b93d57f41e871c0ed6622">

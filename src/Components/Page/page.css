@@ -1,0 +1,233 @@
+.container-page{
+    margin-top: 170px;
+    display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(20px, auto));
+    width: 100%;
+    height: 100vh;
+	place-content: center;
+    gap: 3rem;
+}
+
+.capitulo-img img {
+    width: 100%;
+    height: 100vh;
+    
+}
+
+.text-capitulo {
+    background: linear-gradient(153.39deg, #F9A8D4 -13.9%, #F472B6 58.69%);
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.15);
+    width: 100%;
+}
+
+.text-capitulo h5 {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    text-align: center;
+    color: #FFFFFF;
+    padding: 10px 10px;
+}
+
+
+
+.prev {
+    height: 100%;
+    width: 50%;
+    position: relative;
+    left: 20%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.prev img {
+    width: 2rem;
+    padding: 0.1rem;    
+    cursor: pointer;
+}
+
+.next {
+    height: 100%;
+    width: 50%;
+    position: relative;
+    right: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    cursor: pointer;
+    
+}
+
+.next img {
+    width: 2rem;
+    padding: 0.1rem;
+    cursor: pointer;
+    
+}
+
+
+.img-text{
+    width: 100%;
+    height: 100%;
+    padding: 0px 10px;
+}
+
+
+
+/* Burbuja */
+ 
+.page{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.coment {
+    position:relative;
+    padding:15px;
+    margin:1em 0 3em;
+    width: 67px;
+    height: 29px;
+    font-size: 20px;
+    color:#000;
+    border-radius:10px;
+    background-color: #c9c9c9;
+ }
+  
+ 
+ .coment:after {
+    content:"\00a0";
+    display:block; 
+    position:absolute;
+    bottom:-20px;
+    left:7px;
+    width:0;
+    height:0;
+    border-width:15px 15px;
+    border-style:solid;
+    border-color:#c9c9c9 transparent transparent;
+ }
+
+
+
+
+ .coment{
+    
+    display: flex;
+    align-items: center;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    
+ }
+
+.coment p{
+    z-index: 200000;
+    padding: 10px 50px;
+    position: absolute;
+}
+
+.coment h6{
+    z-index: 200000;
+   
+}
+
+.coment-number{
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 10px;
+}
+
+.coment-number h6{
+    margin-top: -40px;
+    font-size: 15px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 700px) {
+
+    
+.prev {
+    height: 100%;
+    width: 50%;
+    position: absolute;
+    left: 10%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.prev img {
+    display: none;
+}
+
+.next {
+    height: 100%;
+    width: 50%;
+    position: absolute;
+    right: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    cursor: pointer;
+}
+
+.next img {
+   display: none;
+}
+
+.img-text{
+    width: 100%;
+    height: 100%;
+    padding: 0px 0px;
+}
+
+.capitulo-img img {
+    width: 100%;
+    height: 60vh;
+   
+}
+
+.container-page{
+    margin-top: 140px;
+    gap: 0;
+}
+
+
+.coment {
+    width: 37px;
+ }
+
+ 
+ .capitulo-img img {
+    width: 100%;
+    height: 100vh;
+    
+}
+ 
+ 
+}
+
+
+
+
+
+
