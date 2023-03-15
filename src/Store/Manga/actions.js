@@ -29,13 +29,6 @@ const captureChapter = createAsyncThunk(
     }
 )
 
-const delete_chapter = createAsyncThunk(
-    'delete_chapter',
-    async () => {
-     return null
-    }
-
-)
-const actions = { captureChapter, captureManga ,delete_chapter}
+const actions = { captureChapter, captureManga }
 
 export default actions  

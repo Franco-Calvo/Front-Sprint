@@ -10,7 +10,7 @@ import { useParams } from 'react-router'
 import actions from '../../Store/Manga/actions'
 
 
-const { captureManga,delete_chapter } = actions
+const { captureManga } = actions
 export default function Manga() {
 
     let manga = useSelector(store => store.mangas.manga)
@@ -18,7 +18,6 @@ export default function Manga() {
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(captureManga({ manga_id: _id.id}))
-        dispatch(delete_chapter())
     }, [])
 
     return (
