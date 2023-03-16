@@ -6,9 +6,9 @@ const read_mangas = createAsyncThunk("read_mangas", async ({author_id}) => {
     let res = await axios.get(
       "http://localhost:8080/mangas/authors/" + author_id
     );
-    return {new: res.data.new, old: res.data.old};
+    return {new: res.data.new, old: res.data.old, count: res.data.count};
   } catch (error) {
-    return {new: [], old: []};
+    return {new: [], old: [], count: 0};
   }
 });
 
