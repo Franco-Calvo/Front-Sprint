@@ -54,7 +54,7 @@ export default function MangasView() {
         return "";
     }
   }
-
+  //Corregir switch
   const [reload, SetReload] = useState(false);
   const dispatch = useDispatch();
   const text = useRef("");
@@ -68,7 +68,6 @@ export default function MangasView() {
     SetReload(!reload);
     dispatch(captureText({ inputText: text.current.value }));
   };
-  console.log(data);
 
   useEffect(() => {
     axios
