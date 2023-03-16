@@ -28,7 +28,7 @@ export default function FormChapter() {
             if (order.current.value) { 
              chapter[order.current.name] = order.current.value
            }
-        console.log(chapter)
+
     
         let url = "http://localhost:8080/chapters";
 
@@ -85,18 +85,13 @@ export default function FormChapter() {
           })
             
           } catch (error) {
-            
-            console.log(error);
-            console.log("Ocurrió un error!");
+           /*  console.log(error);
+            console.log("Ocurrió un error!"); */
             Swal.fire({
               icon: 'error',
               title: 'ERROR',
-              
               text: error.response.data.message,
           })
-
-        
-          
           }
           formRef.current.reset();
       }
