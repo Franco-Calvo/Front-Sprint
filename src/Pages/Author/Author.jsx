@@ -1,6 +1,5 @@
 import {useParams} from "react-router-dom";
-import {useEffect, useState, useRef} from "react";
-import axios from "axios";
+import {useEffect, useRef} from "react";
 import "./Author.css";
 import CardAuthor from "../../Components/CardAuthor/CardAuthor.jsx";
 import {useDispatch, useSelector} from "react-redux";
@@ -13,29 +12,30 @@ const {read_author} = authorActions;
 const {read_mangas} = mangasActions;
 
 export default function Author() {
-  const {id} = useParams();
-  const check = useRef();
-  const [reload, setReload] = useState(false);
   const dispatch = useDispatch();
   const defaultCheck = useSelector((store) => store.checkboxAuthor.checked);
   const dataProfile = useSelector((store) => store.Author.author);
-  const dataMangas = useSelector((store) => store.MangasAuthor.mangas);
+  const dataMangasAll = useSelector((store) => store.MangasAuthor);
+  const count = useSelector((store) => store.MangasAuthor.count);
+  const dataMangas = defaultCheck ? dataMangasAll.new : dataMangasAll.old;
+  const {id} = useParams();
+  const check = useRef();
 
   useEffect(() => {
-    if (!dataProfile.length != 0) {
+    if (dataProfile.length === 0) {
       dispatch(read_author({author_id: id}));
     }
-  }, [dataProfile.length != 0]);
+  }, []);
 
   useEffect(() => {
-    dispatch(read_mangas({author_id: id, query: defaultCheck}));
-  }, [reload]);
+    if (dataMangas.length === 0) {
+      dispatch(read_mangas({author_id: id}));
+    }
+  }, []);
 
   function handleChange() {
     dispatch(capture({checked: check.current.checked}));
-    setReload(!reload);
   }
-  console.log(useSelector((store) => store));
   return (
     <div id="author-container">
       {dataProfile.length != 0 ? (
@@ -66,22 +66,24 @@ export default function Author() {
         </section>
       ) : null}
       <section id="section-card">
-        <div id="container-checkbox-author">
-          <span className="text-check-author">new</span>
-          <label id="switch">
-            <input
-              defaultChecked={defaultCheck}
-              ref={check}
-              id="checkbox-author"
-              type="checkbox"
-              onChange={handleChange}
-            />
-            <span id="slider">
-              <div id="slider-2"></div>
-            </span>
-          </label>
-          <span className="text-check-author">old</span>
-        </div>
+        {count > 4 ? (
+          <div id="container-checkbox-author">
+            <span className="text-check-author">new</span>
+            <label id="switch">
+              <input
+                defaultChecked={defaultCheck}
+                ref={check}
+                id="checkbox-author"
+                type="checkbox"
+                onChange={handleChange}
+              />
+              <span id="slider">
+                <div id="slider-2"></div>
+              </span>
+            </label>
+            <span className="text-check-author">old</span>
+          </div>
+        ) : null}
         <div id="container-card-author">
           {dataMangas?.map((each) => (
             <CardAuthor key={each._id} data={each} />
