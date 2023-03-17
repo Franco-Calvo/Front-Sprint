@@ -6,7 +6,6 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-  
 }
 .cont-estadisticas{
     width: 50%;
@@ -17,7 +16,6 @@
     align-items: center;
     border-radius: 40px;
     box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.428);
-  
 }
 .est-num{
     width: auto;
@@ -26,7 +24,6 @@
     color: #2a2a2a;
     text-align: center;
 }
-
 .num{
     font-size: 1rem;
 }

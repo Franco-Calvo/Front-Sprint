@@ -54,7 +54,7 @@ export default function CreateManga() {
       console.log(error);
     }
   }
-  //console.log(categorias)
+
 
   return (
     <div className="contenedor">

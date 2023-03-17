@@ -4,7 +4,6 @@
     display: flex;
     align-items: center;
     justify-items: center;
-
 }
 .cont-button-reactions{
     width: 100%;
@@ -13,7 +12,6 @@
     align-items: center;
     justify-items: center;
     justify-content: center;
-   
 }
 .button-reaction{
     width: 60%;
