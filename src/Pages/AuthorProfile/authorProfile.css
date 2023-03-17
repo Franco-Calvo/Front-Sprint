@@ -39,37 +39,7 @@
     border-radius: 1rem;
     margin-bottom: 3rem;
 }
-.profile {
-    display: flex;
-    flex-direction: column;
-    height: 80%;
-    width: 50%;
-    align-items: center;
-    justify-content: space-evenly;
-}
-.formEdit {
-    width: 80%;
-    height: 90%;
-    margin: 0;
-}
-#profile-img {
-    width: 10rem;
-    height: 10rem;
-    border-radius: 50px;
-}
-.data-author {
-    width: 80%;
-    font-family: "Montserrat";
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 3rem;
-    color: #9d9d9d;
-}
-#icon1 {
-    height: 1rem;
-    width: 1rem;
-}
+
 
 @media (max-width: 748px) {
     #profileBackground {
