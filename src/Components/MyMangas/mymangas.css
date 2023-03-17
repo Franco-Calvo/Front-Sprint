@@ -1,0 +1,26 @@
+.mymangas-background {
+  background-image: url(../../../public/background.png);
+  background-size: cover;
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 3rem;
+  padding-top: 3rem;
+  width: 100%;
+}
+
+.mymangas-background h1 {
+  color: white;
+  font-size: 4rem;
+}
+
+.mymangas-background span {
+  background-color: white;
+  display: flex;
+  border-radius: 10px;
+  width: 60%;
+  padding: 1rem;
+}
+

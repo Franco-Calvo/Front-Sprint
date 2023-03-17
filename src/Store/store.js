@@ -4,7 +4,7 @@ import checkReducer from "./CheckAuthor/reducer";
 import mangasReducer from "./MangasAuthor/reducer";
 import alertReducer from "./Alert/reducer";
 import textReducer from "./Text/reducer";
-import eventReducer from "./Events/reducer";
+import eventReducer from "./Manga/reducer";
 import checksReducer from "./Checks/reducer";
 import mangaReducer from './Manga/reducer';
 import captureState from './Capture/reducer';

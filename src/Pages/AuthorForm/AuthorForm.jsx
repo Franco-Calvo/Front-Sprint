@@ -26,7 +26,6 @@ export default function AuthorForm() {
         country: country,
         [date.current.name]: date.current.value,
         [urlProfile.current.name]: urlProfile.current.value,
-        active: true,
       };
       let url = "http://localhost:8080/authors";
       try {

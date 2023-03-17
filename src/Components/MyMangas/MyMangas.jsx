@@ -1,17 +1,13 @@
+import "./mymangas.css";
 import React, { useState, useEffect, useRef } from "react";
-import "./mangasview.css";
-import axios from "axios";
 import CardManga from "../../Components/CardManga/CardManga";
 import { useDispatch, useSelector } from "react-redux";
 import actions from "../../Store/Text/actions";
-import eventActions from "../../Store/Manga/actions.js";
+import eventActions from "../../Store/MyMangas/actions.js";
 import actionsChecks from "../../Store/Checks/actions.js";
-const { read_events } = eventActions;
-const { captureText } = actions;
-const { captureChecks } = actionsChecks;
-let categoriasCheck = [];
+import axios from "axios";
 
-export default function MangasView() {
+export default function MyMangas() {
   function returnclassName(value) {
     switch (value) {
       case "640b93d47f41e871c0ed6613":
@@ -54,7 +50,11 @@ export default function MangasView() {
         return "";
     }
   }
-  //Corregir switch
+  const { read_events } = eventActions;
+  const { captureText } = actions;
+  const { captureChecks } = actionsChecks;
+  let categoriasCheck = [];
+
   const [reload, SetReload] = useState(false);
   const dispatch = useDispatch();
   const text = useRef("");
@@ -114,7 +114,7 @@ export default function MangasView() {
 
   return (
     <div className="container-manga">
-      <div className="mangas-background">
+      <div className="mymangas-background">
         <h1>Mangas</h1>
         <span className="manga-span">
           <img src="./Search.png" alt="" />
@@ -214,7 +214,7 @@ export default function MangasView() {
                 </button>
               )}
               <label className="count-pages">{pages}</label>
-              {data.length == 6 || data.length == 10 ? (
+              {data.length > 7 || data.length <= 10 ? (
                 <button className="prev-next-anchor" onClick={handleNextClick}>
                   Next
                 </button>
