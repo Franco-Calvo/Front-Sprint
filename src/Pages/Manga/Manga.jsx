@@ -19,7 +19,7 @@ export default function Manga() {
     }, [])
     return (
 
-        <div className="contenedor">
+        <div className="contenedor-Manga">
             {manga.length != 0 ? <MangaPortada info={manga} /> : null}
             {manga.length != 0 ? <InfoCatYcompany info={manga} /> : null}
             <BotonReacciones />

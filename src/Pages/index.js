@@ -13,7 +13,6 @@ import Author from "./Author/Author";
 import MangasView from "./MangasView/MangasView";
 import Page from "./Page/Pages";
 
-
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -54,21 +53,21 @@ export const router = createBrowserRouter([
         element: <ChapterForm />,
       },
       {
-        path: "/mangas",
+        path: "/create-mangas",
         element: <MangaForm />,
       },
 
       {
-        path: "/view-mangas",
+        path: "/mangas",
         element: <MangasView />,
       },
       {
         path: "/mangas/:id/:page",
-        element: <Manga />
+        element: <Manga />,
       },
       {
         path: "/chapters/:id/:page",
-        element: <Page />
+        element: <Page />,
       },
       {
         path: "/*",
