@@ -4,6 +4,7 @@ import Dislike from '../../imagenes/dislike.png'
 import Love from '../../imagenes/love.png'
 import Amazed from '../../imagenes/amazed.png'
 import './botonReacciones.css'
+
 export default function BotonReacciones() {
     return (
         <>

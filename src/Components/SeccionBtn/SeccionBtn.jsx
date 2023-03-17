@@ -6,32 +6,26 @@ import actions from '../../Store/Manga/actions';
 import action from '../../Store/Capture/actions'
 
 const { captureChapter } = actions;
-const { capturestate } = action;
+const { captureState } = action;
 
 export default function SeccionBtn({ info }) {
 
   const page = Number(useParams().page)
-
   const dispatch = useDispatch();
-
   const [pagina, setPagination] = useState(page);
   const [capitulo, setCapitulo] = useState(true);
-
   let chapters = useSelector(store => store.mangas.chapter);
- 
+
   function Manga() {
     setCapitulo(true)
-    dispatch(capturestate({ buttonState: false }))
+    dispatch(captureState({ buttonState: false }))
   }
-
   function Chapter() {
     setCapitulo(false)
-    dispatch(capturestate({ buttonState: true }))
+    dispatch(captureState({ buttonState: true }))
   }
 
-  useEffect(() => {
-    dispatch(captureChapter({ manga_id: info._id, page: pagina }));
-  }, [pagina, capitulo]);
+  useEffect(() => { dispatch(captureChapter({ manga_id: info._id, page: pagina })); }, [pagina, capitulo]);
 
 
   return (
@@ -41,15 +35,15 @@ export default function SeccionBtn({ info }) {
         <button className={!capitulo ? 'manga-btn prueba' : 'manga-btn'} onClick={Chapter}>Chapters</button>
       </div>
       {capitulo ?
-      <div className='seccionTexto'>
+        <div className='seccionTexto'>
           <p className='description-manga'>{info.description}</p>
-      </div>
-      :
-      <section className='card-chapter'>
-        {chapters?.length > 0 ?
-          chapters.map(chapter => (
-            <div key={chapter._id} className='sectionChapter'>
-              <img className='selecChapter' src={chapter.manga_id.cover_photo} alt={chapter.title} />
+        </div>
+        :
+        <section className='card-chapter'>
+          {chapters?.length > 0 ?
+            chapters.map(chapter => (
+              <div key={chapter._id} className='sectionChapter'>
+                <img className='selecChapter' src={chapter.manga_id.cover_photo} alt={chapter.title} />
                 <div className='order-chapter'>
                   <p className='p-chapter'>Chapter #{chapter.order}</p>
                   <div className='coment-chapter'>
@@ -57,7 +51,7 @@ export default function SeccionBtn({ info }) {
                     <p>{chapter.pages.length}</p>
                   </div>
                 </div>
-                <Anchor className='btn-read' to={`/chapters/${chapter._id}/${page}`}>
+                <Anchor className='btn-read' to={`/chapters/${chapter._id}/0`}>
                   <button className='btn-read'>Read</button>
                 </Anchor>
               </div>

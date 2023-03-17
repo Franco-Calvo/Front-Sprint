@@ -1,0 +1,56 @@
+.editProfile {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.formEdit{
+    width: 80%;
+    height: 90%;
+    margin: 0;
+}
+#imgProfile{
+    visibility: hidden;
+} 
+.inputAuthorForm {
+    width: 80%;
+    height: 2.5rem;
+    border-bottom: 1px solid black;
+}
+.btndelete{
+    width: 40%;
+    height:8rem;
+    background: pink;
+    border-radius: 40px;
+    font-size: 1rem;
+    color: red;
+    padding: 10px 45px;
+}
+
+.btnsave{
+    width: 40%;
+    padding: 8px 45px;
+    height:8rem;
+    background: rgb(140, 232, 140);
+    border-radius: 40px;
+    font-size: 80%;
+    color: white;
+    font-size: 1rem;
+}
+@media  (max-width: 748px){
+     .editProfile {
+         width: 80%;
+         height: 30vh;
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         justify-content: space-evenly;
+     }
+     #imgProfile{
+         visibility: hidden;
+         width: 5rem;
+     } 
+ }
+ 
