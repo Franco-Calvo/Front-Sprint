@@ -19,8 +19,7 @@ export default function Profile() {
         <div className='profile-section'>
            
             <img id="profile-img" src={dataProfile.photo} alt="profile" />
-            <h2>  {dataProfile.name[0].toUpperCase() +
-                dataProfile.name.substring(1)}</h2>
+            <h2>  {dataProfile.name}</h2>
             <div className="data-Profile-author">
                 <p >
                     <img id="icon-date" src="../location-author.png" alt="location" />{" "}
