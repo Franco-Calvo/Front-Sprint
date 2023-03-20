@@ -1,0 +1,62 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.contenedor {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+#profileBackground {
+    background-image: url(../../../src/imagenes/Rectangle\ 606.png);
+    background-size: cover;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 3rem;
+    padding-top: 3rem;
+    width: 100%;
+    color: white;
+    font-size: 1.5rem;
+}
+.sectionProfile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    background: rgb(255, 255, 255);
+    width: 95%;
+    min-height: 50vh;
+    position: static;
+    margin-top: -50px;
+    z-index: 100;
+    border-radius: 1rem;
+    margin-bottom: 3rem;
+}
+
+
+@media (max-width: 748px) {
+    #profileBackground {
+        display: none;
+    }
+    .sectionProfile {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column-reverse;
+        background: rgb(255, 255, 255);
+        width: 95%;
+        min-height: 40vh;
+        position: static;
+        margin-top: 0;
+        z-index: 100;
+        border-radius: 1rem;
+        margin-bottom: 3rem;
+    }
+}
