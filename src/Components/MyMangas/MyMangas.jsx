@@ -1,17 +1,18 @@
+import "./mymangas.css";
 import React, { useState, useEffect, useRef } from "react";
-import "./mangasview.css";
-import axios from "axios";
-import CardManga from "../../Components/CardManga/CardManga";
 import { useDispatch, useSelector } from "react-redux";
 import actions from "../../Store/Text/actions";
-import eventActions from "../../Store/Comic/actions.js";
+import eventActions from "../../Store/MyMangas/actions.js";
 import actionsChecks from "../../Store/Checks/actions.js";
-const { read_events } = eventActions;
-const { captureText } = actions;
-const { captureChecks } = actionsChecks;
-let categoriasCheck = [];
+import axios from "axios";
+import CardMyMangas from "../CardMyMangas/CardMyMangas";
 
-export default function MangasView() {
+export default function MyMangas() {
+  const { read_events } = eventActions;
+  const { captureText } = actions;
+  const { captureChecks } = actionsChecks;
+  let categoriasCheck = [];
+
   const [reload, SetReload] = useState(false);
   const dispatch = useDispatch();
   const text = useRef("");
@@ -71,7 +72,7 @@ export default function MangasView() {
 
   return (
     <div className="container-manga">
-      <div className="mangas-background">
+      <div className="mymangas-background">
         <h1>Mangas</h1>
         <span className="manga-span">
           <img src="./Search.png" alt="" />
@@ -144,9 +145,9 @@ export default function MangasView() {
             </div>
 
             <div className="container-cards-mangas">
-              {data?.length && cate?.length ? (
+            {data?.length && cate?.length ? (
                 data.map((manga, index) =>  (
-                  <CardManga key={index} manga={manga} categories={cate} />
+                  <CardMyMangas key={index} manga={manga} categories={cate} />
                 ))
               ) : (
                 <p>No result founds</p>

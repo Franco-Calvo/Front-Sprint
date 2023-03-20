@@ -114,7 +114,7 @@ export default function NavIndex({ handleRender }) {
           <Anchor className="a-nav" to="/create-mangas">
             Create Mangas
           </Anchor>
-          <Anchor className="a-nav" to="/">
+          <Anchor className="a-nav" to="/mymangas">
             My Mangas
           </Anchor>
           <Anchor className="a-nav" to="/">
