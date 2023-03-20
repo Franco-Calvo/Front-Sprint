@@ -1,14 +1,8 @@
-<<<<<<< HEAD
 .edition-Profile {
     width: 40%;
     height: 100%;
     padding: 1rem;
     margin: 1rem;
-=======
-.editProfile {
-    width: 50%;
-    height: 100%;
->>>>>>> b55f8888fc8640aada35eee5a6bfac787a34bf70
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -33,7 +27,7 @@
     background: pink;
     border-radius: 40px;
     font-size: 1rem;
-    color: white;
+    color: rgb(233, 42, 42);
     padding: 10px 45px;
 }
 

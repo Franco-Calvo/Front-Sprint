@@ -15,7 +15,7 @@ export default function EditProfile() {
     }
   }, []);
   const datePlaceholder = dataProfile.createdAt ? new Date(dataProfile.createdAt).toISOString().slice(0, 10).replace(/-/g, '/') : "Created At";
- // console.log(datePlaceholder)
+ //console.log(datePlaceholder)
   return (
     <>
       <div className='edition-Profile'>
