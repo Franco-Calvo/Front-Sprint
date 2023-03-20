@@ -4,11 +4,12 @@ import checkReducer from "./CheckAuthor/reducer";
 import mangasReducer from "./MangasAuthor/reducer";
 import alertReducer from "./Alert/reducer";
 import textReducer from "./Text/reducer";
-import eventReducer from "./Events/reducer";
+import eventReducer from "./Comic/reducer";
 import checksReducer from "./Checks/reducer";
-import mangaReducer from './Manga/reducer';
-import captureState from './Capture/reducer';
-
+import mangaReducer from "./Manga/reducer";
+import captureState from "./Capture/reducer";
+import mymangasReducer from "./MyMangas/reducer";
+import mangaidReducer from './MangaId/reducer'
 
 export const store = configureStore({
   reducer: {
@@ -20,7 +21,8 @@ export const store = configureStore({
     events: eventReducer,
     checks: checksReducer,
     mangas: mangaReducer,
-    checked: captureState
-  
+    checked: captureState,
+    mymanga: mymangasReducer,
+    Mangaid: mangaidReducer,
   },
 });
