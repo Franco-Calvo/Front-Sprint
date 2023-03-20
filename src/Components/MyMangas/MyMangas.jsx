@@ -1,55 +1,13 @@
 import "./mymangas.css";
 import React, { useState, useEffect, useRef } from "react";
-import CardManga from "../../Components/CardManga/CardManga";
 import { useDispatch, useSelector } from "react-redux";
 import actions from "../../Store/Text/actions";
 import eventActions from "../../Store/MyMangas/actions.js";
 import actionsChecks from "../../Store/Checks/actions.js";
 import axios from "axios";
+import CardMyMangas from "../CardMyMangas/CardMyMangas";
 
 export default function MyMangas() {
-  function returnclassName(value) {
-    switch (value) {
-      case "640b93d47f41e871c0ed6613":
-        return "kodomo";
-      case "640b93d47f41e871c0ed6615":
-        return "seinen";
-      case "640b93d47f41e871c0ed6612":
-        return "shonen";
-      case "640b93d47f41e871c0ed6614":
-        return "shojo";
-      default:
-        return "";
-    }
-  }
-  function returnStyle(value) {
-    switch (value) {
-      case "640b93d47f41e871c0ed6613":
-        return "category-manga4";
-      case "640b93d47f41e871c0ed6615":
-        return "category-manga";
-      case "640b93d47f41e871c0ed6612":
-        return "category-manga2";
-      case "640b93d47f41e871c0ed6614":
-        return "category-manga3";
-      default:
-        return "";
-    }
-  }
-  function returnCategory(value) {
-    switch (value) {
-      case "640b93d47f41e871c0ed6613":
-        return "Comic";
-      case "640b93d47f41e871c0ed6615":
-        return "Seinen";
-      case "640b93d47f41e871c0ed6612":
-        return "Shonen";
-      case "640b93d47f41e871c0ed6614":
-        return "Shojo";
-      default:
-        return "";
-    }
-  }
   const { read_events } = eventActions;
   const { captureText } = actions;
   const { captureChecks } = actionsChecks;
@@ -187,17 +145,9 @@ export default function MyMangas() {
             </div>
 
             <div className="container-cards-mangas">
-              {data.length ? (
-                data.map((manga, index) => (
-                  <CardManga
-                    key={index}
-                    style3={returnStyle(manga.category_id)}
-                    style2={returnclassName(manga.category_id)}
-                    category={returnCategory(manga.category_id)}
-                    id={manga._id}
-                    text={manga.title}
-                    img={manga.cover_photo}
-                  />
+            {data?.length && cate?.length ? (
+                data.map((manga, index) =>  (
+                  <CardMyMangas key={index} manga={manga} categories={cate} />
                 ))
               ) : (
                 <p>No result founds</p>
@@ -214,7 +164,7 @@ export default function MyMangas() {
                 </button>
               )}
               <label className="count-pages">{pages}</label>
-              {data.length > 7 || data.length <= 10 ? (
+              {data?.length == 6 || data?.length == 10 ? (
                 <button className="prev-next-anchor" onClick={handleNextClick}>
                   Next
                 </button>
