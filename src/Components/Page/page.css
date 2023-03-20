@@ -11,7 +11,7 @@
 .capitulo-img img {
     width: 100%;
     height: 100vh;
-    
+    object-fit:inherit;
 }
 
 .text-capitulo {
@@ -148,10 +148,13 @@
 
 .coment-number h6{
     margin-top: -40px;
-    font-size: 15px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
 }
 
-
+/*MODAL------------------*/
 
 .modal_comment{
     background: rgba(0, 0, 0, 0.7);
@@ -165,7 +168,7 @@
    background-color: #cecece;
    width: 500px;
    min-height: 400px;
-   margin-top: 10px;
+   margin-top: 40px;
    border-radius: 5px;
    margin-left: auto;
    margin-right: auto;
@@ -176,7 +179,9 @@
 .cerrar-modal {
     cursor: pointer;
    text-align: right;
-   margin-right: 10px;
+   margin-left: 93%;
+   width: 20px;
+   font-size: 20px;
 }
 
 
@@ -335,6 +340,26 @@
     bottom: 0;
 }
 
+.modal_comment{
+    padding:0%;
+    display: block;
+    min-height: 100vh;
+}
+.comments-contain{
+    max-height: 90vh;
+    overflow-y:scroll;
+}
+.comment-is-property{
+    height: 10%;
+    padding: 2%;
+    margin: 2%;
+    height: 10%;
+}
+
+
+
+
+
 
 @media (max-width: 800px) {
     
@@ -342,7 +367,7 @@
         background-color: #cecece;
         width: 100%;
         min-height: 400px;
-        margin-top: 100px;
+        margin-top: 18%;
         border-radius: 5px;
         margin-left: auto;
         margin-right: auto;

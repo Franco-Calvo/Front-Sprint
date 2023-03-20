@@ -6,34 +6,30 @@ import "./page.css";
 export default function Chapters() {
   let navigate = useNavigate();
   let url = `http://localhost:8080/chapters/`;
-  let urlComments = `http://localhost:8080/comments?chapter_id=`;
   let { id, page } = useParams();
   let [chapter, setChapter] = useState({});
   let [next, setNext] = useState("");
   let [prev, setPrev] = useState("");
   let [index, setIndex] = useState(parseInt(page));
-  let [modal, setModal] = useState(false);
 
   let token = localStorage.getItem("token");
   let headers = { headers: { Authorization: `Bearer ${token}` } };
+  let [modal, setModal] = useState(false);
   let [idChapter, setIdchapter] = useState();
-  let [allComments, setAllComments] = useState();
+  let [allComments, setAllComments] = useState([]);
 
   const handleInputComments = (e) => {
     const { name, value } = e.target;
     setInputComments({ [name]: value });
   };
-  let [inputComments, setInputComments] = useState("");
-  console.log(inputComments?.comentario);
+  let [inputComments, setInputComments] = useState({});
+  console.log(inputComments.text);
 
   const enviarComentario = async (e) => {
     e.preventDefault();
     try {
-      let response = await axios.post(
-        `http://localhost:8080/comments`,
-        headers,
-        inputComments.comentario
-      );
+      // eslint-disable-next-line
+      let response = await axios.post(`http://localhost:8080/comments`, inputComments, headers)
     } catch (error) {
       console.log(error);
     }
@@ -43,21 +39,40 @@ export default function Chapters() {
     setModal(!modal);
   };
 
+
+  const getComments = () => {
+    axios
+      .get(`http://localhost:8080/comments?chapter_id=${idChapter}`, headers)
+      .then((response) => {
+        setAllComments(response.data.comments);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  useEffect(() => {
+    getComments();
+    // eslint-disable-next-line
+  }, [idChapter]);
+
+
+  console.log(allComments);
+
   useEffect(() => {
     setIdchapter(id);
-    axios
-      .get(url + id)
+    axios.get(url + id)
       .then((response) => {
         setChapter(response.data.chapter);
         setPrev(response.data.prev);
         setNext(response.data.next);
       })
       .catch((error) => console.log(error));
+    // eslint-disable-next-line
   }, [idChapter]);
 
   let handlePrev = () => {
     setIndex(index - 1);
     navigate(`/chapters/${id}/${index - 1}`);
+    // eslint-disable-next-line
     if (index <= 0 && chapter.order == 1) {
       navigate(`/mangas/${chapter.manga_id}/${1}`);
     } else if (index <= 0) {
@@ -74,28 +89,14 @@ export default function Chapters() {
     }
   };
 
-  const getComments = () => {
-    axios
-      .get(`http://localhost:8080/comments?chapter_id=${idChapter}`, headers)
-      .then((response) => {
-        setAllComments(response.data.comments);
-      })
-      .catch((error) => console.log(error));
-  };
+  let cantidad = allComments.length
 
-  useEffect(() => {
-    getComments();
-  }, [idChapter]);
-
-  console.log(allComments);
   return (
     <div className="page">
       {modal && (
         <div className="modal_comment">
           <div className="comments-contain">
-            <div className="cerrar-modal" onClick={handleModal}>
-              x
-            </div>
+            <div className="cerrar-modal" onClick={handleModal}>x</div>
             {allComments.map((comments) => {
               return (
                 <div className="comment-is-property">
@@ -111,11 +112,7 @@ export default function Chapters() {
                       </div>
                     </div>
 
-                    <img
-                      src={comments.user_id.photo}
-                      className="img-comment"
-                      alt=""
-                    />
+                    <img src={comments.user_id.photo} className="img-comment" alt="" />
                   </div>
 
                   <div className="user-coments">
@@ -125,12 +122,7 @@ export default function Chapters() {
 
                   <div className="sub_comments">
                     <div className="sub-reply">
-                      <img
-                        className="subcomment"
-                        src="../../subcoment.png"
-                        alt=""
-                      />
-
+                      <img className="subcomment" src="../../subcoment.png" alt="" />
                       <div className="reply-comment">
                         <p>Reply</p>
                         <img src="../../edit.png" alt="" />
@@ -139,22 +131,21 @@ export default function Chapters() {
                     <p className="time">45 mins ago </p>
                   </div>
                 </div>
+
+
+
               );
             })}
+
             <form onSubmit={enviarComentario} className="form-comment">
               <fieldset className="input-comment">
-                <input
-                  type="text"
-                  className="input_comments"
-                  onChange={handleInputComments}
-                  name="comentario"
-                  placeholder="Say something here..."
-                />
+                <input type="text" className="input_comments" onChange={handleInputComments} name="text" placeholder="Say something here..." />
                 <button className="enviar" type="submit">
                   <img src="../../enviar.png" alt="" />
                 </button>
               </fieldset>
             </form>
+
           </div>
         </div>
       )}
@@ -185,7 +176,8 @@ export default function Chapters() {
           {" "}
           <p>...</p>{" "}
         </div>
-        <h6>24</h6>
+        <h6>{cantidad}</h6>
+
       </div>
     </div>
   );
