@@ -1,4 +1,4 @@
-import {useParams} from "react-router-dom";
+import { Link as Anchor, useParams } from 'react-router-dom';
 import {useEffect, useRef} from "react";
 import "./Author.css";
 import CardAuthor from "../../Components/CardAuthor/CardAuthor.jsx";
@@ -60,7 +60,9 @@ export default function Author() {
                 {dataProfile.createdAt}
               </p>
             </div>
+            <Anchor to= {'/profile'}>
             <img className="icon2" src="../edit-author.png" alt="edit" />
+            </Anchor>
           </div>
           <p id="description-author"></p>
         </section>

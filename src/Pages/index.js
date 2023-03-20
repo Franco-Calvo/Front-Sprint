@@ -13,6 +13,7 @@ import Author from "./Author/Author";
 import MangasView from "./MangasView/MangasView";
 import Page from "./Page/Pages";
 import MyMangas from "../Components/MyMangas/MyMangas";
+import AuthorProfile from "./AuthorProfile/Authorprofile"
 
 export const router = createBrowserRouter([
   {
@@ -73,6 +74,10 @@ export const router = createBrowserRouter([
       {
         path: "/chapters/:id/:page",
         element: <Page />,
+      },
+      {
+        path: "/profile",
+        element: <AuthorProfile />,
       },
       {
         path: "/*",
