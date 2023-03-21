@@ -62,7 +62,7 @@ export default function CreateManga() {
         <section>
           <h2 className="title">New Manga</h2>
         </section>
-        <form ref={formulario} className="form" onSubmit={handleSubmit}>
+        <form ref={formulario} className="form" id="author-form" onSubmit={handleSubmit}>
           <input
             className="forminput"
             type="text"
