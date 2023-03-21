@@ -60,7 +60,7 @@ export default function FormRegister(props) {
       <fieldset className="input-sim">
         <legend>Name</legend>
         <input ref={name} type="text" id="name" name="name" required />
-        <img src="./Profile.png" alt="" />
+        <img src="./profile.png" alt="" />
       </fieldset>
 
       <fieldset className="input-sim">
@@ -101,7 +101,7 @@ export default function FormRegister(props) {
 
       <ButtonGeneral
         style="style-3"
-        image="./Google.png"
+        image="./google.png"
         text="Sign in with Google"
       />
       <span className="span-login">

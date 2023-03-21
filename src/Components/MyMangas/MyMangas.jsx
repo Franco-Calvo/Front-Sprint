@@ -154,7 +154,7 @@ export default function MyMangas() {
                 </div>
                 <div className="cont-manga-img">
                   <Anchor className="cont-img-my" to="/create-mangas">
-                    <img className="cont-img-my" src="./NewManga.png" alt="" />
+                    <img className="cont-img-my" src="./newmanga.png" alt="" />
                   </Anchor>
                 </div>
               </div>
