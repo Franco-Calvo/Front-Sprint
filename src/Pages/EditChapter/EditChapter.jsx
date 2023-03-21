@@ -83,8 +83,6 @@ export default function EditChapter() {
             console.log('alerta, debe seleccionar que caracter y dato desea eliminar');
         }
     }
-
-    console.log(useSelector(store=>store));
     
   return (
     <div id='container-edit-chapter'>
