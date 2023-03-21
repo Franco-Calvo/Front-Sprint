@@ -1,6 +1,8 @@
 .mymangas-background {
   background-image: url(../../../public/background.png);
   background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   height: 60vh;
   display: flex;
   justify-content: center;
