@@ -4,7 +4,7 @@ import "./cardmymangas.css";
 import Modal from "../../Components/Modal/Modal";
 import { Link as Anchor } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import actionsEdit from "../../Store/MangaId/actions";
+import actionsEdit from "../../Store/MangaEdit/actions";
 const { captureId } = actionsEdit;
 
 export default function CardMyMangas({ manga, categories }) {

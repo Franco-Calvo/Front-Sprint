@@ -15,36 +15,46 @@ export default function Chapters() {
   let token = localStorage.getItem("token");
   let headers = { headers: { Authorization: `Bearer ${token}` } };
   let [modal, setModal] = useState(false);
+  let [subModal, setSubModal] = useState(false);
   let [idChapter, setIdchapter] = useState();
   let [allComments, setAllComments] = useState([]);
-
-  const handleInputComments = (e) => {
-    const { name, value } = e.target;
-    setInputComments({ [name]: value });
-  };
-  let [inputComments, setInputComments] = useState({});
-  console.log(inputComments.text);
-
-  const enviarComentario = async (e) => {
-    e.preventDefault();
-    try {
-      // eslint-disable-next-line
-      let response = await axios.post(`http://localhost:8080/comments`, inputComments, headers)
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  let cantidad = allComments.length
+  let [user, setUser] = useState()
+  let [userIdComments, setUserIdComments] = useState()
+  let [comentId, setComentId] = useState()
+  let [editModal, setEditModal] = useState(false)
+  let [textoEdit, setTextoEdit] = useState({})
+  let [idEdit, setIdEdit] = useState()
 
   const handleModal = () => {
     setModal(!modal);
   };
 
+  const handleInputComments = (e) => {
+    const { name, value } = e.target;
+    setInputComments({ [name]: value });
+    setTextoEdit({ [name]: value })
+  };
+  let [inputComments, setInputComments] = useState({});
+
+
+  const enviarComentario = async (e) => {
+    e.preventDefault();
+    getComments()
+    try {
+      // eslint-disable-next-line
+      let response = await axios.post(`http://localhost:8080/comments?chapter_id=${idChapter}`, inputComments, headers)
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const getComments = () => {
     axios
       .get(`http://localhost:8080/comments?chapter_id=${idChapter}`, headers)
       .then((response) => {
         setAllComments(response.data.comments);
+        setUserIdComments(response.data.comments)
       })
       .catch((error) => console.log(error));
   };
@@ -54,6 +64,44 @@ export default function Chapters() {
     // eslint-disable-next-line
   }, [idChapter]);
 
+  useEffect(() => {
+    const user_id_local = localStorage.getItem("user")
+    setUser(JSON.parse(user_id_local))
+  }, [])
+
+  const handleDelete = () => {
+    getComments();
+    try {
+      axios.delete(`http://localhost:8080/comments/${comentId}`, headers)
+
+    } catch (error) {
+      console.log(error)
+
+    }
+    setSubModal(!subModal)
+    getComments();
+  }
+
+  const handleModalDelete = (id) => {
+    setSubModal(!subModal)
+    setComentId(id)
+  }
+
+  const handleModalEdit = (id) => {
+    setEditModal(!editModal)
+    setIdEdit(id)
+  }
+
+  const handleEdit = (id) => {
+    getComments();
+    try {
+      axios.put(`http://localhost:8080/comments/${idEdit}`, { text: textoEdit.text }, headers)
+    } catch (error) {
+      console.log(error)
+    }
+    setEditModal(!editModal)
+    getComments();
+  }
 
   console.log(allComments);
 
@@ -89,37 +137,58 @@ export default function Chapters() {
     }
   };
 
-  let cantidad = allComments.length
+
+
 
   return (
     <div className="page">
+      {editModal && (
+        <div className="submodal">
+          <form onSubmit={handleEdit} className="formEdit">
+            <input type="text" className="input_edit_comments" onChange={handleInputComments} name="text" placeholder="Edit..." />
+            <button type="submit">
+              <img src="../../enviar.png" alt="" />
+            </button>
+          </form>
+        </div>
+      )}
+
+      {subModal && (
+        <div className="submodal">
+          <p>Want to delete ?</p>
+          <div className="subcomments">
+            <div onClick={() => handleDelete()}>Yes</div>
+            <div onClick={() => handleModalDelete()}>No</div>
+          </div>
+        </div>
+      )}
+
       {modal && (
         <div className="modal_comment">
           <div className="comments-contain">
             <div className="cerrar-modal" onClick={handleModal}>x</div>
             {allComments.map((comments) => {
+
               return (
                 <div className="comment-is-property">
                   <div className="user-coment">
-                    <div className="edit-delete">
-                      <div className="edit-comment">
+
+                    {comments.user_id._id === user.user_id && <div className="edit-delete">
+                      <div className="edit-comment" onClick={() => handleModalEdit(comments._id, comments.text)}>
                         <p>Edit</p>
                         <img src="../../edit.png" alt="" />
                       </div>
-
-                      <div className="delete-comment">
+                      <div className="delete-comment" onClick={() => handleModalDelete(comments._id)}>
                         <img src="../../delete.png" alt="" />
                       </div>
-                    </div>
+                    </div>}
 
                     <img src={comments.user_id.photo} className="img-comment" alt="" />
                   </div>
-
                   <div className="user-coments">
                     <p className="name-comment">{comments.user_id.name} </p>
                     <p className="comentario">{comments.text} </p>
                   </div>
-
                   <div className="sub_comments">
                     <div className="sub-reply">
                       <img className="subcomment" src="../../subcoment.png" alt="" />
@@ -128,13 +197,10 @@ export default function Chapters() {
                         <img src="../../edit.png" alt="" />
                       </div>
                     </div>
-                    <p className="time">45 mins ago </p>
+                    <p className="time">45 min {comments.createdAt}</p>
                   </div>
                 </div>
-
-
-
-              );
+              )
             })}
 
             <form onSubmit={enviarComentario} className="form-comment">
@@ -182,3 +248,6 @@ export default function Chapters() {
     </div>
   );
 }
+
+
+
