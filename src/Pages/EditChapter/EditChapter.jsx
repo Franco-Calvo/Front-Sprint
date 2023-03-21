@@ -28,8 +28,9 @@ export default function EditChapter() {
     const confirmEdit = useSelector((store) => store.alert.response);
     let token = localStorage.getItem("token");
     let headers = {headers: {Authorization: `Bearer ${token}`}};
+    chapterSelect = select.current? AllChapter.find(each=>each._id===select.current.children[1].value):null
+
     url = "http://localhost:8080/chapters/"+manga_id;
-    chapterSelect = AllChapter.find(each=>each._id===select.current.children[1].value)
 
     if(confirmEdit==="edited"){
         complete(true)
@@ -77,38 +78,40 @@ export default function EditChapter() {
     }
 
     async function complete(check){
-        if(check){if(dataEdit.current.value){let data ={
-            "_id": chapterSelect._id,
-            [typeData]:dataEdit.current.value
-        }
-        try {
-            await axios.put(url, data, headers);
-            setReloadChapter(!reloadChapter)
-            edit=true
-            dataEdit.current.value=""
-            dispatch(close({icon:"info",title:"",type:"basic"}))
-            dispatch(responseAlert({response: ""}))
-        } catch (error) {
-            dispatch(open({icon:"error",title:error.data.message,type:"basic"}))
-        }}}else if(!check){
-            url = "http://localhost:8080/chapters/"+chapterSelect._id;
-            try {
-                await axios.delete(url, headers);
-                setReloadChapter(!reloadChapter)
-                edit=true
-                console.log('borrado con exito con exito');
-                select.current.children[1].value='default'
-                dataEdit.current.value=""
-                handleChange()
-                dispatch(close({icon:"info",title:"",type:"basic"}))
-                dispatch(responseAlert({response: ""}))
-            } catch (error) {
-                console.log(error);
-            }
-        }
-
+        if(check){
+            if(dataEdit.current.value){
+                let data ={
+                "_id": chapterSelect._id,
+                [typeData]:dataEdit.current.value
+                }
+                try {
+                    await axios.put(url, data, headers);
+                    setReloadChapter(!reloadChapter)
+                    edit=true
+                    dataEdit.current.value=""
+                    dispatch(responseAlert({response: ""}))
+                    dispatch(open({icon:"success",title:"Edited!",type:"basic"}))
+                } catch (error) {
+                    dispatch(open({icon:"error",title:error.response.data.message,type:"basic"}))
+                }
+            }}else 
+                if(!check){
+                    url = "http://localhost:8080/chapters/"+chapterSelect._id;
+                    try {
+                        await axios.delete(url, headers);
+                        setReloadChapter(!reloadChapter)
+                        edit=true
+                        select.current.children[1].value='default'
+                        dataEdit.current.value=""
+                        handleChange()
+                        dispatch(responseAlert({response: ""}))
+                        dispatch(open({icon:"success",title:"Deleted!",type:"basic"}))
+                    } catch (error) {
+                        dispatch(open({icon:"error",title:error.response.data.message,type:"basic"}))
+                    }
+                 }
     }
-    console.log(useSelector(store=>store));
+
   return (
     <div id='container-edit-chapter'>
         <section id='edit-chapter-section'>
