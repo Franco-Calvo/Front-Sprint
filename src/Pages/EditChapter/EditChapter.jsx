@@ -8,6 +8,7 @@ import { useParams } from 'react-router';
 import axios from "axios";
 
 const { captureAllChapter, captureManga } = chapterAction
+let url;
 let chapterSelect;
 let typeData='default';
 let edit=false;
@@ -22,8 +23,11 @@ export default function EditChapter() {
     const {manga_id}=useParams();
     const AllChapter = useSelector((store) => store.editDeleteChapter.chapters);
     const manga = useSelector((store) => store.editDeleteChapter.manga);
+    let token = localStorage.getItem("token");
+    let headers = {headers: {Authorization: `Bearer ${token}`}};
+    url = "http://localhost:8080/chapters/"+manga_id;
     chapterSelect = AllChapter.find(each=>each._id===select.current.children[1].value)
-
+    
     useEffect(()=>{
         if(manga.length===0||manga._id!==manga_id){
             dispatch(captureManga({manga_id: manga_id}))
@@ -44,31 +48,40 @@ export default function EditChapter() {
     async function handleEdit(e){
         e.preventDefault()
         if(typeData!='default'){
-            let token = localStorage.getItem("token");
-            let headers = {headers: {Authorization: `Bearer ${token}`}};
-            let url = "http://localhost:8080/chapters/"+manga_id;
             let data ={
                 "_id": chapterSelect._id,
                 [typeData]:dataEdit.current.value
             }
-            console.log(data);
             try {
                 await axios.put(url, data, headers);
                 setReloadChapter(!reloadChapter)
                 edit=true
                 console.log('editado con exito');
-                e.reset()
+                dataEdit.current.value=""
             } catch (error) {
                 console.log(error);
             }
         }else{
             console.log('alerta, debe seleccionar que caracter y dato desea editar');
         }
-        
-
     }
-    function handleDelete(){
-        console.log('delete');
+    async function handleDelete(){
+        if(chapterSelect!=undefined){
+            url = "http://localhost:8080/chapters/"+chapterSelect._id;
+            try {
+                await axios.delete(url, headers);
+                setReloadChapter(!reloadChapter)
+                edit=true
+                console.log('borrado con exito con exito');
+                select.current.children[1].value='default'
+                dataEdit.current.value=""
+                handleChange()
+            } catch (error) {
+                console.log(error);
+            }
+        }else{
+            console.log('alerta, debe seleccionar que caracter y dato desea eliminar');
+        }
     }
 
     console.log(useSelector(store=>store));
