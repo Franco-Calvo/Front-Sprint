@@ -8,7 +8,7 @@ import eventReducer from "./Events/reducer";
 import checksReducer from "./Checks/reducer";
 import mangaReducer from './Manga/reducer';
 import captureState from './Capture/reducer';
-
+import editDeleteChapter from './EditDeleteChapter/reducer';
 
 export const store = configureStore({
   reducer: {
@@ -20,7 +20,7 @@ export const store = configureStore({
     events: eventReducer,
     checks: checksReducer,
     mangas: mangaReducer,
-    checked: captureState
-  
+    checked: captureState,
+    editDeleteChapter: editDeleteChapter
   },
 });

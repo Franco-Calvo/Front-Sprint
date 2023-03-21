@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import './EditDeleteButton.css'
 
-export default function EditDeletebutton({style,test}) {
+export default function EditDeletebutton({style,test,type}) {
   return (
-    <button type='button' id={style} >{test}</button>
+    <button 
+    type={type} 
+    id={style} >{test}</button>
   )
 }
 
