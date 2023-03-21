@@ -23,7 +23,6 @@ export default function EditChapter() {
     const AllChapter = useSelector((store) => store.editDeleteChapter.chapters);
     const manga = useSelector((store) => store.editDeleteChapter.manga);
     chapterSelect = AllChapter.find(each=>each._id===select.current.children[1].value)
-    typeData = select.current.children[2].value
 
     useEffect(()=>{
         if(manga.length===0||manga._id!==manga_id){
@@ -38,13 +37,11 @@ export default function EditChapter() {
     },[reloadChapter])
 
     function handleChange(){
+        typeData = select.current.children[2].value
         //Object.keys(chapterSelect)
         setReload(!reload)
     }
-    function handleChangeEdit(){
-        //console.log(dataEdit.current.value);
-    }
-    async function handleSubmit(e){
+    async function handleEdit(e){
         e.preventDefault()
         if(typeData!='default'){
             let token = localStorage.getItem("token");
@@ -70,13 +67,16 @@ export default function EditChapter() {
         
 
     }
+    function handleDelete(){
+        console.log('delete');
+    }
 
     console.log(useSelector(store=>store));
     
   return (
     <div id='container-edit-chapter'>
         <section id='edit-chapter-section'>
-            <form id='edit-chapter-form' onSubmit={handleSubmit}>
+            <form id='edit-chapter-form' onSubmit={handleEdit}>
                 <div>
                     <p id='title-edit-chapter'>Edit Chapter</p>
                 </div>
@@ -97,15 +97,21 @@ export default function EditChapter() {
                     <input
                     required
                     disabled={typeData==='default'?true:false}
-                    onChange={handleChangeEdit}
                     ref={dataEdit} 
                     id='data-input-edit-chapter' 
                     type="text" 
                     placeholder='data to edit' />
                 </div>
                 <div>
-                    <EditDeletebutton type='submit' style='edit-button' test='Edit'/>
-                    <EditDeletebutton type='button' style='delete-button' test='Delete'/>
+                    <EditDeletebutton 
+                    type='submit' 
+                    style='edit-button' 
+                    test='Edit'/>
+                    <EditDeletebutton 
+                    type='button'
+                    onClick={handleDelete}
+                    style='delete-button' 
+                    test='Delete'/>
                 </div>
             </form>
         </section>
