@@ -1,6 +1,8 @@
 .mymangas-background {
   background-image: url(../../../public/background.png);
   background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   height: 60vh;
   display: flex;
   justify-content: center;
@@ -24,3 +26,19 @@
   padding: 1rem;
 }
 
+.cont-img-my {
+  border-radius:35% 10px 10px 35%;
+  width: 100%;
+  height: 11rem;
+  object-fit: cover;
+  filter: brightness(80%);
+}
+
+.cont-img-my:hover {
+  filter: none;
+}
+
+.New-manga-my {
+  margin-left: 1rem;
+  font-size: 1.1rem;
+}

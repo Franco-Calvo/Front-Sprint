@@ -55,3 +55,7 @@
 .button-edit:hover {
   background: #b5b1cf;
 }
+
+.cont-buttons-mangas a {
+  text-decoration: none;
+}

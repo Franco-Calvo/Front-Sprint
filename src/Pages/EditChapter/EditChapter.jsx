@@ -6,7 +6,9 @@ import './EditChapter.css'
 import chapterAction from '../../Store/EditDeleteChapter/actions'
 import { useParams } from 'react-router';
 import axios from "axios";
+import alertActions from '../../Store/Alert/actions'
 
+const {open, close , responseAlert} = alertActions
 const { captureAllChapter, captureManga } = chapterAction
 let url;
 let chapterSelect;
@@ -23,14 +25,22 @@ export default function EditChapter() {
     const {manga_id}=useParams();
     const AllChapter = useSelector((store) => store.editDeleteChapter.chapters);
     const manga = useSelector((store) => store.editDeleteChapter.manga);
+    const confirmEdit = useSelector((store) => store.alert.response);
     let token = localStorage.getItem("token");
     let headers = {headers: {Authorization: `Bearer ${token}`}};
     url = "http://localhost:8080/chapters/"+manga_id;
     chapterSelect = AllChapter.find(each=>each._id===select.current.children[1].value)
-    
+
+    if(confirmEdit==="edited"){
+        complete(true)
+    }else if(confirmEdit==="deleted"){
+        complete(false)
+    }
+
     useEffect(()=>{
         if(manga.length===0||manga._id!==manga_id){
             dispatch(captureManga({manga_id: manga_id}))
+            dispatch(close({icon:"info",title:"",type:"basic"}))
         }
     },[])
     useEffect(()=>{
@@ -47,26 +57,40 @@ export default function EditChapter() {
     }
     async function handleEdit(e){
         e.preventDefault()
-        if(typeData!='default'){
-            let data ={
-                "_id": chapterSelect._id,
-                [typeData]:dataEdit.current.value
-            }
-            try {
-                await axios.put(url, data, headers);
-                setReloadChapter(!reloadChapter)
-                edit=true
-                console.log('editado con exito');
-                dataEdit.current.value=""
-            } catch (error) {
-                console.log(error);
-            }
+        if(chapterSelect!=undefined){
+           if(typeData!='default'){
+            dispatch(open({icon:"info",title:"Confirm to edit",type:"edit"}))
         }else{
-            console.log('alerta, debe seleccionar que caracter y dato desea editar');
+            dispatch(open({icon:"info",title:"Debe seleccionar que dato desea editar",type:"basic"}))
+        } 
+        }else{
+            dispatch(open({icon:"info",title:"Debe seleccionar que caracter desea editar",type:"basic"}))
         }
+        
     }
     async function handleDelete(){
         if(chapterSelect!=undefined){
+            dispatch(open({icon:"info",title:"Confirm to delete",type:"deleted"}))
+        }else{
+            dispatch(open({icon:"info",title:"Debe seleccionar que caracter desea eliminar",type:"basic"}))
+        }
+    }
+
+    async function complete(check){
+        if(check){if(dataEdit.current.value){let data ={
+            "_id": chapterSelect._id,
+            [typeData]:dataEdit.current.value
+        }
+        try {
+            await axios.put(url, data, headers);
+            setReloadChapter(!reloadChapter)
+            edit=true
+            dataEdit.current.value=""
+            dispatch(close({icon:"info",title:"",type:"basic"}))
+            dispatch(responseAlert({response: ""}))
+        } catch (error) {
+            dispatch(open({icon:"error",title:error.data.message,type:"basic"}))
+        }}}else if(!check){
             url = "http://localhost:8080/chapters/"+chapterSelect._id;
             try {
                 await axios.delete(url, headers);
@@ -76,14 +100,15 @@ export default function EditChapter() {
                 select.current.children[1].value='default'
                 dataEdit.current.value=""
                 handleChange()
+                dispatch(close({icon:"info",title:"",type:"basic"}))
+                dispatch(responseAlert({response: ""}))
             } catch (error) {
                 console.log(error);
             }
-        }else{
-            console.log('alerta, debe seleccionar que caracter y dato desea eliminar');
         }
+
     }
-    
+    console.log(useSelector(store=>store));
   return (
     <div id='container-edit-chapter'>
         <section id='edit-chapter-section'>
