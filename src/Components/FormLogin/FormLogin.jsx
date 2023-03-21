@@ -69,7 +69,7 @@ export default function FormLogin({ handleRender }) {
           manga.
         </p>
 
-      <form ref={formRef} onSubmit={handleSubmit}>
+      <form className="form-Register" ref={formRef} onSubmit={handleSubmit}>
         <fieldset className="input-sim">
           <legend>Email</legend>
           <input ref={email} type="email" id="email" name="email" required />

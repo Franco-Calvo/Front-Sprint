@@ -9,7 +9,7 @@ import checksReducer from "./Checks/reducer";
 import mangaReducer from "./Manga/reducer";
 import captureState from "./Capture/reducer";
 import mymangasReducer from "./MyMangas/reducer";
-import mangaidReducer from './MangaId/reducer'
+import mangaidReducer from './MangaEdit/reducer'
 
 export const store = configureStore({
   reducer: {

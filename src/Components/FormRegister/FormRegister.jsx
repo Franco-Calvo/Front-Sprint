@@ -4,7 +4,6 @@ import InputGeneral from "../InputGeneral/InputGeneral";
 import ButtonGeneral from "../ButtonGeneral/ButtonGeneral";
 import axios from "axios";
 import { Link as Anchor, useNavigate, useLocation } from "react-router-dom";
-import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
 import alertActions from "../../Store/Alert/actions";
 
@@ -57,7 +56,7 @@ export default function FormRegister(props) {
   }
 
   return (
-    <form ref={formReg} onSubmit={handleSubmit}>
+    <form className="form-Register"ref={formReg} onSubmit={handleSubmit}>
       <fieldset className="input-sim">
         <legend>Name</legend>
         <input ref={name} type="text" id="name" name="name" required />

@@ -6,6 +6,7 @@ import eventActions from "../../Store/MyMangas/actions.js";
 import actionsChecks from "../../Store/Checks/actions.js";
 import axios from "axios";
 import CardMyMangas from "../CardMyMangas/CardMyMangas";
+import { Link as Anchor } from "react-router-dom";
 
 export default function MyMangas() {
   const { read_events } = eventActions;
@@ -13,7 +14,7 @@ export default function MyMangas() {
   const { captureChecks } = actionsChecks;
   let categoriasCheck = [];
 
-  const [reload, SetReload] = useState(false);
+  const [reload, setReload] = useState(false);
   const dispatch = useDispatch();
   const text = useRef("");
   const [cate, setCate] = useState([]);
@@ -23,7 +24,7 @@ export default function MyMangas() {
   const categorias = useSelector((store) => store.checks.category);
 
   const handleSearch = () => {
-    SetReload(!reload);
+    setReload(!reload);
     dispatch(captureText({ inputText: text.current.value }));
   };
 
@@ -63,11 +64,11 @@ export default function MyMangas() {
 
   function handlePrevClick() {
     setPages((prevPages) => prevPages - 1);
-    SetReload(true);
+    setReload(true);
   }
   function handleNextClick() {
     setPages((prevPages) => prevPages + 1);
-    SetReload(true);
+    setReload(true);
   }
 
   return (
@@ -145,9 +146,28 @@ export default function MyMangas() {
             </div>
 
             <div className="container-cards-mangas">
-            {data?.length && cate?.length ? (
-                data.map((manga, index) =>  (
-                  <CardMyMangas key={index} manga={manga} categories={cate} />
+              <div className="card-shonen">
+                <div className="text-manga">
+                  <span>
+                    <h4 className="New-manga-my">Create new manga</h4>
+                  </span>
+                </div>
+                <div className="cont-manga-img">
+                  <Anchor className="cont-img-my" to="/create-mangas">
+                    <img className="cont-img-my" src="./NewManga.png" alt="" />
+                  </Anchor>
+                </div>
+              </div>
+
+              {data?.length && cate?.length ? (
+                data.map((manga, index) => (
+                  <CardMyMangas
+                    key={index}
+                    manga={manga}
+                    setReload={setReload}
+                    reload={reload}
+                    categories={cate}
+                  />
                 ))
               ) : (
                 <p>No result founds</p>
