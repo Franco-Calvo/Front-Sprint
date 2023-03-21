@@ -63,13 +63,11 @@ export default function FormLogin({ handleRender }) {
 
   return (
     <div className="container-form-general">
-      <span className="title-login">
-        <h3>Welcome back!</h3>
+        <h2>Welcome back!</h2>
         <p>
           Discover manga, manhua and manwha, track your progress, have fun, read
           manga.
         </p>
-      </span>
 
       <form ref={formRef} onSubmit={handleSubmit}>
         <fieldset className="input-sim">

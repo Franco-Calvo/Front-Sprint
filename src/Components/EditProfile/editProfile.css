@@ -1,38 +1,40 @@
-.editProfile {
-    width: 50%;
+.edition-Profile {
+    width: 40%;
     height: 100%;
+    padding: 1rem;
+    margin: 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
 }
-.formEdit{
+.form-Edition{
     width: 80%;
     height: 90%;
     margin: 0;
 }
-#imgProfile{
+#img-Profile{
     visibility: hidden;
 } 
-.inputAuthorForm {
+.author-Form-Edition {
     width: 80%;
     height: 2.5rem;
     border-bottom: 1px solid black;
 }
-.btndelete{
-    width: 40%;
-    height:8rem;
+#btn-delete{
+    width: 80%;
+    height:3rem;
     background: pink;
     border-radius: 40px;
     font-size: 1rem;
-    color: red;
+    color: rgb(233, 42, 42);
     padding: 10px 45px;
 }
 
-.btnsave{
-    width: 40%;
+#btn-save{
+    width: 80%;
     padding: 8px 45px;
-    height:8rem;
+    height:3rem;
     background: rgb(140, 232, 140);
     border-radius: 40px;
     font-size: 80%;
@@ -40,7 +42,7 @@
     font-size: 1rem;
 }
 @media  (max-width: 748px){
-     .editProfile {
+     .edition-Profile {
          width: 80%;
          height: 30vh;
          display: flex;
@@ -48,9 +50,11 @@
          align-items: center;
          justify-content: space-evenly;
      }
-     #imgProfile{
-         visibility: hidden;
-         width: 5rem;
-     } 
+
+     .form-Edition{
+        width: 80vw;
+        height: 90%;
+        margin: 0;
+    }
  }
  
