@@ -49,11 +49,11 @@ export default function CardMyMangas({ manga, categories, setReload, reload }) {
       <span className={categoryUsed.name}></span>
       <div className="text-manga">
         <div className="buttons-edit">
-          <Anchor to={`/edit/`+manga._id} id="buttons-mangas">
+          <Anchor to={`/edit/` + manga._id} id="buttons-mangas">
             <img src="./Pen.png" alt="" />
           </Anchor>
-          <Anchor to={`/chapher-form/`+manga._id}id="buttons-mangas">
-            <img src="./Add.png" alt="" />
+          <Anchor to={`/chapher-form/` + manga._id} id="buttons-mangas">
+            <img src="./add.png" alt="" />
           </Anchor>
         </div>
         <span>
