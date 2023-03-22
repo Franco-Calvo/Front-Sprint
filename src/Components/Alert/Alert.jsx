@@ -24,7 +24,7 @@ export default function Alert() {
   const type = useSelector((store) => store.alert.type);
   const confirmMessage = useSelector((store) => store.alert.confirmMessage);
   const denyMessage = useSelector((store) => store.alert.denyMessage);
-  const res = useSelector((store) => store.alert.res);
+  const expectedResponse = useSelector((store) => store.alert.expectedResponse);
 
   if (visible) {
     if(type==="toast"){
@@ -41,7 +41,7 @@ export default function Alert() {
         denyButtonText: denyMessage
       }).then((result) => {
         if (result.isConfirmed) {
-          dispatch(responseAlert({response: res}))
+          dispatch(responseAlert({response: expectedResponse}))
         } else if (result.isDenied) {
           dispatch(responseAlert({response: "denied"}))
           dispatch(close({icon:"info",title:"",type:"basic"}))

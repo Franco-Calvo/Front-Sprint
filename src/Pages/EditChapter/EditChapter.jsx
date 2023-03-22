@@ -56,7 +56,6 @@ export default function EditChapter() {
         //Object.keys(chapterSelect)
         setReload(!reload)
     }
-    console.log(useSelector(store=>store));
     function handleEdit(e){
         e.preventDefault()
         if(chapterSelect!=undefined){
@@ -67,7 +66,7 @@ export default function EditChapter() {
                 type:"confirm",
                 confirmMessage:"Save",
                 denyMessage:"Don't save",
-                res:"edited"
+                expectedResponse:"edited"
             }))
         }else{
             dispatch(open({icon:"info",title:"Debe seleccionar que dato desea editar",type:"toast"}))
@@ -85,7 +84,7 @@ export default function EditChapter() {
                 type:"confirm",
                 confirmMessage:"Deleted",
                 denyMessage:"Don't delete",
-                res:"deleted"
+                expectedResponse:"deleted"
             }))
         }else{
             dispatch(open({icon:"info",title:"Debe seleccionar que caracter desea eliminar",type:"toast"}))

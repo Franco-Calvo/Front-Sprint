@@ -1,6 +1,6 @@
 import { createAction } from "@reduxjs/toolkit";
 
-let open = createAction("open", ({ icon, title , type , confirmMessage , denyMessage , res}) => {
+let open = createAction("open", ({ icon, title , type , confirmMessage , denyMessage , expectedResponse}) => {
   return {
     payload: {
       icon,
@@ -8,7 +8,7 @@ let open = createAction("open", ({ icon, title , type , confirmMessage , denyMes
       type,
       confirmMessage,
       denyMessage,
-      res,
+      expectedResponse,
       visible: true,
     },
   };
