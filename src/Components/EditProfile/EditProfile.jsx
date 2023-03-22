@@ -4,6 +4,7 @@ import { useRef, useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import authorAction from '../../Store/Author/actions.js'
 import { useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2'
 const { read_author, update_author } = authorAction
 
 export default function EditProfile() {
@@ -26,21 +27,47 @@ export default function EditProfile() {
       date: formRef.current.date.value,
       photo: formRef.current.photo.value
     };
-    dispatch(update_author({ data: data }))
-    setUpdate(!update)
+
+    Swal.fire({
+      title: 'Do you want to save the changes?',
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Save',
+      denyButtonText: `Don't save`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        dispatch(update_author({ data: data }))
+        setUpdate(!update)
+        Swal.fire('Saved!', '', 'success')
+      } else if (result.isDenied) {
+        Swal.fire('Changes are not saved', '', 'info')
+      }
+    })
   };
-
-
   const handleDelete = async (event) => {
     event.preventDefault();
-    const data = { active: false }
-    dispatch(update_author({ data: data }));
-    setUpdate(!update)
-    setTimeout(() => {
-      navigate('/');
-    }, 500);
+    Swal.fire({
+      title: 'Are you sure you want to delete your account?',
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Delete',
+      denyButtonText: `Cancel`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const data = { active: false };
+        dispatch(update_author({ data: data }));
+        setUpdate(!update);
+        setTimeout(() => {
+          navigate('/');
+        }, 500);
+        Swal.fire('Your account has been deleted', '', 'success');
+      } else if (result.isDenied) {
+        Swal.fire('Cancelled', '', 'info');
+      }
+    });
   };
-
+  
   useEffect(
     () => {
       if (authores) {
