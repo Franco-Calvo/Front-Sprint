@@ -28,8 +28,8 @@ export default function EditChapter() {
     const confirmEdit = useSelector((store) => store.alert.response);
     let token = localStorage.getItem("token");
     let headers = {headers: {Authorization: `Bearer ${token}`}};
-    chapterSelect = select.current? AllChapter.find(each=>each._id===select.current.children[1].value):null
 
+    chapterSelect = select.current? AllChapter.find(each=>each._id===select.current.children[1].value):null
     url = "http://localhost:8080/chapters/"+manga_id;
     
     if(confirmEdit==="edited"){
@@ -56,6 +56,7 @@ export default function EditChapter() {
         //Object.keys(chapterSelect)
         setReload(!reload)
     }
+    
     function handleEdit(e){
         e.preventDefault()
         if(chapterSelect!=undefined){
