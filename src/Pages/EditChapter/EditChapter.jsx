@@ -31,7 +31,7 @@ export default function EditChapter() {
     chapterSelect = select.current? AllChapter.find(each=>each._id===select.current.children[1].value):null
 
     url = "http://localhost:8080/chapters/"+manga_id;
-
+    console.log(confirmEdit);
     if(confirmEdit==="edited"){
         complete(true)
     }else if(confirmEdit==="deleted"){
@@ -56,7 +56,7 @@ export default function EditChapter() {
         //Object.keys(chapterSelect)
         setReload(!reload)
     }
-    async function handleEdit(e){
+    function handleEdit(e){
         e.preventDefault()
         if(chapterSelect!=undefined){
            if(typeData!='default'){
@@ -69,7 +69,7 @@ export default function EditChapter() {
         }
         
     }
-    async function handleDelete(){
+    function handleDelete(){
         if(chapterSelect!=undefined){
             dispatch(open({icon:"info",title:"Confirm to delete",type:"deleted"}))
         }else{
@@ -77,8 +77,8 @@ export default function EditChapter() {
         }
     }
 
-    async function complete(check){
-        if(check){
+    async function complete(type){
+        if(type){
             if(dataEdit.current.value){
                 let data ={
                 "_id": chapterSelect._id,
@@ -95,7 +95,7 @@ export default function EditChapter() {
                     dispatch(open({icon:"error",title:error.response.data.message,type:"basic"}))
                 }
             }}else 
-                if(!check){
+                if(!type){
                     url = "http://localhost:8080/chapters/"+chapterSelect._id;
                     try {
                         await axios.delete(url, headers);
