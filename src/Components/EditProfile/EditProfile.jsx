@@ -1,37 +1,77 @@
-import { useEffect } from "react";
-import { useParams } from "react-router";
-import { useDispatch, useSelector } from "react-redux";
-import authorActions from "../../Store/Author/actions";
+import React from 'react'
 import './editProfile.css'
-const { read_author } = authorActions;
+import { useRef, useEffect, useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import authorAction from '../../Store/Author/actions.js'
+import { useNavigate } from 'react-router-dom'
+const { read_author, update_author } = authorAction
+
 export default function EditProfile() {
-  const dispatch = useDispatch();
-  const dataProfile = useSelector((store) => store.Author.author);
-  const { id } = useParams();
-  
+  const dispatch = useDispatch()
+  const formRef = useRef();
+  const [update, setUpdate] = useState(false)
+  const [inputValue, setInputValue] = useState("");
+  const navigate = useNavigate()
+  let authores = useSelector(store => store.Author.author)
+  const authoresDate = authores?.date?.split('T')[0]
+
+  const handleSave = async (event) => {
+    event.preventDefault();
+    const cityCountry = formRef.current.city_country.value
+    const array = cityCountry.split(',')
+    const data = {
+      name: formRef.current.name.value,
+      city: array[0],
+      country: array[1].trim(),
+      date: formRef.current.date.value,
+      photo: formRef.current.photo.value
+    };
+    dispatch(update_author({ data: data }))
+    setUpdate(!update)
+  };
+
+
+  const handleDelete = async (event) => {
+    event.preventDefault();
+    const data = { active: false }
+    dispatch(update_author({ data: data }));
+    setUpdate(!update)
+    setTimeout(() => {
+      navigate('/');
+    }, 500);
+  };
+
+  useEffect(
+    () => {
+      if (authores) {
+        dispatch(read_author())
+      }
+    }, [update]
+  )
+  useEffect(
+    () => {
+      if (authores) {
+        dispatch(update_author())
+      }
+    }, [update]
+  )
+
   useEffect(() => {
-    if (dataProfile.length === id) {
-      dispatch(read_author({ author_id: id }));
+    if (authores?.city && authores?.country) {
+      setInputValue(`${authores?.city}, ${authores?.country}`);
     }
-  }, []);
+  }, [authores]);
 
   return (
-    <>
-      <div className='edition-Profile'>
-        <form className='form-Edition'>
-          <input name="name" className="author-Form-Edition" type="text" placeholder={dataProfile.name || "Name"}  />
-          <input name="city_country" className="author-Form-Edition" type="text" placeholder={dataProfile.country && dataProfile.city ? `${dataProfile.country}, ${dataProfile.city}` : "City, Country"}  />
-          <input name="date" className="author-Form-Edition" defaultValue={dataProfile.date} type="date"  />
-          <input name="photo" className="author-Form-Edition" type="text" placeholder={dataProfile.photo || "Photo URL"}  />
-          <input id='btn-save' type="submit" value="Save" />
-          <input id='btn-delete' type="submit" value="Delete Account" />
-        </form>
-      </div>
-    </>
+    <div className='edition-Profile'>
+      <form className='form-Edition' ref={formRef}>
+        <input name="name" className="author-Form-Edition" type="text" placeholder="Name" defaultValue={authores?.name} />
+        <input name="city_country" className="author-Form-Edition" type="text" placeholder="City, Country" defaultValue={inputValue} />
+        <input name="date" className="author-Form-Edition" type="date" defaultValue={authoresDate} />
+        <input name="photo" className="author-Form-Edition" type="text" placeholder="URL Profile Image" defaultValue={authores?.photo} />
+        <input id='btn-save' type="submit" value="Save" onClick={handleSave} />
+        <input id='btn-delete' type="submit" value="Delete Acount" onClick={handleDelete} />
+      </form>
+    </div>
   )
-} 
-
-
-
-
-
+}

@@ -38,10 +38,10 @@ export default function Author() {
   }
   return (
     <div id="author-container">
-      {dataProfile.length != 0 ? (
+      {dataProfile?.length !== 0 ? (
         <section id="section-profile">
           <div>
-            <img id="profile-img" src={dataProfile.photo} alt="profile" />
+            <img id="profile-img" src={dataProfile?.photo} alt="profile" />
             <div>
               <p id="name-author">
                 {dataProfile.name[0].toUpperCase() +
@@ -60,7 +60,7 @@ export default function Author() {
                 {dataProfile.createdAt}
               </p>
             </div>
-            <Anchor to= {'/profile'}>
+            <Anchor to= {'/profile/'+ id}>
             <img className="icon2" src="../edit-author.png" alt="edit" />
             </Anchor>
           </div>

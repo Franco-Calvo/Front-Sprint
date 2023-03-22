@@ -1,36 +1,20 @@
-import { useEffect} from "react";
-import { useParams } from "react-router";
-import { useDispatch, useSelector } from "react-redux";
-import authorActions from "../../Store/Author/actions";
+import { useSelector } from "react-redux";
 import './profile.css'
-
-const { read_author } = authorActions;
-
+import author from '../../Store/Author/actions.js'
+const { read_author, update_author } = author
 export default function Profile() {
-    const dispatch = useDispatch();
-    const dataProfile = useSelector((store) => store.Author.author);
-    const {id} = useParams();
-    useEffect(() => {
-        if (dataProfile.length === 0) {
-            dispatch(read_author({ author_id: id }));
-        }
-    }, []);
+    let author = useSelector(store => store.Author.author)
+    const authorDate = author?.date?.split('T')[0]
     return (
+
         <div className='profile-section'>
-           
-            <img id="profile-img" src={dataProfile.photo} alt="profile" />
-            <h2>  {dataProfile.name}</h2>
+          
+           <img id="profile-img" src={author.photo} alt="profile" />
             <div className="data-Profile-author">
-                <p >
-                    <img id="icon-date" src="../location-author.png" alt="location" />{" "}
-                    {dataProfile.country}, {dataProfile.city}
-                </p>
-                <p >
-                    <img id="icon-date" src="../date-author.png" alt="date" />{" "}
-                    {dataProfile.createdAt}
-                </p>
+                <h2>{author?.name} {author?.last_name}</h2>
+                <p ><img id="icon-date" src="../location-author.png"  alt="location" />{author?.city} ,{author?.country}</p>
+                <p ><img id="icon-date" src="../date-author.png" />{authorDate}</p>
             </div>
-            
         </div>
     )
 }

@@ -8,22 +8,26 @@
     align-items: center;
     justify-content: space-evenly;
 }
-.form-Edition{
+
+.form-Edition {
     width: 80%;
     height: 90%;
     margin: 0;
 }
-#img-Profile{
+
+#img-Profile {
     visibility: hidden;
-} 
+}
+
 .author-Form-Edition {
     width: 80%;
     height: 2.5rem;
     border-bottom: 1px solid black;
 }
-#btn-delete{
+
+#btn-delete {
     width: 80%;
-    height:3rem;
+    height: 3rem;
     background: pink;
     border-radius: 40px;
     font-size: 1rem;
@@ -31,30 +35,31 @@
     padding: 10px 45px;
 }
 
-#btn-save{
+#btn-save {
     width: 80%;
     padding: 8px 45px;
-    height:3rem;
-    background: rgb(140, 232, 140);
+    height: 3rem;
+    background: #34D399;
     border-radius: 40px;
     font-size: 80%;
     color: white;
     font-size: 1rem;
 }
-@media  (max-width: 748px){
-     .edition-Profile {
-         width: 80%;
-         height: 30vh;
-         display: flex;
-         flex-direction: column;
-         align-items: center;
-         justify-content: space-evenly;
-     }
 
-     .form-Edition{
+@media (max-width: 748px) {
+    .edition-Profile {
+        width: 80%;
+        height: 30vh;
+        margin-top: 4rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+    .form-Edition {
         width: 80vw;
         height: 90%;
         margin: 0;
     }
- }
- 
+}
