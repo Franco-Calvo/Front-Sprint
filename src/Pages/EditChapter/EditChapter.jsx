@@ -31,7 +31,7 @@ export default function EditChapter() {
     chapterSelect = select.current? AllChapter.find(each=>each._id===select.current.children[1].value):null
 
     url = "http://localhost:8080/chapters/"+manga_id;
-    console.log(confirmEdit);
+    
     if(confirmEdit==="edited"){
         complete(true)
     }else if(confirmEdit==="deleted"){
