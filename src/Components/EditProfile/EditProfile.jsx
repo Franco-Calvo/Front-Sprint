@@ -49,7 +49,6 @@ export default function EditProfile() {
     event.preventDefault();
     Swal.fire({
       title: 'Are you sure you want to delete your account?',
-      showDenyButton: true,
       showCancelButton: true,
       confirmButtonText: 'Delete',
       denyButtonText: `Cancel`,
