@@ -51,25 +51,8 @@ export default function Alert() {
           dispatch(close({icon:"info",title:"",type:"basic"}))
         }
       });
-    }else if(type==="ll"){
-      Swal.fire({
-        title: title,
-        icon: icon,
-        showDenyButton: true,
-        confirmButtonText: "Delete",
-        denyButtonText: `Don't delete`
-      }).then((result) => {
-        if (result.isConfirmed) {
-          dispatch(responseAlert({response: "deleted"}))
-        } else if (result.isDenied) {
-          dispatch(responseAlert({response: "denied"}))
-          dispatch(close({icon:"info",title:"",type:"basic"}))
-        }
-        else if (result.isDismissed) {
-          dispatch(responseAlert({response: "denied"}))
-          dispatch(close({icon:"info",title:"",type:"basic"}))
-        }
-      });
+    }else if(type==="basic"){
+      
     }
     
     
