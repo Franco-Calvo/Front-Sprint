@@ -32,12 +32,6 @@ export default function EditChapter() {
     chapterSelect = select.current? AllChapter.find(each=>each._id===select.current.children[1].value):null
     url = "http://localhost:8080/chapters/"+manga_id;
     
-    if(confirmEdit==="edited"){
-        complete(true)
-    }else if(confirmEdit==="deleted"){
-        complete(false)
-    }
-
     useEffect(()=>{
         if(manga.length===0||manga._id!==manga_id){
             dispatch(captureManga({manga_id: manga_id}))
@@ -56,7 +50,7 @@ export default function EditChapter() {
         //Object.keys(chapterSelect)
         setReload(!reload)
     }
-    
+
     function handleEdit(e){
         e.preventDefault()
         if(chapterSelect!=undefined){
@@ -78,6 +72,12 @@ export default function EditChapter() {
         }
     }
 
+    if(confirmEdit==="edited"){
+        complete(true)
+    }else if(confirmEdit==="deleted"){
+        complete(false)
+    }
+    
     async function complete(type){
         if(type){
             if(dataEdit.current.value){
