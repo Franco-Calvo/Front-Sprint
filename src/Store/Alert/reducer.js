@@ -7,6 +7,9 @@ const initialState = {
   icon: "succes",
   title: "",
   type:"",
+  confirmMessage:"",
+  denyMessage:"",
+  expectedResponse:"",
   response:"",
 };
 
@@ -19,6 +22,9 @@ let alertReducer = createReducer(initialState, (builder) =>
         title: action.payload.title,
         icon: action.payload.icon,
         type: action.payload.type,
+        confirmMessage: action.payload.confirmMessage,
+        denyMessage: action.payload.denyMessage,
+        expectedResponse: action.payload.expectedResponse,
       };
       return newState;
     })

@@ -28,10 +28,10 @@ export default function EditChapter() {
     const confirmEdit = useSelector((store) => store.alert.response);
     let token = localStorage.getItem("token");
     let headers = {headers: {Authorization: `Bearer ${token}`}};
-    chapterSelect = select.current? AllChapter.find(each=>each._id===select.current.children[1].value):null
 
+    chapterSelect = select.current? AllChapter.find(each=>each._id===select.current.children[1].value):null
     url = "http://localhost:8080/chapters/"+manga_id;
-    console.log(confirmEdit);
+    
     if(confirmEdit==="edited"){
         complete(true)
     }else if(confirmEdit==="deleted"){
@@ -60,20 +60,34 @@ export default function EditChapter() {
         e.preventDefault()
         if(chapterSelect!=undefined){
            if(typeData!='default'){
-            dispatch(open({icon:"info",title:"Confirm to edit",type:"edit"}))
+            dispatch(open({
+                icon:"info",
+                title:"Confirm to edit",
+                type:"confirm",
+                confirmMessage:"Save",
+                denyMessage:"Don't save",
+                expectedResponse:"edited"
+            }))
         }else{
-            dispatch(open({icon:"info",title:"Debe seleccionar que dato desea editar",type:"basic"}))
+            dispatch(open({icon:"info",title:"Debe seleccionar que dato desea editar",type:"toast"}))
         } 
         }else{
-            dispatch(open({icon:"info",title:"Debe seleccionar que caracter desea editar",type:"basic"}))
+            dispatch(open({icon:"info",title:"Debe seleccionar que caracter desea editar",type:"toast"}))
         }
         
     }
     function handleDelete(){
         if(chapterSelect!=undefined){
-            dispatch(open({icon:"info",title:"Confirm to delete",type:"deleted"}))
+            dispatch(open({
+                icon:"info",
+                title:"Confirm to delete",
+                type:"confirm",
+                confirmMessage:"Deleted",
+                denyMessage:"Don't delete",
+                expectedResponse:"deleted"
+            }))
         }else{
-            dispatch(open({icon:"info",title:"Debe seleccionar que caracter desea eliminar",type:"basic"}))
+            dispatch(open({icon:"info",title:"Debe seleccionar que caracter desea eliminar",type:"toast"}))
         }
     }
 

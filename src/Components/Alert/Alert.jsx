@@ -22,23 +22,26 @@ export default function Alert() {
   const icon = useSelector((store) => store.alert.icon);
   const title = useSelector((store) => store.alert.title);
   const type = useSelector((store) => store.alert.type);
+  const confirmMessage = useSelector((store) => store.alert.confirmMessage);
+  const denyMessage = useSelector((store) => store.alert.denyMessage);
+  const expectedResponse = useSelector((store) => store.alert.expectedResponse);
 
   if (visible) {
-    if(type==="basic"){
+    if(type==="toast"){
       Toast.fire({
       icon: icon,
       title: title,
     }).then((res)=>{dispatch(close({icon:"info",title:"",type:"basic"}))});
-    }else if(type==="edit"){
+    }else if(type==="confirm"){
       Swal.fire({
         title: title,
         icon: icon,
         showDenyButton: true,
-        confirmButtonText: "Save",
-        denyButtonText: `Don't save`
+        confirmButtonText: confirmMessage,
+        denyButtonText: denyMessage
       }).then((result) => {
         if (result.isConfirmed) {
-          dispatch(responseAlert({response: "edited"}))
+          dispatch(responseAlert({response: expectedResponse}))
         } else if (result.isDenied) {
           dispatch(responseAlert({response: "denied"}))
           dispatch(close({icon:"info",title:"",type:"basic"}))
@@ -48,25 +51,8 @@ export default function Alert() {
           dispatch(close({icon:"info",title:"",type:"basic"}))
         }
       });
-    }else if(type==="deleted"){
-      Swal.fire({
-        title: title,
-        icon: icon,
-        showDenyButton: true,
-        confirmButtonText: "Delete",
-        denyButtonText: `Don't delete`
-      }).then((result) => {
-        if (result.isConfirmed) {
-          dispatch(responseAlert({response: "deleted"}))
-        } else if (result.isDenied) {
-          dispatch(responseAlert({response: "denied"}))
-          dispatch(close({icon:"info",title:"",type:"basic"}))
-        }
-        else if (result.isDismissed) {
-          dispatch(responseAlert({response: "denied"}))
-          dispatch(close({icon:"info",title:"",type:"basic"}))
-        }
-      });
+    }else if(type==="basic"){
+      
     }
     
     
