@@ -1,11 +1,14 @@
 import { createAction } from "@reduxjs/toolkit";
 
-let open = createAction("open", ({ icon, title , type }) => {
+let open = createAction("open", ({ icon, title , type , confirmMessage , denyMessage , res}) => {
   return {
     payload: {
       icon,
       title,
       type,
+      confirmMessage,
+      denyMessage,
+      res,
       visible: true,
     },
   };
