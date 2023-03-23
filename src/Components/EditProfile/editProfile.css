@@ -8,42 +8,22 @@
     align-items: center;
     justify-content: space-evenly;
 }
-<<<<<<< HEAD
-
-.form-Edition {
-=======
 .form-Edition{
->>>>>>> 71852bb00532088ea3eaf1281bafe7660e8ac6c0
     width: 80%;
     height: 90%;
     margin: 0;
 }
-<<<<<<< HEAD
-
-#img-Profile {
-    visibility: hidden;
-}
-
-=======
 #img-Profile{
     visibility: hidden;
 } 
->>>>>>> 71852bb00532088ea3eaf1281bafe7660e8ac6c0
 .author-Form-Edition {
     width: 80%;
     height: 2.5rem;
     border-bottom: 1px solid black;
 }
-<<<<<<< HEAD
-
-#btn-delete {
-    width: 80%;
-    height: 3rem;
-=======
 #btn-delete{
     width: 80%;
     height:3rem;
->>>>>>> 71852bb00532088ea3eaf1281bafe7660e8ac6c0
     background: pink;
     border-radius: 40px;
     font-size: 1rem;
@@ -51,39 +31,16 @@
     padding: 10px 45px;
 }
 
-<<<<<<< HEAD
-#btn-save {
-    width: 80%;
-    padding: 8px 45px;
-    height: 3rem;
-    background: #34D399;
-=======
 #btn-save{
     width: 80%;
     padding: 8px 45px;
     height:3rem;
     background: rgb(140, 232, 140);
->>>>>>> 71852bb00532088ea3eaf1281bafe7660e8ac6c0
     border-radius: 40px;
     font-size: 80%;
     color: white;
     font-size: 1rem;
 }
-<<<<<<< HEAD
-
-@media (max-width: 748px) {
-    .edition-Profile {
-        width: 80%;
-        height: 30vh;
-        margin-top: 4rem;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-evenly;
-    }
-
-    .form-Edition {
-=======
 @media  (max-width: 748px){
      .edition-Profile {
          width: 80%;
@@ -95,14 +52,9 @@
      }
 
      .form-Edition{
->>>>>>> 71852bb00532088ea3eaf1281bafe7660e8ac6c0
         width: 80vw;
         height: 90%;
         margin: 0;
     }
-<<<<<<< HEAD
-}
-=======
  }
  
->>>>>>> 71852bb00532088ea3eaf1281bafe7660e8ac6c0
