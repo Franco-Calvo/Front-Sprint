@@ -1,7 +1,7 @@
 import { createReducer } from "@reduxjs/toolkit";
 import authorActions from "./actions";
 const { read_author, update_author} = authorActions;
-const initialState = { author: [], authorupdate: {},active:false};
+const initialState = { author: [], authorupdate: {}};
 
 const authorReducer = createReducer(initialState, (builder) => {
   builder

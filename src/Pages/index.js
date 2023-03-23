@@ -76,7 +76,7 @@ export const router = createBrowserRouter([
         element: <Page />,
       },
       {
-        path: "/profile/:id",
+        path: "/profile/:id",//
         element: <AuthorProfile />,
       },
       {

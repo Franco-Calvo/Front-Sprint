@@ -27,10 +27,8 @@ export default function EditProfile() {
       date: formRef.current.date.value,
       photo: formRef.current.photo.value
     };
-
     Swal.fire({
       title: 'Do you want to save the changes?',
-      showDenyButton: true,
       showCancelButton: true,
       confirmButtonText: 'Save',
       denyButtonText: `Don't save`,
@@ -81,7 +79,6 @@ export default function EditProfile() {
       }
     }, [update]
   )
-
   useEffect(() => {
     if (authores?.city && authores?.country) {
       setInputValue(`${authores?.city}, ${authores?.country}`);
