@@ -15,6 +15,7 @@ export default function Profile() {
                 <p ><img id="icon-date" src="../location-author.png"  alt="location" />{author?.city} ,{author?.country}</p>
                 <p ><img id="icon-date" src="../date-author.png" />{authorDate}</p>
             </div>
+            
         </div>
     )
 }

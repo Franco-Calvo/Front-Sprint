@@ -41,6 +41,7 @@
         line-height: 3rem;
         color: #9d9d9d;
     }
+<<<<<<< HEAD
     .profile-section {
         display: flex;
         flex-direction: column;
@@ -62,4 +63,6 @@
         justify-content: center;
         align-items: center;
     }
+=======
+>>>>>>> 71852bb00532088ea3eaf1281bafe7660e8ac6c0
 }

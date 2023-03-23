@@ -1,12 +1,13 @@
-import React from 'react'
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import './editProfile.css'
 import { useRef, useEffect, useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
 import authorAction from '../../Store/Author/actions.js'
 import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
+//import alertActions from '../../Store/Alert/actions'
 const { read_author, update_author } = authorAction
-
+//const {open, close , responseAlert} = alertActions
 export default function EditProfile() {
   const dispatch = useDispatch()
   const formRef = useRef();
@@ -15,6 +16,13 @@ export default function EditProfile() {
   const navigate = useNavigate()
   let authores = useSelector(store => store.Author.author)
   const authoresDate = authores?.date?.split('T')[0]
+
+/* 
+  if(confirmEdit==="edited"){
+    complete(true)
+}else if(confirmEdit==="deleted"){
+    complete(false)
+} */
 
   const handleSave = async (event) => {
     event.preventDefault();
@@ -43,6 +51,7 @@ export default function EditProfile() {
       }
     })
   };
+  
   const handleDelete = async (event) => {
     event.preventDefault();
     Swal.fire({
