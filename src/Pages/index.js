@@ -1,12 +1,4 @@
 import NotFound from "./NotFound/NotFound";
-<<<<<<< HEAD
-import Index from "./Index/Index"
-import IndexLayout from "../Layouts/IndexLayout/IndexLayout"
-
-import { createBrowserRouter } from "react-router-dom";
-
-// @createBrowserRouter recibe un array de objetos, cada objeto tiene dos propiedades @Path la ruta @Element el elemento (componente de página que se renderizará en esa ruta)
-=======
 import Index from "./Index/Index";
 import IndexLayout from "../Layouts/IndexLayout/IndexLayout";
 import MainLayout from "../Layouts/MainLayout/MainLayout";
@@ -23,24 +15,10 @@ import Page from "./Page/Pages";
 import EditChapter from "./EditChapter/EditChapter";
 import MyMangas from "../Components/MyMangas/MyMangas";
 import AuthorProfile from "./AuthorProfile/Authorprofile"
->>>>>>> 71852bb00532088ea3eaf1281bafe7660e8ac6c0
 
 export const router = createBrowserRouter([
   {
     path: "/",
-<<<<<<< HEAD
-    element: <IndexLayout/>,
-    children: [{
-      path: "/",
-      element: <Index/>
-    },{
-      path: "/*",
-      element: <NotFound/>
-    }]
-  },
-  {path: "/notfound", element: <NotFound/>}
-])
-=======
     element: <IndexLayout />,
     children: [
       {
@@ -113,4 +91,3 @@ export const router = createBrowserRouter([
   },
   { path: "/notfound", element: <NotFound /> },
 ]);
->>>>>>> 71852bb00532088ea3eaf1281bafe7660e8ac6c0

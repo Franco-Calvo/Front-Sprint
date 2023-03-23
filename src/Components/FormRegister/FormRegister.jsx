@@ -7,13 +7,9 @@ import { Link as Anchor, useNavigate, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import alertActions from "../../Store/Alert/actions";
 
-<<<<<<< HEAD
-export default function FormRegister() {
-=======
 const { open } = alertActions;
 
 export default function FormRegister(props) {
->>>>>>> 71852bb00532088ea3eaf1281bafe7660e8ac6c0
   const name = useRef();
   const email = useRef();
   const password = useRef();
@@ -35,20 +31,6 @@ export default function FormRegister(props) {
       [photo.current.name]: photo.current.value,
     };
 
-<<<<<<< HEAD
-    let url = "http://localhost:8080/users";
-    if (password.current.value == confirmpassword.current.value) {
-      try {
-        await axios.post(url, data);
-        formRef.current.reset();
-      } catch (error) {
-        console.log(error);
-        console.log("Ocurrió un error!");
-      }
-    } else {
-      confirmpassword.current.type = "text";
-      confirmpassword.current.value = "Passwords do not match";
-=======
     let url = "http://localhost:8080/auth/signup";
 
     try {
@@ -70,7 +52,6 @@ export default function FormRegister(props) {
         dataAlert.title += err + "\n";
       });
       dispatch(open(dataAlert));
->>>>>>> 71852bb00532088ea3eaf1281bafe7660e8ac6c0
     }
   }
 
@@ -139,11 +120,7 @@ export default function FormRegister(props) {
       </span>
       <span className="span-login">
         Go back to
-<<<<<<< HEAD
-        <a href="#"> home page</a>
-=======
         <Anchor to={`/`}> home page</Anchor>
->>>>>>> 71852bb00532088ea3eaf1281bafe7660e8ac6c0
       </span>
     </form>
   );
