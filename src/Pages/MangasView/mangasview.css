@@ -1,0 +1,371 @@
+.container-manga {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.mangas-background {
+  background-image: url(../../../public/backgroundmanga.jpg);
+  background-size: cover;
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 3rem;
+  padding-top: 3rem;
+  width: 100%;
+}
+
+.mangas-background h1 {
+  color: white;
+  font-size: 4rem;
+}
+
+.mangas-background span {
+  background-color: white;
+  display: flex;
+  border-radius: 10px;
+  width: 60%;
+  padding: 1rem;
+}
+
+.manga-span img {
+  width: 32px;
+}
+
+.manga-span input {
+  font-size: 22px;
+  color: #999999;
+  font-weight: 400;
+  line-height: 95%;
+}
+
+.section-manga-cont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: rgb(255, 255, 255);
+  width: 95%;
+  min-height: 50vh;
+  position: static;
+  margin-top: -50px;
+  z-index: 100;
+  border-radius: 1rem;
+}
+
+.checkbox-container-mangas {
+  display: flex;
+  justify-content: start;
+  gap: 1rem;
+  margin-left: 5rem;
+  align-items: center;
+  width: 90%;
+  background: white;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.category-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  border-radius: 50px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.04);
+  width: 39px;
+  height: 35px;
+  background: #999999;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+}
+
+.category-button input[type="checkbox"] {
+  display: none;
+}
+
+.category-button input[type="checkbox"]:checked + .category-label {
+  text-decoration: underline;
+}
+
+.category-button2 input[type="checkbox"] {
+  display: none;
+}
+
+.category-button2 input[type="checkbox"]:checked + .category-label {
+  text-decoration: underline;
+}
+
+.category-button3 input[type="checkbox"] {
+  display: none;
+}
+
+.category-button3 input[type="checkbox"]:checked + .category-label {
+  text-decoration: underline;
+}
+
+.category-button4 input[type="checkbox"] {
+  display: none;
+}
+
+.category-button4 input[type="checkbox"]:checked + .category-label {
+  text-decoration: underline;
+}
+
+.category-button5 input[type="checkbox"] {
+  display: none;
+}
+
+.category-button5 input[type="checkbox"]:checked + .category-label {
+  text-decoration: underline;
+}
+
+.category-label {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.category-button2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 16px;
+  border-radius: 50px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.04);
+  width: 5rem;
+  height: 35px;
+  background: #ffe0df;
+  color: #ef8481;
+  text-align: center;
+  cursor: pointer;
+}
+.category-button3 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 16px;
+  border-radius: 50px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.04);
+  width: 5rem;
+  height: 35px;
+  background: #ffdfc8;
+  color: #fc9c57;
+  text-align: center;
+  cursor: pointer;
+}
+.category-button4 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 16px;
+  border-radius: 50px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.04);
+  width: 5rem;
+  height: 35px;
+  background: #d1fbf0;
+  color: #00ba88;
+  text-align: center;
+  cursor: pointer;
+}
+.category-button5 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 16px;
+  border-radius: 50px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.04);
+  width: 5rem;
+  height: 35px;
+  background: #e0dbff;
+  color: #8883f0;
+  text-align: center;
+  cursor: pointer;
+}
+
+.container-check-cards {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 4rem;
+  width: 65%;
+  gap: 4rem;
+}
+
+.container-cards-mangas {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 100%;
+  gap: 3rem;
+}
+
+.center-items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  gap: 2rem;
+}
+
+.prev-next {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.prev-next-anchor {
+  background: #ef8481;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  width: 3rem;
+  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.2);
+}
+
+.prev-next-anchor:hover {
+  background: #cc716e;
+}
+
+.cont-count {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.count-pages {
+  border: 1px solid rgba(128, 128, 128, 0.4);
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3rem;
+  height: 2rem;
+}
+
+.explore-mangas{ 
+  display: none;
+}
+
+.img-mangas-mobile {
+  display: none;
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .section-manga-cont {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(255, 255, 255);
+    width: 100%;
+    min-height: 50vh;
+    position: static;
+    margin-top: -80px;
+    z-index: 100;
+    border-radius: 5rem;
+  }
+
+  .explore-mangas {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 1.45rem;
+    font-weight: 450;
+  }
+
+  .img-mangas-mobile{ 
+    display: flex;
+    gap: 5px;
+  }
+
+  .img-mangas-mobile img{
+    width: 100%;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.8);
+   } 
+
+  .text-mobile-manga {
+    position: absolute;
+    margin-top: 4rem;
+    width: 2rem;
+    font-size: 1.2rem;
+    color: white;
+  }
+
+  .img-mangas-mobile span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 33%;
+  }
+
+  .checkbox-container-mangas {
+    flex-direction: row;
+    justify-content: center;
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .center-items {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .mangas-background {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
+    padding-top: 3rem;
+    width: 100%;
+  }
+  ::placeholder {
+    font-size: 1rem;
+  }
+
+  .Search {
+    font-size: 1rem;
+  }
+
+  .container-cards-mangas {
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1440px) {
+  .container-cards-mangas {
+    width: 100%;
+    gap: 2rem;
+  }
+
+  .container-check-cards {
+    width: 70%;
+  }
+
+  .center-items {
+    width: 100%;
+    gap: 2rem;
+  }
+}

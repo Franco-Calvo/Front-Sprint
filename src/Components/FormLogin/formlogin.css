@@ -1,0 +1,37 @@
+* .container-form-general {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 50vw;
+  gap: 0;
+  padding: 0 30px 0 30px;
+}
+
+.container-form-general form {
+  width: 70%;
+  height: 30rem;
+}
+
+.title-login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 50%;
+  text-align: center;
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .container-form-general {
+    width: 100%;
+  }
+
+  .container-form-general form {
+    width: 70%;
+  }
+
+  .title-login {
+    width: 90%;
+  }
+}

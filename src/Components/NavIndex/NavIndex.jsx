@@ -1,17 +1,90 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { Link as Anchor } from "react-router-dom";
 import "./navindex.css";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import alertActions from "../../Store/Alert/actions";
+
+const { open } = alertActions;
 
 export default function NavIndex({ handleRender }) {
+  const token = localStorage.getItem(`token`);
+  let headers = { headers: { Authorization: `Bearer ${token}` } };
+  let url = "http://localhost:8080/auth/signout";
+  const store = useSelector((store) => store);
+  let dispatch = useDispatch();
+
+  async function handleLogout() {
+    try {
+      await axios.post(url, "", headers);
+      let dataAlert = {
+        icon: "success",
+        title: "Logout successfully",
+      };
+      dispatch(open(dataAlert));
+      localStorage.setItem("token", "");
+      localStorage.setItem("user", "");
+      handleRender();
+    } catch (error) {
+      if (typeof error.response.data.message === "string") {
+        let dataAlert = {
+          icon: "error",
+          title: error.response.data.message,
+        };
+        dispatch(open(dataAlert));
+      } else {
+        let dataAlert = {
+          icon: "error",
+          title: "",
+        };
+        error.response.data.message.forEach((err) => {
+          dataAlert.title += err + "\n";
+        });
+        dispatch(open(dataAlert));
+      }
+    }
+  }
+
+  if (!token) {
+    localStorage.setItem(
+      `user`,
+      JSON.stringify({
+        name: "",
+        email: "",
+        photo: "",
+      })
+    );
+  }
+
+  const user = JSON.parse(localStorage.getItem(`user`));
+  const name = user.name;
+  const email = user.email;
+  const photo = user.photo;
+
+  useEffect(() => {
+    let url = "http://localhost:8080/auth/signintoken";
+    if (token) {
+      let headers = { headers: { Authorization: `Bearer ${token}` } };
+      axios.post(url, null, headers);
+    }
+  });
+
   return (
     <nav>
       <div className="profile">
-        <div className="img-text-container">
-          <img src="./profileimg.png" alt="img-profile" />
+        <div className="span-container-profile">
+          {token ? (
+            <div className="img-text-container">
+              <img className="profile-image" src={photo} alt={photo} />
 
-          <div className="text-container">
-            <h4>Lucas Ezequiel Silva</h4>
-            <label>lucasezequielsilva@gmail.com</label>
-          </div>
+              <div className="text-container">
+                <h4>{name}</h4>
+                <label>{email}</label>
+              </div>
+            </div>
+          ) : (
+            ""
+          )}
 
           <span onClick={handleRender}>
             <svg
@@ -30,11 +103,42 @@ export default function NavIndex({ handleRender }) {
         </div>
 
         <div className="a-links">
-          <a className="a-nav" href="#">Home</a>
-          <a className="a-nav" href="#">Mangas</a>
-          <a className="a-nav" href="#">My Mangas</a>
-          <a className="a-nav" href="#">Favourites</a>
-          <a className="a-nav" href="#">Logout</a>
+          <Anchor className="a-nav" to="/">
+            {" "}
+            Home
+          </Anchor>
+
+          <Anchor className="a-nav" to="/mangas">
+            Mangas
+          </Anchor>
+          <Anchor className="a-nav" to="/create-mangas">
+            Create Mangas
+          </Anchor>
+          <Anchor className="a-nav" to="/mymangas">
+            My Mangas
+          </Anchor>
+          <Anchor className="a-nav" to="/">
+            Favourites
+          </Anchor>
+          {token ? (
+            <Anchor
+              className="a-nav"
+              to="/chapher-form/63ff9d4e04c1a2dc7b9914eb"
+            >
+              Chapter
+            </Anchor>
+          ) : null}
+
+          {token ? (
+            <Anchor className="a-nav" to="/author-form">
+              New Author
+            </Anchor>
+          ) : null}
+          {token ? (
+            <Anchor className="a-nav" onClick={handleLogout} to="/">
+              Logout
+            </Anchor>
+          ) : null}
         </div>
       </div>
     </nav>

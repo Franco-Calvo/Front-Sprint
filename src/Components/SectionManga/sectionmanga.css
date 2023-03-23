@@ -2,11 +2,10 @@
   background: linear-gradient(153.39deg, #f9a8d4 -13.9%, #f472b6 58.69%);
   border-radius: 6px;
   width: 70%;
-  height: 16.563rem;
+  height: 15rem;
   display: flex;
   color: white;
 }
-
 .section-manga {
   display: flex;
   flex-direction: column;
@@ -16,7 +15,6 @@
   gap: 10px;
   width: 40%;
 }
-
 .hero {
   width: 17.313rem;
   height: 19.188rem;
@@ -24,14 +22,12 @@
   left: 0px;
   position: absolute;
 }
-
 .hero2 {
   margin-bottom: 5rem;
   position: absolute;
   right: 90px;
   bottom: -60px;
 }
-
 .img-container {
   width: 50%;
   position: relative;
@@ -56,7 +52,6 @@
     left: 0;
     position: absolute;
   }
-
   .hero2 {
     position: absolute;
     padding: 1rem;
@@ -65,11 +60,9 @@
     right: 0px;
     bottom: 0px;
   }
-
   .img-container {
     width: 60%;
   }
-
   .section-manga {
     font-size: 0.8rem;
   }
@@ -77,10 +70,8 @@
 
 @media (min-width: 1024px) and (max-width: 1440px) {
   .manga {
-    margin: 0 5.688rem;
     width: 90%;
   }
-
   .img-container {
     width: 50%;
     display: flex;
@@ -88,7 +79,6 @@
     align-items: center;
     padding: 1rem;
   }
-
   .hero2 {
     right: 10px;
   }
