@@ -34,6 +34,7 @@ export default function CardMyMangas({ manga, categories, setReload, reload }) {
       let dataAlert = {
         icon: "success",
         title: "Manga removed",
+        type: "toast"
       };
       dispatch(open(dataAlert));
     } catch (error) {

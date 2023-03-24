@@ -20,6 +20,7 @@ export default function NavIndex({ handleRender }) {
       let dataAlert = {
         icon: "success",
         title: "Logout successfully",
+        type: "toast",
       };
       dispatch(open(dataAlert));
       localStorage.setItem("token", "");
@@ -30,12 +31,14 @@ export default function NavIndex({ handleRender }) {
         let dataAlert = {
           icon: "error",
           title: error.response.data.message,
+          type: "toast",
         };
         dispatch(open(dataAlert));
       } else {
         let dataAlert = {
           icon: "error",
           title: "",
+          type: "toast",
         };
         error.response.data.message.forEach((err) => {
           dataAlert.title += err + "\n";
@@ -67,8 +70,17 @@ export default function NavIndex({ handleRender }) {
       let headers = { headers: { Authorization: `Bearer ${token}` } };
       axios.post(url, null, headers);
     }
-  });
-
+  },[]);
+  let anchors=[
+    {user:"visitor",link:"/",text:"Home"},
+    {user:"visitor",link:"/signup",text:"Register"},
+    {user:"visitor",link:"/signin",text:"Signin"},
+    {user:"reader",link:"/",text:"Home"},
+    {user:"reader",link:"/mangas",text:"Mangas"},
+    {user:"reader",link:"/myreactions",text:"Favourites"},
+    {user:"reader",link:"/new-role",text:"New Role"},
+    {user:"author",link:"/profile",text:"Profile"},
+  ]
   return (
     <nav>
       <div className="profile">
@@ -103,8 +115,8 @@ export default function NavIndex({ handleRender }) {
         </div>
 
         <div className="a-links">
+          {}
           <Anchor className="a-nav" to="/">
-            {" "}
             Home
           </Anchor>
 

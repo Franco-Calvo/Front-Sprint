@@ -31,7 +31,7 @@ export default function Alert() {
       Toast.fire({
       icon: icon,
       title: title,
-    }).then((res)=>{dispatch(close({icon:"info",title:"",type:"basic"}))});
+    }).then((res)=>{dispatch(close({icon:"info",title:"",type:""}))});
     }else if(type==="confirm"){
       Swal.fire({
         title: title,
@@ -44,15 +44,18 @@ export default function Alert() {
           dispatch(responseAlert({response: expectedResponse}))
         } else if (result.isDenied) {
           dispatch(responseAlert({response: "denied"}))
-          dispatch(close({icon:"info",title:"",type:"basic"}))
+          dispatch(close({icon:"info",title:"",type:""}))
         }
         else if (result.isDismissed) {
           dispatch(responseAlert({response: "denied"}))
-          dispatch(close({icon:"info",title:"",type:"basic"}))
+          dispatch(close({icon:"info",title:"",type:""}))
         }
       });
     }else if(type==="basic"){
-      
+      Swal.fire({
+        icon: icon,
+        title: title,
+      }).then((res)=>{dispatch(close({icon:"info",title:"",type:""}))})
     }
     
     

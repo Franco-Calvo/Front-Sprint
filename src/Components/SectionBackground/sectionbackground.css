@@ -16,7 +16,7 @@
 .background-action {
   border-radius: 6px;
   width: 70%;
-  height: 22rem;
+  height: 20rem;
   color: white;
   display: flex;
   justify-content: center;
@@ -68,7 +68,6 @@
   .background-action {
     background-size: cover;
     background-position: center;
-    height: 25rem;
   }
   .background-action span {
     width: 80%;

@@ -53,3 +53,9 @@
   color: #f472b6;
   font-weight: 500;
 }
+
+@media (max-width:350px){
+  .form-Register {
+    margin-top: 1rem;
+  }
+}

@@ -104,7 +104,7 @@ export default function EditChapter() {
                     edit=true
                     dataEdit.current.value=""
                     dispatch(responseAlert({response: ""}))
-                    dispatch(open({icon:"success",title:"Edited!",type:"basic"}))
+                    dispatch(open({icon:"success",title:"Edited!",type:"toast"}))
                 } catch (error) {
                     dispatch(open({icon:"error",title:error.response.data.message,type:"basic"}))
                 }
@@ -119,9 +119,9 @@ export default function EditChapter() {
                         dataEdit.current.value=""
                         handleChange()
                         dispatch(responseAlert({response: ""}))
-                        dispatch(open({icon:"success",title:"Deleted!",type:"basic"}))
+                        dispatch(open({icon:"success",title:"Deleted!",type:"toast"}))
                     } catch (error) {
-                        dispatch(open({icon:"error",title:error.response.data.message,type:"basic"}))
+                        dispatch(open({icon:"error",title:error.response.data.message,type:"toast"}))
                     }
                  }
     }
