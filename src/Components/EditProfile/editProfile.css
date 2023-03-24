@@ -27,15 +27,17 @@
     background: pink;
     border-radius: 40px;
     font-size: 1rem;
+    margin: 0.8rem;
     color: rgb(233, 42, 42);
     padding: 10px 45px;
 }
 
 #btn-save{
     width: 80%;
+    margin: 0.8rem;
     padding: 8px 45px;
     height:3rem;
-    background: rgb(140, 232, 140);
+    background: #34D399;
     border-radius: 40px;
     font-size: 80%;
     color: white;
