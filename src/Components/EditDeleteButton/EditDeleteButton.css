@@ -1,0 +1,26 @@
+#edit-button{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    text-align: center;
+    color: #FFFFFF;
+    width: 70%;
+    height: 60px;
+    background: #34D399;
+    border-radius: 50px;
+}
+#delete-button{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    text-align: center;
+    color: #EE8380;
+    width: 70%;
+    height: 60px;
+    background: #FBDDDC;
+    border-radius: 50px;
+}

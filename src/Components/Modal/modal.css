@@ -21,12 +21,13 @@
   padding: 16px;
 }
 
-.title {
+.title-modal {
   gap: 8px;
   width: 100%;
   font-size: 1.2rem;
   color: black;
   font-weight: 500;
+  height: 1rem ;
 }
 
 .modal input {
@@ -38,6 +39,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   padding: 32px;
   gap: 16px;
   background: #f5f5f5;
@@ -74,4 +76,14 @@
   align-items: flex-start;
   flex-direction: column;
   width: 100%;
+}
+
+.form-modal-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 35vh;
+  margin-top: none;
+  gap: 1rem;
 }

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import "./header.css";
 import NavButton from "../NavButton/NavButton";
 import NavIndex from "../NavIndex/NavIndex";
