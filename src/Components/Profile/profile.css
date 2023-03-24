@@ -41,4 +41,25 @@
         line-height: 3rem;
         color: #9d9d9d;
     }
+    .profile-section {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        width: 80%;
+        align-items: center;
+        justify-content: space-evenly;
+        align-content: center;
+        justify-items: center;
+    }
+    h2{
+        font-size: 1rem;
+        text-align: center;
+    }
+    p{
+        font-size: 0.8rem;
+        text-align: start;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }
