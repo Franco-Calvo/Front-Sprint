@@ -15,8 +15,8 @@ export const store = configureStore({
   reducer: {
     alert: alertReducer,
     checkboxAuthor: checkReducer,
-    Author: authorReducer,
     MangasAuthor: mangasReducer,
+    Author: authorReducer,
     text: textReducer,
     events: eventReducer,
     checks: checksReducer,
