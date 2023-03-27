@@ -1,18 +1,21 @@
 import { createAction } from "@reduxjs/toolkit";
 
-let open = createAction("open", ({ icon, title , type , confirmMessage , denyMessage , expectedResponse}) => {
-  return {
-    payload: {
-      icon,
-      title,
-      type,
-      confirmMessage,
-      denyMessage,
-      expectedResponse,
-      visible: true,
-    },
-  };
-});
+let open = createAction(
+  "open",
+  ({ icon, title, type, confirmMessage, denyMessage, expectedResponse }) => {
+    return {
+      payload: {
+        icon,
+        title,
+        type,
+        confirmMessage,
+        denyMessage,
+        expectedResponse,
+        visible: true,
+      },
+    };
+  }
+);
 
 let close = createAction("close", ({ icon, title }) => {
   return {
@@ -24,14 +27,14 @@ let close = createAction("close", ({ icon, title }) => {
   };
 });
 
-let responseAlert = createAction("responseAlert",({response})=>{
+let responseAlert = createAction("responseAlert", ({ response }) => {
   return {
-    payload:{
+    payload: {
       response,
-    }
-  }
-})
+    },
+  };
+});
 
-const alertActions = { open, close , responseAlert};
+const alertActions = { open, close, responseAlert };
 
 export default alertActions;
