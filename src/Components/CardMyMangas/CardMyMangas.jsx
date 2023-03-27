@@ -5,31 +5,55 @@ import Modal from "../../Components/Modal/Modal";
 import { Link as Anchor } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import actionsEdit from "../../Store/MangaEdit/actions";
-const { captureId } = actionsEdit;
+import axios from "axios";
+import alertActions from "../../Store/Alert/actions";
 
-export default function CardMyMangas({ manga, categories }) {
+const { captureId } = actionsEdit;
+const { open } = alertActions;
+
+export default function CardMyMangas({ manga, categories, setReload, reload }) {
   const categoryUsed = categories.find((cat) => cat._id === manga.category_id);
   const [render, setRender] = useState(false);
   const dispatch = useDispatch();
 
-  function handleEdit(e) {
-    dispatch(captureId({ manga_id: e.target.id }));
+  async function handleEdit(e) {
+    await dispatch(captureId({ manga_id: e.target.id }));
     setRender(!render);
   }
 
-  function handleDelete(e) {
-    dispatch(captureId({ manga_id: e.target.id }));
+  async function handleDelete(e) {
+    const mangaId = e.target.id;
+    await dispatch(captureId({ manga_id: mangaId }));
+
+    const url = `http://localhost:8080/mangas/${mangaId}`;
+    let token = localStorage.getItem("token");
+    let headers = { headers: { Authorization: `Bearer ${token} ` } };
+
+    try {
+      await axios.delete(url, headers);
+      let dataAlert = {
+        icon: "success",
+        title: "Manga removed",
+      };
+      dispatch(open(dataAlert));
+    } catch (error) {
+      console.log(error);
+    }
+
+    setRender(false);
+    setReload(!reload);
   }
+
   return (
     <div className="card-shonen">
       <span className={categoryUsed.name}></span>
       <div className="text-manga">
         <div className="buttons-edit">
-          <Anchor id="buttons-mangas">
+          <Anchor to={`/edit/` + manga._id} id="buttons-mangas">
             <img src="./Pen.png" alt="" />
           </Anchor>
-          <Anchor id="buttons-mangas">
-            <img src="./Add.png" alt="" />
+          <Anchor to={`/chapher-form/` + manga._id} id="buttons-mangas">
+            <img src="./add.png" alt="" />
           </Anchor>
         </div>
         <span>
@@ -47,7 +71,15 @@ export default function CardMyMangas({ manga, categories }) {
           >
             Edit
           </Anchor>
-          {render && <Modal setRender={setRender} render={render} />}
+          {render && (
+            <Modal
+              key={manga._id}
+              setRender={setRender}
+              render={render}
+              setReload={setReload}
+              reload={!reload}
+            />
+          )}
           <Anchor
             to={"#" + manga._id}
             className="button-delete"

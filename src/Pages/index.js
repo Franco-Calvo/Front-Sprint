@@ -12,8 +12,10 @@ import Manga from "./Manga/Manga";
 import Author from "./Author/Author";
 import MangasView from "./MangasView/MangasView";
 import Page from "./Page/Pages";
+import EditChapter from "./EditChapter/EditChapter";
 import MyMangas from "../Components/MyMangas/MyMangas";
 import AuthorProfile from "./AuthorProfile/Authorprofile"
+import Verify from "./AccountVerify/Verifi";
 
 export const router = createBrowserRouter([
   {
@@ -58,7 +60,6 @@ export const router = createBrowserRouter([
         path: "/create-mangas",
         element: <MangaForm />,
       },
-
       {
         path: "/mangas",
         element: <MangasView />,
@@ -76,8 +77,16 @@ export const router = createBrowserRouter([
         element: <Page />,
       },
       {
+        path: "/edit/:manga_id",
+        element: <EditChapter />,
+      },
+      {
         path: "/profile",
         element: <AuthorProfile />,
+      },
+      {
+        path: '/verify-account/:verify_code'
+        , element: <Verify />
       },
       {
         path: "/*",
