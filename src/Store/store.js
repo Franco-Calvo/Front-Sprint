@@ -10,7 +10,6 @@ import mangaReducer from "./Manga/reducer";
 import captureState from "./Capture/reducer";
 import mymangasReducer from "./MyMangas/reducer";
 import mangaidReducer from './MangaEdit/reducer'
-import editDeleteChapter from './EditDeleteChapter/reducer';
 
 export const store = configureStore({
   reducer: {
@@ -23,7 +22,6 @@ export const store = configureStore({
     checks: checksReducer,
     mangas: mangaReducer,
     checked: captureState,
-    editDeleteChapter: editDeleteChapter,
     mymanga: mymangasReducer,
     Mangaid: mangaidReducer,
   },
