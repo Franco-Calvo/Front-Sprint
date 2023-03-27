@@ -21,6 +21,10 @@ export default function CardMyMangas({ manga, categories, setReload, reload }) {
     setRender(!render);
   }
 
+  async function handlePrevDelete(e) {
+    
+  }
+
   async function handleDelete(e) {
     const mangaId = e.target.id;
     await dispatch(captureId({ manga_id: mangaId }));

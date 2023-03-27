@@ -4,7 +4,7 @@ import "./modal.css";
 import ButtonGeneral from "../ButtonGeneral/ButtonGeneral";
 import axios from "axios";
 import alertActions from "../../Store/Alert/actions";
-const { open } = alertActions;
+const { open, responseAlert } = alertActions;
 
 export default function Modal({ setRender, setReload, reload }) {
   const id = useSelector((store) => store.Mangaid.manga);
@@ -13,14 +13,17 @@ export default function Modal({ setRender, setReload, reload }) {
   const cover_photo = useRef();
   const formRegister = useRef();
   const dispatch = useDispatch();
+  const search = useSelector((store) => store.alert.response);
 
   const close = () => {
     setRender(false);
   };
 
-  async function saveEdit(e) {
-    e.preventDefault();
+  if (search === "edited") {
+    completeEdit();
+  }
 
+  async function completeEdit() {
     let manga = {
       title: title.current.value || id.title,
       description: description.current.value || id.description,
@@ -45,13 +48,28 @@ export default function Modal({ setRender, setReload, reload }) {
     setReload(reload);
   }
 
+  async function handleEdit(e) {
+    e.preventDefault();
+
+    dispatch(
+      open({
+        icon: "question",
+        title: "Confirm to edit",
+        type: "confirm",
+        confirmMessage: "Edited",
+        denyMessage: "Don't edit",
+        expectedResponse: "edited",
+      })
+    );
+  }
+
   return (
     <div className="modalContainer">
       <div className="modal">
         <form
           className="form-modal-container"
           ref={formRegister}
-          onSubmit={saveEdit}
+          onSubmit={handleEdit}
         >
           <span className="title-modal">Edit your manga</span>
           <div className="container-modal">
