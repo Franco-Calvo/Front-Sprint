@@ -22,13 +22,13 @@ export default function Author() {
   const check = useRef();
 
   useEffect(() => {
-    if (dataProfile.length === 0) {
+    if (dataProfile.length === 0||dataProfile._id!==id) {
       dispatch(read_author({author_id: id}));
     }
   }, []);
 
   useEffect(() => {
-    if (dataMangas.length === 0) {
+    if (dataMangas.length === 0||dataProfile._id!==id) {
       dispatch(read_mangas({author_id: id}));
     }
   }, []);
