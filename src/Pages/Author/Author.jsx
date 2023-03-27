@@ -1,15 +1,15 @@
-import { Link as Anchor, useParams } from 'react-router-dom';
-import {useEffect, useRef} from "react";
+import { Link as Anchor, useParams } from "react-router-dom";
+import { useEffect, useRef } from "react";
 import "./Author.css";
 import CardAuthor from "../../Components/CardAuthor/CardAuthor.jsx";
-import {useDispatch, useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import checkActions from "../../Store/CheckAuthor/actions";
 import authorActions from "../../Store/Author/actions";
 import mangasActions from "../../Store/MangasAuthor/actions";
 
-const {capture} = checkActions;
-const {read_author} = authorActions;
-const {read_mangas} = mangasActions;
+const { capture } = checkActions;
+const { read_author } = authorActions;
+const { read_mangas } = mangasActions;
 
 export default function Author() {
   const dispatch = useDispatch();
@@ -18,23 +18,23 @@ export default function Author() {
   const dataMangasAll = useSelector((store) => store.MangasAuthor);
   const count = useSelector((store) => store.MangasAuthor.count);
   const dataMangas = defaultCheck ? dataMangasAll.new : dataMangasAll.old;
-  const {id} = useParams();
+  const { id } = useParams();
   const check = useRef();
 
   useEffect(() => {
-    if (dataProfile.length === 0) {
-      dispatch(read_author({author_id: id}));
+    if (dataProfile.length === 0 || dataProfile._id !== id) {
+      dispatch(read_author({ author_id: id }));
     }
   }, []);
 
   useEffect(() => {
-    if (dataMangas.length === 0) {
-      dispatch(read_mangas({author_id: id}));
+    if (dataMangas.length === 0 || dataProfile._id !== id) {
+      dispatch(read_mangas({ author_id: id }));
     }
   }, []);
 
   function handleChange() {
-    dispatch(capture({checked: check.current.checked}));
+    dispatch(capture({ checked: check.current.checked }));
   }
   return (
     <div id="author-container">
@@ -60,8 +60,8 @@ export default function Author() {
                 {dataProfile.createdAt}
               </p>
             </div>
-            <Anchor to= {'/profile'}>
-            <img className="icon2" src="../edit-author.png" alt="edit" />
+            <Anchor to={"/profile"}>
+              <img className="icon2" src="../edit-author.png" alt="edit" />
             </Anchor>
           </div>
           <p id="description-author"></p>
