@@ -44,6 +44,7 @@ export default function Modal({ setRender, setReload, reload }) {
     } catch (error) {
       console.log(error);
     }
+    dispatch(responseAlert({ response: "" }));
     setRender(false);
     setReload(reload);
   }
@@ -62,6 +63,8 @@ export default function Modal({ setRender, setReload, reload }) {
       })
     );
   }
+
+ 
 
   return (
     <div className="modalContainer">
