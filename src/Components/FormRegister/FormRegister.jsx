@@ -69,8 +69,6 @@ export default function FormRegister(props) {
   }, [])
 
   const onSuccess = async (response) => {
-    console.log(response)
-
     try {
       const { name, email, imageUrl, googleId } = response.profileObj;
 
@@ -80,23 +78,23 @@ export default function FormRegister(props) {
         photo: imageUrl,
         password: googleId,
       };
-      console.log(data)
       const url = "http://localhost:8080/auth/signup";
       await axios.post(url, data);
 
       let dataAlert = {
         icon: "success",
         title: "Session successfully",
+        type:"toast",
       };
       dispatch(open(dataAlert));
       formReg.current.reset();
       navigate("/signin");
 
     } catch (error) {
-      console.log(error);
       let dataAlert = {
         icon: "error",
         title: "",
+        type:"toast",
       };
       error.response.data.message.forEach((err) => {
         dataAlert.title += err + "\n";
@@ -105,7 +103,12 @@ export default function FormRegister(props) {
     }
   }
   const onFailure = () => {
-    console.log("Something went wrong")
+    let dataAlert = {
+      icon: "error",
+      title: "Something went wrong",
+      type:"basic",
+    };
+    dispatch(open(dataAlert));
   }
 
 

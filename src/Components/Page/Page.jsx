@@ -103,8 +103,6 @@ export default function Chapters() {
     getComments();
   }
 
-  console.log(allComments);
-
   useEffect(() => {
     setIdchapter(id);
     axios.get(url + id)

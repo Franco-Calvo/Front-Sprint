@@ -7,10 +7,8 @@ import { Link as Anchor } from 'react-router-dom'
 
 export default function Verify() {
     const Store = useSelector((store) => store.user)
-    console.log(Store)
     const dispatch = useDispatch()
     const params = useParams()
-    console.log(params)
 
 
     useEffect(() => {
