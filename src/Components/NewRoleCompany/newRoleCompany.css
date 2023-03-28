@@ -68,9 +68,6 @@
     .newrole .cont-company .profiles img{
         width: 18px;
     }
-    .profile{
-        display: none;
-     }
      .newrole .cont-company .selec-company p {
         width: 280px;
         color: rgb(245, 118, 184);
@@ -96,8 +93,5 @@
     .newrole .cont-company .selec-company p{
         width: 200px;
     }
-    .profile{
-        display: none;
-     }
     
 }

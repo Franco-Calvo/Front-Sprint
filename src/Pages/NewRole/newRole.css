@@ -50,9 +50,7 @@
 @media (min-width:320px) and (max-width:999px){
     .newrole{
         justify-content: center;
-        margin-top: 8rem;
-        height: auto;
-        margin-bottom: 2rem;
+        height: 100vh;
     }
     .newrole .image-newrole {
         display: none;
