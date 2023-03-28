@@ -19,6 +19,7 @@ import AdminPanel from "./AdminPanel/AdminPanel";
 import CompanieForm from './CompanieForm/Companieform'
 import NewRole from "./NewRole/Newrole";
 import EditChapter from "./EditChapter/EditChapter";
+import ProtectedRouter from "../Components/ProtectedRouter/ProtectedRouter";
 
 export const router = createBrowserRouter([
   {
@@ -40,65 +41,88 @@ export const router = createBrowserRouter([
     element: <MainLayout />,
     children: [
       {
-        path: "/author-form",
-        element: <AuthorForm />,
+        path: "/",
+        element: <ProtectedRouter expectedRole="visitor"/>,
+        children:[
+          {
+            path: "/signup",
+            element: <HeroRegister />,
+          },
+          {
+            path: "/signin",
+            element: <Auth />,
+          },
+        ]
       },
       {
-        path: "/author/:id",
-        element: <Author />,
+        path: "/",
+        element: <ProtectedRouter expectedRole="reader"/>,
+        children:[
+          {
+            path: "/mangas",
+            element: <MangasView />,
+          },
+          {
+            path: "/mangas/:id/:page",
+            element: <Manga />,
+          },
+          {
+            path: "/chapters/:id/:page",
+            element: <Page />,
+          },
+          {
+            path: "/author/:id",
+            element: <Author />,
+          },
+          {
+            path: "/new-role",
+            element: <NewRole/>,
+          },
+          {
+            path: "/author-form",
+            element: <AuthorForm />,
+          },
+          {
+            path: "/create-company",
+            element: <CompanieForm />,
+          },
+        ]
       },
       {
-        path: "/signup",
-        element: <HeroRegister />,
+        path: "/",
+        element: <ProtectedRouter expectedRole="author"/>,
+        children:[
+          {
+            path: "/profile",
+            element: <AuthorProfile />,
+          },
+          {
+            path: "/create-mangas",
+            element: <MangaForm />,
+          },
+          {
+            path: "/mymangas",
+            element: <MyMangas />,
+          },
+          {
+            path: "/edit/:manga_id",
+            element: <EditChapter />,
+          },
+          {
+            path: "/chapher-form/:manga_id",
+            element: <ChapterForm />,
+          },
+        ]
       },
       {
-        path: "/signin",
-        element: <Auth />,
-      },
-      {
-        path: "/chapher-form/:manga_id",
-        element: <ChapterForm />,
-      },
-      {
-        path: "/create-mangas",
-        element: <MangaForm />,
-      },
-
-      {
-        path: "/create-company",
-        element: <CompanieForm />,
-      },
-      {
-        path: "/mangas",
-        element: <MangasView />,
-      },
-      {
-        path: "/mymangas",
-        element: <MyMangas />,
-      },
-      {
-        path: "/admin",
-        element: <AdminPanel />,
-      },
-      {
-        path: "/new-role",
-        element: <NewRole/>,
-      },
-      {
-        path: "/mangas/:id/:page",
-        element: <Manga />,
-      },
-      {
-        path: "/chapters/:id/:page",
-        element: <Page />,
-      },
-      {
-        path: "/edit/:manga_id",
-        element: <EditChapter />,
-      },
-      {
-        path: "/profile",
-        element: <AuthorProfile />,
+        path: "/",
+        element: <ProtectedRouter expectedRole="admin"/>,
+        children:[
+          {
+            path: "/admin",
+            element: <AdminPanel />,
+          },
+        ]
       },
       {
         path: '/verify-account/:verify_code'

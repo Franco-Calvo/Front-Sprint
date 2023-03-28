@@ -18,7 +18,6 @@ export default function NavIndex({ handleRender }) {
   const [reload, setReload] = useState(false)
   let dispatch = useDispatch();
   const navigate = useNavigate();
-  const profile = useRef();
 
   async function handleLogout() {
     try {
@@ -65,7 +64,6 @@ export default function NavIndex({ handleRender }) {
         photo: "",
       })
     );
-    profile.current?.classList.add("span-container-profile2")
   }
 
   const user = JSON.parse(localStorage.getItem(`user`));
@@ -104,7 +102,7 @@ export default function NavIndex({ handleRender }) {
   return (
     <nav>
       <div className="profile">
-        <div ref={profile} className="span-container-profile">
+        <div className="span-container-profile">
           {token ? (
             <div className="img-text-container">
               <img className="profile-image" src={photo} alt={photo} />
