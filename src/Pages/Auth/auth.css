@@ -1,0 +1,21 @@
+.auth-log {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.background-login {
+  background-image: url(../../../public/background-login.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 50vw;
+  height: 100vh;
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .background-login{ 
+    display: none;
+  }
+}

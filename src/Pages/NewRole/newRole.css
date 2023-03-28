@@ -1,0 +1,66 @@
+.newrole {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    box-sizing: 0;
+    margin: 0;
+}
+ .image-newrole {
+    width: 90%;
+    height: 100vh;
+    background-image: url('../../imagenes/Rectangle\ 9.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    object-fit: cover;
+}
+
+.newrole-contain{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10rem;
+    gap: 3rem;
+    margin-left: 5rem;
+}
+
+ .text-newrole {
+    width: 100%;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 29px;
+}
+.quote-newrole{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    color: white;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.author-company{
+    width: 80%;
+}
+
+@media (min-width:320px) and (max-width:999px){
+    .newrole{
+        justify-content: center;
+        height: 100vh;
+    }
+    .newrole .image-newrole {
+        display: none;
+    }
+    .newrole-contain{
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        margin-top: 10rem;
+        gap: 3rem;
+        margin-left: 5rem;
+    }
+}

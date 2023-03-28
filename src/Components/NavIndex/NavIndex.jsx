@@ -1,17 +1,119 @@
-import React from "react";
+import React, { useEffect ,useRef,useState } from "react";
+import { Link as Anchor, useNavigate } from "react-router-dom";
 import "./navindex.css";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import alertActions from "../../Store/Alert/actions";
+import userActions from "../../Store/CaptureUser/actions";
+
+const { captureUser } = userActions;
+const { open } = alertActions;
 
 export default function NavIndex({ handleRender }) {
+  let admin=useSelector((store) => store.CaptureUser.user.is_admin);
+  let author=useSelector((store) => store.CaptureUser.user.is_author);
+  const token = localStorage.getItem(`token`);
+  let headers = { headers: { Authorization: `Bearer ${token}` } };
+  let url = "https://minga-0gy1.onrender.com/auth/signout";
+  const [reload, setReload] = useState(false)
+  let dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  async function handleLogout() {
+    try {
+      await axios.post(url, "", headers);
+      let dataAlert = {
+        icon: "success",
+        title: "Logout successfully",
+        type: "toast",
+      };
+      dispatch(open(dataAlert));
+      localStorage.setItem("token", "");
+      localStorage.setItem("user", "");
+      handleRender();
+    } catch (error) {
+      if (typeof error.response.data.message === "string") {
+        let dataAlert = {
+          icon: "error",
+          title: error.response.data.message,
+          type: "toast",
+        };
+        dispatch(open(dataAlert));
+      } else {
+        let dataAlert = {
+          icon: "error",
+          title: "",
+          type: "toast",
+        };
+        error.response.data.message.forEach((err) => {
+          dataAlert.title += err + "\n";
+        });
+        dispatch(open(dataAlert));
+      }
+    }
+    navigate("/");
+    dispatch(captureUser())
+  }
+
+  if (!token) {
+    localStorage.setItem(
+      `user`,
+      JSON.stringify({
+        name: "",
+        email: "",
+        photo: "",
+      })
+    );
+  }
+
+  const user = JSON.parse(localStorage.getItem(`user`));
+  const name = user.name;
+  const email = user.email;
+  const photo = user.photo;
+
+  useEffect(() => {
+    let url = "https://minga-0gy1.onrender.com/auth/signintoken";
+    if (token) {
+      let headers = { headers: { Authorization: `Bearer ${token}` } };
+      axios.post(url, null, headers);
+    }
+  },[]);
+
+  useEffect(()=>{
+    if (!admin&&!author&&token) {
+      dispatch(captureUser())
+      setReload(!reload)
+    }
+  },[])
+
+  let anchors=[
+    {user:"visitor",link:"/",text:"Home"},
+    {user:"visitor",link:"/signup",text:"Register"},
+    {user:"visitor",link:"/signin",text:"Signin"},
+    {user:"reader",link:"/",text:"Home"},
+    {user:"reader",link:"/mangas",text:"Mangas"},
+    {user:"reader",link:"/new-role",text:"New Role"},
+    {user:"author",link:"/profile",text:"Edit Profile"},
+    {user:"author",link:"/create-mangas",text:"New Manga"},
+    {user:"author",link:"/mymangas",text:"My Mangas"},
+    {user:"admin",link:"/admin",text:"Admin Panel"},
+  ]
   return (
     <nav>
       <div className="profile">
-        <div className="img-text-container">
-          <img src="./profileimg.png" alt="img-profile" />
+        <div className="span-container-profile">
+          {token ? (
+            <div className="img-text-container">
+              <img className="profile-image" src={photo} alt={photo} />
 
-          <div className="text-container">
-            <h4>Lucas Ezequiel Silva</h4>
-            <label>lucasezequielsilva@gmail.com</label>
-          </div>
+              <div className="text-container">
+                <h4>{name}</h4>
+                <label>{email}</label>
+              </div>
+            </div>
+          ) : (
+            ""
+          )}
 
           <span onClick={handleRender}>
             <svg
@@ -30,11 +132,56 @@ export default function NavIndex({ handleRender }) {
         </div>
 
         <div className="a-links">
-          <a className="a-nav" href="#">Home</a>
-          <a className="a-nav" href="#">Mangas</a>
-          <a className="a-nav" href="#">My Mangas</a>
-          <a className="a-nav" href="#">Favourites</a>
-          <a className="a-nav" href="#">Logout</a>
+        {!token&&!author&&!admin?
+          anchors.map((each,index)=>{
+            if(each.user==="visitor"){
+             return <Anchor className="a-nav" key={index} to={each.link}>
+            {each.text}
+            </Anchor>
+            }else{return null}
+          }):null
+        }
+        {token&&!author&&!admin?
+          anchors.map((each,index)=>{
+            if(each.user==="reader"){
+              return <Anchor className="a-nav" key={index} to={each.link}>
+            {each.text}
+            </Anchor>
+            }else{return null}
+          }):null
+        }
+        {token&&author&&!admin?
+          anchors.map((each,index)=>{
+            if(each.user==="author"||each.user==="reader"){
+              return <Anchor className="a-nav" key={index} to={each.link}>
+            {each.text}
+            </Anchor>
+            }else{return null}
+          }):null
+        }
+        {token&&admin&&!author?
+          anchors.map((each,index)=>{
+            if(each.user==="admin"||each.user==="reader"){
+              return <Anchor className="a-nav" key={index} to={each.link}>
+            {each.text}
+            </Anchor>
+            }else{return null}
+          }):null
+        }
+        {token&&admin&&author?
+          anchors.map((each,index)=>{
+            if(each.user==="admin"||each.user==="reader"||each.user==="author"){
+              return <Anchor className="a-nav" key={index} to={each.link}>
+            {each.text}
+            </Anchor>
+            }else{return null}
+          }):null
+        }
+        {token ? 
+            <Anchor className="a-nav" onClick={handleLogout} to="/">
+              Logout
+            </Anchor>
+        : null}
         </div>
       </div>
     </nav>

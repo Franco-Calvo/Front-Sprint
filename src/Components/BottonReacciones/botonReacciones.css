@@ -1,0 +1,31 @@
+.contenedor-reactions{
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+}
+.cont-button-reactions{
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    justify-content: center;
+}
+.button-reaction{
+    width: 60%;
+    height: 4rem;   
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.button-reaction img{
+    width: 64px;
+}
+@media(max-width:550px){
+    .button-reaction{
+        width: 100%;
+        height: 4rem;
+    }
+}

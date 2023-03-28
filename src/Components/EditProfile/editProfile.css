@@ -1,0 +1,64 @@
+.edition-Profile {
+    width: 40%;
+    height: 100%;
+    padding: 1rem;
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.form-Edition{
+    width: 80%;
+    height: 90%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+ 
+.author-Form-Edition {
+    width: 80%;
+    height: 2.5rem;
+    border-bottom: 1px solid black;
+}
+#btn-delete{
+    width: 80%;
+    height:3rem;
+    background: pink;
+    border-radius: 40px;
+    font-size: 1rem;
+    margin: 0.8rem;
+    color: rgb(233, 42, 42);
+    padding: 10px 45px;
+}
+
+#btn-save{
+    width: 80%;
+    margin: 0.8rem;
+    padding: 8px 45px;
+    height:3rem;
+    background: #34D399;
+    border-radius: 40px;
+    font-size: 80%;
+    color: white;
+    font-size: 1rem;
+}
+@media  (max-width: 748px){
+     .edition-Profile {
+         width: 80%;
+         height: 30vh;
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         justify-content: space-evenly;
+     }
+
+     .form-Edition{
+        width: 80vw;
+        height: 90%;
+        margin: 0;
+    }
+ }
+ 
