@@ -16,18 +16,15 @@
   flex-direction: column;
   width: 50vw;
   height: 100vh;
-
-
 }
 
 .container-content {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   flex-direction: column;
   width: 70%;
   height: 100vh;
-  gap: 1rem;
 }
 
 .container-content p {
@@ -55,5 +52,19 @@
     align-items: center;
     width: 100vw;
   }
- 
+  .container-content {
+    width: 85%;
+  }
+  
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .container-content {
+    width: 80%;
+  }
+}
+@media (min-height: 850px) {
+  .container-content {
+    justify-content: center;
+  }
 }

@@ -9,7 +9,7 @@
 }
 .img-manga{
 width: 30%;
-height: 30rem;
+height: auto;
 }
 .title{
     width: 50%;
@@ -18,4 +18,9 @@ height: 30rem;
     font-style: normal;
     font-size: 2rem;
     color: #2a2a2a;
+}
+@media(max-width:550px){
+    .img-manga{
+        width: 50%;
+    }
 }

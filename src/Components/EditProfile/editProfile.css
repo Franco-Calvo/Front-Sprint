@@ -12,10 +12,12 @@
     width: 80%;
     height: 90%;
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
-#img-Profile{
-    visibility: hidden;
-} 
+ 
 .author-Form-Edition {
     width: 80%;
     height: 2.5rem;

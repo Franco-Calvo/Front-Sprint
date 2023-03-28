@@ -39,15 +39,16 @@ export default function FormRegister(props) {
       let dataAlert = {
         icon: "success",
         title: "Session successfully",
+        type: "toast"
       };
       dispatch(open(dataAlert));
       formReg.current.reset();
       navigate("/signin");
     } catch (error) {
-      console.log(error);
       let dataAlert = {
         icon: "error",
         title: "",
+        type:"toast",
       };
       error.response.data.message.forEach((err) => {
         dataAlert.title += err + "\n";

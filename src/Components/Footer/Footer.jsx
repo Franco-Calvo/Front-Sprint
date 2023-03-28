@@ -35,7 +35,6 @@ export default function Footer() {
             <a href="">Home</a>
             <a href="">Mangas</a>
           </span>
-
           <img src="../logo.png" alt="" />
           <div className="social-media">
             <span className="icons-media">

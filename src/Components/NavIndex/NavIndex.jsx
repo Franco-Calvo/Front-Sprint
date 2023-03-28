@@ -1,18 +1,24 @@
-import React, { useEffect } from "react";
-import { Link as Anchor } from "react-router-dom";
+import React, { useEffect ,useRef,useState } from "react";
+import { Link as Anchor, useNavigate } from "react-router-dom";
 import "./navindex.css";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import alertActions from "../../Store/Alert/actions";
+import userActions from "../../Store/CaptureUser/actions";
 
+const { captureUser } = userActions;
 const { open } = alertActions;
 
 export default function NavIndex({ handleRender }) {
+  let admin=useSelector((store) => store.CaptureUser.user.is_admin);
+  let author=useSelector((store) => store.CaptureUser.user.is_author);
   const token = localStorage.getItem(`token`);
   let headers = { headers: { Authorization: `Bearer ${token}` } };
   let url = "http://localhost:8080/auth/signout";
-  const store = useSelector((store) => store);
+  const [reload, setReload] = useState(false)
   let dispatch = useDispatch();
+  const navigate = useNavigate();
+  const profile = useRef();
 
   async function handleLogout() {
     try {
@@ -20,6 +26,7 @@ export default function NavIndex({ handleRender }) {
       let dataAlert = {
         icon: "success",
         title: "Logout successfully",
+        type: "toast",
       };
       dispatch(open(dataAlert));
       localStorage.setItem("token", "");
@@ -30,12 +37,14 @@ export default function NavIndex({ handleRender }) {
         let dataAlert = {
           icon: "error",
           title: error.response.data.message,
+          type: "toast",
         };
         dispatch(open(dataAlert));
       } else {
         let dataAlert = {
           icon: "error",
           title: "",
+          type: "toast",
         };
         error.response.data.message.forEach((err) => {
           dataAlert.title += err + "\n";
@@ -43,6 +52,8 @@ export default function NavIndex({ handleRender }) {
         dispatch(open(dataAlert));
       }
     }
+    navigate("/");
+    dispatch(captureUser())
   }
 
   if (!token) {
@@ -54,6 +65,7 @@ export default function NavIndex({ handleRender }) {
         photo: "",
       })
     );
+    profile.current?.classList.add("span-container-profile2")
   }
 
   const user = JSON.parse(localStorage.getItem(`user`));
@@ -67,12 +79,32 @@ export default function NavIndex({ handleRender }) {
       let headers = { headers: { Authorization: `Bearer ${token}` } };
       axios.post(url, null, headers);
     }
-  });
+  },[]);
 
+  useEffect(()=>{
+    if (!admin&&!author&&token) {
+      dispatch(captureUser())
+      setReload(!reload)
+    }
+  },[])
+
+  let anchors=[
+    {user:"visitor",link:"/",text:"Home"},
+    {user:"visitor",link:"/signup",text:"Register"},
+    {user:"visitor",link:"/signin",text:"Signin"},
+    {user:"reader",link:"/",text:"Home"},
+    {user:"reader",link:"/mangas",text:"Mangas"},
+    {user:"reader",link:"/myreactions",text:"Favourites"},
+    {user:"reader",link:"/new-role",text:"New Role"},
+    {user:"author",link:"/profile",text:"Edit Profile"},
+    {user:"author",link:"/create-mangas",text:"New Manga"},
+    {user:"author",link:"/mymangas",text:"My Mangas"},
+    {user:"admin",link:"/admin",text:"Admin Panel"},
+  ]
   return (
     <nav>
       <div className="profile">
-        <div className="span-container-profile">
+        <div ref={profile} className="span-container-profile">
           {token ? (
             <div className="img-text-container">
               <img className="profile-image" src={photo} alt={photo} />
@@ -103,54 +135,56 @@ export default function NavIndex({ handleRender }) {
         </div>
 
         <div className="a-links">
-          <Anchor className="a-nav" to="/">
-            {" "}
-            Home
-          </Anchor>
-
-          <Anchor className="a-nav" to="/mangas">
-            Mangas
-          </Anchor>
-          <Anchor className="a-nav" to="/create-mangas">
-            Create Mangas
-          </Anchor>
-          <Anchor className="a-nav" to="/mymangas">
-            My Mangas
-          </Anchor>
-          <Anchor className="a-nav" to="/">
-            Favourites
-          </Anchor>
-          <Anchor className="a-nav" to="/adminPanel">
-            Admin Panel
-          </Anchor>
-          <Anchor className="a-nav" to="/newRole">
-            NewRole
-          </Anchor>
-          {token ? (
-            <Anchor
-              className="a-nav"
-              to="/chapher-form/63ff9d4e04c1a2dc7b9914eb"
-            >
-              Chapter
+        {!token&&!author&&!admin?
+          anchors.map((each,index)=>{
+            if(each.user==="visitor"){
+             return <Anchor className="a-nav" key={index} to={each.link}>
+            {each.text}
             </Anchor>
-          ) : null}
-
-          {token ? (
-            <Anchor className="a-nav" to="/author-form">
-              New Author
+            }else{return null}
+          }):null
+        }
+        {token&&!author&&!admin?
+          anchors.map((each,index)=>{
+            if(each.user==="reader"){
+              return <Anchor className="a-nav" key={index} to={each.link}>
+            {each.text}
             </Anchor>
-          ) : null}
-
-          {token ? (
-            <Anchor className="a-nav" to="/create-company">
-              New Company
+            }else{return null}
+          }):null
+        }
+        {token&&author&&!admin?
+          anchors.map((each,index)=>{
+            if(each.user==="author"||each.user==="reader"){
+              return <Anchor className="a-nav" key={index} to={each.link}>
+            {each.text}
             </Anchor>
-          ) : null}
-          {token ? (
+            }else{return null}
+          }):null
+        }
+        {token&&admin&&!author?
+          anchors.map((each,index)=>{
+            if(each.user==="admin"||each.user==="reader"){
+              return <Anchor className="a-nav" key={index} to={each.link}>
+            {each.text}
+            </Anchor>
+            }else{return null}
+          }):null
+        }
+        {token&&admin&&author?
+          anchors.map((each,index)=>{
+            if(each.user==="admin"||each.user==="reader"||each.user==="author"){
+              return <Anchor className="a-nav" key={index} to={each.link}>
+            {each.text}
+            </Anchor>
+            }else{return null}
+          }):null
+        }
+        {token ? 
             <Anchor className="a-nav" onClick={handleLogout} to="/">
               Logout
             </Anchor>
-          ) : null}
+        : null}
         </div>
       </div>
     </nav>

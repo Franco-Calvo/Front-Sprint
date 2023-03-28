@@ -6,21 +6,24 @@ import { useDispatch, useSelector } from "react-redux";
 import checkActions from "../../Store/CheckAuthor/actions";
 import authorActions from "../../Store/Author/actions";
 import mangasActions from "../../Store/MangasAuthor/actions";
+import userActions from "../../Store/CaptureUser/actions";
 
-const { capture } = checkActions;
-const { read_author } = authorActions;
-const { read_mangas } = mangasActions;
+const {capture} = checkActions;
+const {read_author} = authorActions;
+const {read_mangas} = mangasActions;
+const {captureUser} = userActions;
 
 export default function Author() {
   const dispatch = useDispatch();
   const defaultCheck = useSelector((store) => store.checkboxAuthor.checked);
   const dataProfile = useSelector((store) => store.Author.author);
+  const dataUser =useSelector((store) => store.CaptureUser.user);
   const dataMangasAll = useSelector((store) => store.MangasAuthor);
   const count = useSelector((store) => store.MangasAuthor.count);
   const dataMangas = defaultCheck ? dataMangasAll.new : dataMangasAll.old;
   const { id } = useParams();
   const check = useRef();
-
+  
   useEffect(() => {
     if (dataProfile.length === 0 || dataProfile._id !== id) {
       dispatch(read_author({ author_id: id }));
@@ -30,6 +33,12 @@ export default function Author() {
   useEffect(() => {
     if (dataMangas.length === 0 || dataProfile._id !== id) {
       dispatch(read_mangas({ author_id: id }));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (dataUser.length === 0) {
+      dispatch(captureUser());
     }
   }, []);
 
@@ -60,9 +69,9 @@ export default function Author() {
                 {dataProfile.createdAt}
               </p>
             </div>
-            <Anchor to={"/profile"}>
-              <img className="icon2" src="../edit-author.png" alt="edit" />
-            </Anchor>
+            {dataProfile.user_id === dataUser._id ?<Anchor to= {'/profile'}>
+            <img className="icon2" src="../edit-author.png" alt="edit" />
+            </Anchor>:null}
           </div>
           <p id="description-author"></p>
         </section>

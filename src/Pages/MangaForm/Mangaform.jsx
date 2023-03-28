@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import { useRef } from "react";
 import "../MangaForm/mangaform.css";
 import axios from "axios";
-import Swal from "sweetalert2";
+import { useDispatch } from "react-redux";
+import alertActions from "../../Store/Alert/actions";
+
+const { open } = alertActions;
 
 export default function CreateManga() {
   const [categorias, setCategorias] = useState([]);
@@ -12,6 +15,7 @@ export default function CreateManga() {
   let description = useRef();
   let coverPhoto = useRef();
   let formulario = useRef();
+  const dispatch =useDispatch();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -30,19 +34,9 @@ export default function CreateManga() {
     try {
       await axios.post(url, manga, headers);
       formulario.current.reset();
-      Swal.fire({
-        position: "top-end",
-        icon: "success",
-        title: "Manga created successfully",
-        showConfirmButton: false,
-        timer: 1500,
-      });
+      dispatch(open({icon: "success",title: "Manga created successfully",type: "toast",}));
     } catch (error) {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: error.response.data.message,
-      });
+      dispatch(open({icon: "error",title: error.response.data.message,type: "basic",}));
     }
   }
 
@@ -51,18 +45,18 @@ export default function CreateManga() {
       const response = await axios.get("http://localhost:8080/mangas");
       setCategorias(response.data.categories);
     } catch (error) {
-      console.log(error);
+      dispatch(open({icon: "errot", title: error.response.data.message, type: "basic"}));
     }
   }
 
 
   return (
-    <div className="contenedor">
+    <div className="contenedor2">
       <div className="formcontent">
         <section>
-          <h2 className="title">New Manga</h2>
+          <h2 className="title-new-manga">New Manga</h2>
         </section>
-        <form ref={formulario} className="form" id="author-form" onSubmit={handleSubmit}>
+        <form ref={formulario} id="manga-form" onSubmit={handleSubmit}>
           <input
             className="forminput"
             type="text"

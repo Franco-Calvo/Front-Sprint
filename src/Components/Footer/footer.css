@@ -11,7 +11,7 @@
   background-image: url(../../../public/footer.png);
   background-size: cover;
   width: 100%;
-  height: 15rem;
+  height: 55%;
   border-radius: 0% 0% 20% 20%;
 }
 
@@ -21,8 +21,8 @@
   align-items: flex-end;
   position: absolute;
   padding: 1.2rem;
-  top: 13rem;
-  height: 10rem;
+  top: 40%;
+  height: 40%;
   width: 80%;
   background: #ffffff;
   border-radius: 10px;
@@ -114,4 +114,22 @@ hr {
 
 .suscribe-email input {
   color: #2b3d51;
+}
+
+@media (max-width: 630px) {
+  .container-info {
+    flex-direction: column; 
+    height: 100%;
+  }
+  .container-info > img {
+    display: none;
+  }
+  .footer-menu {
+    height: 20vh;
+  }
+  .container-suscribe {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 }

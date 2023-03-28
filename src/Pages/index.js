@@ -20,7 +20,6 @@ import CompanieForm from './CompanieForm/Companieform'
 import NewRole from "./NewRole/Newrole";
 import EditChapter from "./EditChapter/EditChapter";
 
-
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -78,12 +77,12 @@ export const router = createBrowserRouter([
         element: <MyMangas />,
       },
       {
-        path: "/adminPanel",
+        path: "/admin",
         element: <AdminPanel />,
       },
       {
-        path: "/newRole",
-        element: <NewRole />,
+        path: "/new-role",
+        element: <NewRole/>,
       },
       {
         path: "/mangas/:id/:page",

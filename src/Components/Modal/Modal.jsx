@@ -39,10 +39,16 @@ export default function Modal({ setRender, setReload, reload }) {
       let dataAlert = {
         icon: "success",
         title: "Saved!",
+        type: "toast",
       };
       dispatch(open(dataAlert));
     } catch (error) {
-      console.log(error);
+      let dataAlert = {
+        icon: "success",
+        title: error.response.data.message,
+        type: "toast",
+      };
+      dispatch(open(dataAlert));
     }
     dispatch(responseAlert({ response: "" }));
     setRender(false);
