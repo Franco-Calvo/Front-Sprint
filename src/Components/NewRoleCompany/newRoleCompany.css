@@ -1,0 +1,89 @@
+.newrole .cont-company {
+    border: 1px solid grey;
+    width: 530px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: auto;
+    margin-top: 30px;
+    border-radius: 15px;
+}
+
+.newrole .cont-company:hover {
+    border: 3px solid rgb(245, 118, 184);
+    cursor: pointer;
+
+}
+
+.newrole .cont-company .selec-company {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.newrole .cont-company .selec-company h3 {
+    width: 200px;
+    color: rgb(245, 118, 184);
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    letter-spacing: 0.02em;
+}
+
+.newrole .cont-company .selec-company p {
+    width: 400px;
+    color: rgb(245, 118, 184);
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+}
+
+.newrole .cont-company .profiles img {
+    width: 30px;
+}
+
+.newrole .cont-company .profiles {
+    margin-left: 10px;
+}
+#img-profile{
+    width: 2rem;
+    height: auto;
+}
+
+@media (min-width:402px) and (max-width:630px) {
+    .newrole .cont-company {
+        width: 90%;
+        height: 70px;
+        margin-top: 30px;
+        
+    }
+    .newrole .cont-company .profiles {
+        margin: 5px;
+        padding: 5px;
+    }
+    .newrole .cont-company .profiles img{
+        width: 18px;
+    }
+
+}
+
+@media (min-width:320px) and (max-width:400px) {
+    .newrole .cont-company .profiles img {
+       display: none;
+    }
+      .newrole .cont-company {
+        width: 75%;
+        height: 70px;
+        margin-top: 30px;
+        justify-content: center;
+        padding-right: 5px;
+    }
+    .newrole .cont-company .selec-company p{
+        width: 200px;
+    }
+    
+}
