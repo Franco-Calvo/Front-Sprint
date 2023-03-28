@@ -35,13 +35,13 @@ export default function Footer() {
             <Anchor to="/">Home</Anchor>
             <Anchor to="/mangas">Mangas</Anchor>
           </span>
-          <img src="../logo.png" alt="" />
+          <img src="./logo.png" alt="" />
           <div className="social-media">
             <span className="icons-media">
-              <img src="../facebook.png" alt="" />
-              <img src="../twitter.png" alt="" />
-              <img src="../vimeo.png" alt="" />
-              <img src="../youtube.png" alt="" />
+              <img src="./facebook.png" alt="" />
+              <img src="./twitter.png" alt="" />
+              <img src="./vimeo.png" alt="" />
+              <img src="./youtube.png" alt="" />
             </span>
             <button className="button-suscribe" onClick={handleOpenModal}>
               Donate ♡
