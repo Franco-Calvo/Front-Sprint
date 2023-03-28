@@ -67,9 +67,6 @@
     .newrole .cont-author .profiles img{
         width: 18px;
     }
-    .profile{
-        display: none;
-     }
      #img-profile{
         display: none;
     }
@@ -95,9 +92,6 @@
     }
     .newrole .cont-author .selec-author p{
         width: 200px;
-    }
-    .profile{
-       display: none;
     }
     #img-profile{
         display: none;
