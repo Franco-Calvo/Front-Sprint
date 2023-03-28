@@ -39,16 +39,30 @@ table{
     height: 2rem;
     border-radius: 100%;
  }
+
  @media (max-width: 800px){
     
  .photo-perfil-author{
-    width: 1rem;
-    height: 1rem;
+    width: 1.5rem;
+    height: 1.5rem;
     border-radius: 100%;
  }
  #icon3{
     width: 1rem;
 }
+.colum2{
+    display: none;
+ }
+ .colum1{
+    width: 50%;
+}
+.colum3{
+    width: 20%;
+}
+.colum4{
+    width:20% ;
+}
+
  }
 
 
