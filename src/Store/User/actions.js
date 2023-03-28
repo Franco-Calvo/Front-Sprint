@@ -15,7 +15,7 @@ const handleToken = () => {
 
 const verify_account = createAsyncThunk("verify_account", async ({ verify_code }) => {
     try {
-        const response = await axios.get(`http://localhost:8080/auth/verify/${verify_code}`, handleToken())
+        const response = await axios.get(`https://minga-0gy1.onrender.com/auth/verify/${verify_code}`, handleToken())
         return {
             response: { user: response.data },
             message: "Author found",

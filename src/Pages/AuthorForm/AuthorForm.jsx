@@ -30,7 +30,7 @@ export default function AuthorForm() {
         [date.current.name]: date.current.value,
         [urlProfile.current.name]: urlProfile.current.value,
       };
-      let url = "http://localhost:8080/authors";
+      let url = "https://minga-0gy1.onrender.com/authors";
       try {
         await axios.post(url, data, headers);
         formRef.current.reset();

@@ -7,7 +7,7 @@ export default function NewRoleIndex() {
         <>
             <div className='newrole-index'>
                 <h2>Change role to</h2>
-                <img src='./Logo.png' alt="img" />
+                <img src='./logo.png' alt="img" />
             </div>
         </>
     )

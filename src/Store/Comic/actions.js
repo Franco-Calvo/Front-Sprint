@@ -6,7 +6,7 @@ const read_events = createAsyncThunk(
   async ({ inputText, captureChecks, pages }) => {
     try {
       let response = await axios.get(
-        "http://localhost:8080/mangas/view?title=" +
+        "https://minga-0gy1.onrender.com/mangas/view?title=" +
           inputText.trim() +
           "&category=" +
           captureChecks +

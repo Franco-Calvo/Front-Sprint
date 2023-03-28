@@ -9,9 +9,9 @@ export default function NewRoleCompany() {
             <Anchor to={'/create-company'}className='text-author'>
                 <div className='cont-company'>
                     <div className='profiles'>
-                        <img id='img-profile' src='./Ellipse 3 (1).png' alt='img'/>
-                        <img id='img-profile' src='./Ellipse 4 (1).png' alt= 'img'/>
-                        <img id='img-profile' src='./Ellipse 5 (1).png' alt= 'img'/>
+                        <img id='img-profile' src='./ellipse 3 (1).png' alt='img'/>
+                        <img id='img-profile' src='./ellipse 4 (1).png' alt= 'img'/>
+                        <img id='img-profile' src='./ellipse 5 (1).png' alt= 'img'/>
                     </div>
                     <div className='selec-company'>
                         <h3>Join as an Company!</h3>

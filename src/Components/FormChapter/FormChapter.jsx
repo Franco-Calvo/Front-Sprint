@@ -30,7 +30,7 @@ export default function FormChapter() {
       chapter[order.current.name] = order.current.value;
     }
 
-    let url = "http://localhost:8080/chapters";
+    let url = "https://minga-0gy1.onrender.com/chapters";
 
     if (title.current.value.length < 4 && !pages.current.value.startsWith("")) {
       dispatch(open({

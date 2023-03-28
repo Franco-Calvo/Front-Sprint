@@ -30,7 +30,7 @@ export default function MyMangas() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/mangas")
+      .get("https://minga-0gy1.onrender.com/mangas")
       .then((response) => {
         setCate(response.data.categories);
       })
@@ -76,7 +76,7 @@ export default function MyMangas() {
       <div className="mymangas-background">
         <h1>Mangas</h1>
         <span className="manga-span">
-          <img src="./Search.png" alt="" />
+          <img src="./search.png" alt="" />
           <input
             type="text"
             className="Search"
@@ -154,7 +154,7 @@ export default function MyMangas() {
                 </div>
                 <div className="cont-manga-img">
                   <Anchor className="cont-img-my" to="/create-mangas">
-                    <img className="cont-img-my" src="./newmanga.png" alt="" />
+                    <img className="cont-img-my" src="./newManga.png" alt="" />
                   </Anchor>
                 </div>
               </div>

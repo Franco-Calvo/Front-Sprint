@@ -38,7 +38,7 @@ export default function CardMyMangas({ manga, categories, setReload, reload }) {
   }
 
   async function CompleteDelete() {
-    const url = `http://localhost:8080/mangas/${mangaId}`;
+    const url = `https://minga-0gy1.onrender.com/mangas/${mangaId}`;
     let token = localStorage.getItem("token");
     let headers = { headers: { Authorization: `Bearer ${token} ` } };
 
@@ -74,7 +74,7 @@ export default function CardMyMangas({ manga, categories, setReload, reload }) {
       <div className="text-manga">
         <div className="buttons-edit">
           <Anchor to={`/edit/` + manga._id} id="buttons-mangas">
-            <img src="./Pen.png" alt="" />
+            <img src="./pen.png" alt="" />
           </Anchor>
           <Anchor to={`/chapher-form/` + manga._id} id="buttons-mangas">
             <img src="./add.png" alt="" />

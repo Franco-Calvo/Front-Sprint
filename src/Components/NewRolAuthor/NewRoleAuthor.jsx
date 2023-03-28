@@ -8,9 +8,9 @@ export default function NewRoleAuthor() {
             <Anchor to={'/author-form'} className='text-author'>
                 <div className='cont-author'>
                     <div className='profiles'>
-                        <img id='img-profile' src='../Ellipse 3.png' alt='img' />
-                        <img id='img-profile' src='../Ellipse 4.png' alt='img' />
-                        <img id='img-profile' src='../Ellipse 5.png' alt='img' />
+                        <img id='img-profile' src='../ellipse 3.png' alt='img' />
+                        <img id='img-profile' src='../ellipse 4.png' alt='img' />
+                        <img id='img-profile' src='../ellipse 5.png' alt='img' />
                     </div>
 
                     <div className='selec-author'>

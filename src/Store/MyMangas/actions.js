@@ -8,7 +8,7 @@ const read_events = createAsyncThunk(
       let token = localStorage.getItem("token");
       let headers = { headers: { Authorization: `Bearer ${token}` } };
       let response = await axios.get(
-        "http://localhost:8080/mangas/me?title=" +
+        "https://minga-0gy1.onrender.com/mangas/me?title=" +
           inputText.trim() +
           "&category=" +
           captureChecks +

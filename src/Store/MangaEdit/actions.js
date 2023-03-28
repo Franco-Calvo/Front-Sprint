@@ -4,7 +4,7 @@ import axios from "axios";
 let captureId = createAsyncThunk("captureId", async ({ manga_id }) => {
   try {
     const response = await axios.get(
-      `http://localhost:8080/mangas/` + manga_id
+      `https://minga-0gy1.onrender.com/mangas/` + manga_id
     );
 
     return {
