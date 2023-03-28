@@ -68,7 +68,18 @@
     .newrole .cont-company .profiles img{
         width: 18px;
     }
-
+    .profile{
+        display: none;
+     }
+     .newrole .cont-company .selec-company p {
+        width: 280px;
+        color: rgb(245, 118, 184);
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 300;
+        font-size: 14px;
+        letter-spacing: 0.02em;
+    }
 }
 
 @media (min-width:320px) and (max-width:400px) {
@@ -85,5 +96,8 @@
     .newrole .cont-company .selec-company p{
         width: 200px;
     }
+    .profile{
+        display: none;
+     }
     
 }

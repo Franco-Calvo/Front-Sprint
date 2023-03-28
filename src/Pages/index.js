@@ -1,12 +1,4 @@
 import NotFound from "./NotFound/NotFound";
-<<<<<<< HEAD
-import Index from "./Index/Index"
-import IndexLayout from "../Layouts/IndexLayout/IndexLayout"
-
-import { createBrowserRouter } from "react-router-dom";
-
-// @createBrowserRouter recibe un array de objetos, cada objeto tiene dos propiedades @Path la ruta @Element el elemento (componente de página que se renderizará en esa ruta)
-=======
 import Index from "./Index/Index";
 import IndexLayout from "../Layouts/IndexLayout/IndexLayout";
 import MainLayout from "../Layouts/MainLayout/MainLayout";
@@ -27,24 +19,10 @@ import AdminPanel from "./AdminPanel/AdminPanel";
 import CompanieForm from './CompanieForm/Companieform'
 import NewRole from "./NewRole/Newrole";
 import EditChapter from "./EditChapter/EditChapter";
->>>>>>> 4eae3ba1bbb20341d4d1d07ab72b1cc23923757c
 
 export const router = createBrowserRouter([
   {
     path: "/",
-<<<<<<< HEAD
-    element: <IndexLayout/>,
-    children: [{
-      path: "/",
-      element: <Index/>
-    },{
-      path: "/*",
-      element: <NotFound/>
-    }]
-  },
-  {path: "/notfound", element: <NotFound/>}
-])
-=======
     element: <IndexLayout />,
     children: [
       {
@@ -134,4 +112,3 @@ export const router = createBrowserRouter([
   },
   { path: "/notfound", element: <NotFound /> },
 ]);
->>>>>>> 4eae3ba1bbb20341d4d1d07ab72b1cc23923757c
