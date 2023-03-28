@@ -1,7 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import "./footer.css";
+import ModalDonate from "../ModalDonate/ModalDonate";
+import { useDispatch, useSelector } from "react-redux";
+import modaleActions from "../../Store/Modal/actions.js";
 
+const { openModal, closeModal } = modaleActions;
 export default function Footer() {
+  const modalName = "modalDonate";
+  const dispatch = useDispatch();
+  const render = useSelector((store) => store.modal.render);
+
+  const handleOpenModal = () => {
+    dispatch(openModal({ modalName }));
+  };
+  function handleCloseModal() {
+    dispatch(closeModal());
+  }
+
   return (
     <>
       <div className="container-footer">
@@ -28,7 +43,10 @@ export default function Footer() {
               <img src="../vimeo.png" alt="" />
               <img src="../youtube.png" alt="" />
             </span>
-            <button className="button-suscribe">Donate ♡</button>
+            <button className="button-suscribe" onClick={handleOpenModal}>
+              Donate ♡
+            </button>
+            <ModalDonate render={render} onCloseModal={handleCloseModal} />
           </div>
         </div>
         <hr />

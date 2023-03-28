@@ -1,8 +1,8 @@
-import { Link as Anchor, useParams } from 'react-router-dom';
-import {useEffect, useRef} from "react";
+import { Link as Anchor, useParams } from "react-router-dom";
+import { useEffect, useRef } from "react";
 import "./Author.css";
 import CardAuthor from "../../Components/CardAuthor/CardAuthor.jsx";
-import {useDispatch, useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import checkActions from "../../Store/CheckAuthor/actions";
 import authorActions from "../../Store/Author/actions";
 import mangasActions from "../../Store/MangasAuthor/actions";
@@ -21,18 +21,18 @@ export default function Author() {
   const dataMangasAll = useSelector((store) => store.MangasAuthor);
   const count = useSelector((store) => store.MangasAuthor.count);
   const dataMangas = defaultCheck ? dataMangasAll.new : dataMangasAll.old;
-  const {id} = useParams();
+  const { id } = useParams();
   const check = useRef();
   
   useEffect(() => {
-    if (dataProfile.length === 0||dataProfile._id!==id) {
-      dispatch(read_author({author_id: id}));
+    if (dataProfile.length === 0 || dataProfile._id !== id) {
+      dispatch(read_author({ author_id: id }));
     }
   }, []);
 
   useEffect(() => {
-    if (dataMangas.length === 0||dataProfile._id!==id) {
-      dispatch(read_mangas({author_id: id}));
+    if (dataMangas.length === 0 || dataProfile._id !== id) {
+      dispatch(read_mangas({ author_id: id }));
     }
   }, []);
 
@@ -43,7 +43,7 @@ export default function Author() {
   }, []);
 
   function handleChange() {
-    dispatch(capture({checked: check.current.checked}));
+    dispatch(capture({ checked: check.current.checked }));
   }
   return (
     <div id="author-container">

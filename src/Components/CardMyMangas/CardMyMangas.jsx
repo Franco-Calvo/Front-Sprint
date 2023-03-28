@@ -1,30 +1,43 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import "./cardmymangas.css";
 import Modal from "../../Components/Modal/Modal";
 import { Link as Anchor } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import actionsEdit from "../../Store/MangaEdit/actions";
 import axios from "axios";
 import alertActions from "../../Store/Alert/actions";
 
 const { captureId } = actionsEdit;
-const { open } = alertActions;
+const { open, responseAlert } = alertActions;
+let mangaId;
 
 export default function CardMyMangas({ manga, categories, setReload, reload }) {
   const categoryUsed = categories.find((cat) => cat._id === manga.category_id);
   const [render, setRender] = useState(false);
   const dispatch = useDispatch();
+  const search = useSelector((store) => store.alert.response);
 
   async function handleEdit(e) {
     await dispatch(captureId({ manga_id: e.target.id }));
     setRender(!render);
   }
 
-  async function handleDelete(e) {
-    const mangaId = e.target.id;
-    await dispatch(captureId({ manga_id: mangaId }));
+  async function handlePrevDelete(e) {
+    mangaId = e.target.id;
+    dispatch(
+      open({
+        icon: "question",
+        title: "Confirm to delete",
+        type: "confirm",
+        confirmMessage: "Deleted",
+        denyMessage: "Don't delete",
+        expectedResponse: "deleted",
+      })
+    );
+  }
 
+  async function CompleteDelete() {
     const url = `http://localhost:8080/mangas/${mangaId}`;
     let token = localStorage.getItem("token");
     let headers = { headers: { Authorization: `Bearer ${token} ` } };
@@ -37,6 +50,7 @@ export default function CardMyMangas({ manga, categories, setReload, reload }) {
         type: "toast"
       };
       dispatch(open(dataAlert));
+      dispatch(responseAlert({ response: "" }));
     } catch (error) {
       let dataAlert = {
         icon: "error",
@@ -49,6 +63,10 @@ export default function CardMyMangas({ manga, categories, setReload, reload }) {
     setRender(false);
     setReload(!reload);
   }
+
+  useEffect(() => {
+    if (search === "deleted") CompleteDelete();
+  }, [search]);
 
   return (
     <div className="card-shonen">
@@ -90,7 +108,7 @@ export default function CardMyMangas({ manga, categories, setReload, reload }) {
             to={"#" + manga._id}
             className="button-delete"
             id={manga._id}
-            onClick={handleDelete}
+            onClick={handlePrevDelete}
           >
             Delete
           </Anchor>

@@ -42,6 +42,7 @@ export default function FormLogin({ handleRender }) {
       dispatch(open(dataAlert));
 
       navigate("/");
+
       formRef.current.reset();
       localStorage.setItem(`token`, res.data.token);
       localStorage.setItem(
@@ -50,6 +51,7 @@ export default function FormLogin({ handleRender }) {
           name: res.data.user.name,
           email: res.data.user.email,
           photo: res.data.user.photo,
+          user_id: res.data.user._id
         })
       );
     } catch (error) {
@@ -64,11 +66,11 @@ export default function FormLogin({ handleRender }) {
 
   return (
     <div className="container-form-general">
-        <h2>Welcome back!</h2>
-        <p>
-          Discover manga, manhua and manwha, track your progress, have fun, read
-          manga.
-        </p>
+      <h2>Welcome back!</h2>
+      <p>
+        Discover manga, manhua and manwha, track your progress, have fun, read
+        manga.
+      </p>
 
       <form className="form-Register" ref={formRef} onSubmit={handleSubmit}>
         <fieldset className="input-sim">
