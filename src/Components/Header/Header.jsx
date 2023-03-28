@@ -14,7 +14,7 @@ export default function Header() {
       <div className="container">
         <NavButton onClick={handleRender} />
         {render && <NavIndex handleRender={handleRender} />}
-        <img id="logo-navbar" src="./logo.png" alt="" />
+        <img id="logo-navbar" src="https://i.postimg.cc/r0py0TmR/logo.png" alt="" />
       </div>
     </header>
   );
