@@ -11,6 +11,7 @@ import captureState from "./Capture/reducer";
 import mymangasReducer from "./MyMangas/reducer";
 import mangaidReducer from './MangaEdit/reducer'
 import editDeleteChapter from './EditDeleteChapter/reducer';
+import verifyReducer from './User/reducer'
 import companyReducer from "./Company/reducer";
 
 
@@ -27,7 +28,8 @@ export const store = configureStore({
     checked: captureState,
     mymanga: mymangasReducer,
     Mangaid: mangaidReducer,
+    user: verifyReducer,
     Company: companyReducer,
-    
+
   },
 });

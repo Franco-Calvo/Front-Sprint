@@ -13,15 +13,13 @@ import Author from "./Author/Author";
 import MangasView from "./MangasView/MangasView";
 import Page from "./Page/Pages";
 import MyMangas from "../Components/MyMangas/MyMangas";
-<<<<<<< HEAD
 import AuthorProfile from "./AuthorProfile/Authorprofile"
+import Verify from "./AccountVerify/Verifi";
 import AdminPanel from "./AdminPanel/AdminPanel";
 import CompanieForm from './CompanieForm/Companieform'
 import NewRole from "./NewRole/Newrole";
-=======
 import EditChapter from "./EditChapter/EditChapter";
-import AuthorProfile from "./AuthorProfile/Authorprofile";
->>>>>>> 877d91834b28cb5a8880dc5b6b76963bf5895083
+
 
 export const router = createBrowserRouter([
   {
@@ -69,7 +67,7 @@ export const router = createBrowserRouter([
 
       {
         path: "/create-company",
-        element: <CompanieForm/>,
+        element: <CompanieForm />,
       },
       {
         path: "/mangas",
@@ -85,7 +83,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/newRole",
-        element: <NewRole/>,
+        element: <NewRole />,
       },
       {
         path: "/mangas/:id/:page",
@@ -102,6 +100,10 @@ export const router = createBrowserRouter([
       {
         path: "/profile",
         element: <AuthorProfile />,
+      },
+      {
+        path: '/verify-account/:verify_code'
+        , element: <Verify />
       },
       {
         path: "/*",

@@ -53,3 +53,12 @@
   color: #f472b6;
   font-weight: 500;
 }
+
+.google{
+  background: #ebebeb;
+  border: 1px solid #1f1f1f;
+  border-radius: 50000px;
+  width: 90%;
+  height: 3rem;
+  color: #1F1F1F;
+}
