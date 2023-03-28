@@ -1,14 +1,13 @@
 import React from "react";
 import "./sectionmanga.css";
+
 export default function SectionManga() {
   return (
     <div className="manga">
-      
       <div className="img-container">
         <img className="hero" src="./hero.png" alt="" />
         <img className="hero2" src="./cardimg.png" alt="" />
       </div>
-
       <span className="section-manga">
         <h3>Trigun Stampede</h3>
         <h6>Manga</h6>

@@ -2,11 +2,10 @@
   background: linear-gradient(153.39deg, #f9a8d4 -13.9%, #f472b6 58.69%);
   border-radius: 6px;
   width: 70%;
-  height: 16.563rem;
+  height: 30%;
   display: flex;
   color: white;
 }
-
 .section-manga {
   display: flex;
   flex-direction: column;
@@ -15,27 +14,27 @@
   padding: 0px;
   gap: 10px;
   width: 40%;
+  margin-left: 20px;
 }
-
 .hero {
-  width: 17.313rem;
-  height: 19.188rem;
+  width: auto;
+  height: 18rem;
   bottom: 0px;
   left: 0px;
   position: absolute;
 }
-
 .hero2 {
+  width: auto;
+  height: 18rem;
   margin-bottom: 5rem;
   position: absolute;
   right: 90px;
   bottom: -60px;
 }
-
 .img-container {
   width: 50%;
   position: relative;
-  justify-content: space-evenly;
+  justify-content: space-around;
   display: flex;
 }
 
@@ -50,46 +49,41 @@
 
 @media (min-width: 768px) and (max-width: 1023px) {
   .hero {
-    width: 12rem;
-    object-fit: cover;
+    width: 60%;
+    height: auto;
     z-index: 10;
     left: 0;
     position: absolute;
   }
-
   .hero2 {
     position: absolute;
     padding: 1rem;
     display: block;
-    width: 45%;
+    width: 40%;
+    height: auto;
     right: 0px;
-    bottom: 0px;
+    bottom: -30px;
   }
-
   .img-container {
     width: 60%;
   }
-
   .section-manga {
     font-size: 0.8rem;
   }
 }
 
-@media (min-width: 1024px) and (max-width: 1440px) {
+@media (min-width: 1024px) {
   .manga {
-    margin: 0 5.688rem;
     width: 90%;
   }
-
   .img-container {
     width: 50%;
     display: flex;
-    justify-content: space-between;
     align-items: center;
     padding: 1rem;
   }
-
   .hero2 {
     right: 10px;
   }
 }
+

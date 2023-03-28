@@ -1,0 +1,44 @@
+.mymangas-background {
+  background-image: url(../../../public/background.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 3rem;
+  padding-top: 3rem;
+  width: 100%;
+}
+
+.mymangas-background h1 {
+  color: white;
+  font-size: 4rem;
+}
+
+.mymangas-background span {
+  background-color: white;
+  display: flex;
+  border-radius: 10px;
+  width: 60%;
+  padding: 1rem;
+}
+
+.cont-img-my {
+  border-radius:35% 10px 10px 35%;
+  width: 100%;
+  height: 11rem;
+  object-fit: cover;
+  filter: brightness(80%);
+}
+
+.cont-img-my:hover {
+  filter: none;
+}
+
+.New-manga-my {
+  margin-left: 1rem;
+  font-size: 1.1rem;
+}

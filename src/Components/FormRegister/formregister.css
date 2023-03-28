@@ -1,4 +1,4 @@
-form {
+.form-Register {
   width: 90%;
   height: 40rem;
   display: flex;
@@ -18,7 +18,7 @@ form {
   color: #1f1f1f;
 }
 
-fieldset {
+.input-sim {
   width: 90%;
   height: 4rem;
   display: flex;
@@ -28,13 +28,13 @@ fieldset {
   border-radius: 10px;
 }
 
-fieldset legend {
+.input-sim legend {
   font-size: 12px;
   margin-left: 13px;
   color: #f472b6;
 }
 
-fieldset img {
+.input-sim img {
   margin-right: 10px;
   width: 16px;
   height: 16px;
@@ -49,6 +49,25 @@ fieldset img {
 
 .span-login a {
   text-decoration: none;
-  color: #F472B6;
+  color: #f472b6;
   font-weight: 500;
+}
+.google{
+  background: #ebebeb;
+  border: 1px solid #1f1f1f;
+  border-radius: 50000px;
+  width: 90%;
+  height: 3rem;
+  color: #1F1F1F;
+}
+@media (max-width:350px){
+  .form-Register {
+    margin-top: 1rem;
+  }
+}
+@media (max-height: 850px) {
+  .form-Register {
+    height: 35rem;
+    gap: 0.5rem;
+  }
 }

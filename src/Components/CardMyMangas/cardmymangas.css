@@ -1,0 +1,61 @@
+.cont-buttons-mangas {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.buttons-edit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  gap: 1rem;
+}
+
+.buttons-edit img {
+  width: 1rem;
+  height: 1rem;
+}
+
+#buttons-mangas {
+  width: 1rem;
+  height: 1rem;
+}
+
+.button-edit {
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #8883f0;
+  background: #e0dbff;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.04);
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+.button-delete {
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ee8380;
+  background: #fbdddc;
+  border-radius: 50px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.04);
+  cursor: pointer;
+}
+
+.button-delete:hover {
+  background: #dbc1c1;
+}
+
+.button-edit:hover {
+  background: #b5b1cf;
+}
+
+.cont-buttons-mangas a {
+  text-decoration: none;
+}

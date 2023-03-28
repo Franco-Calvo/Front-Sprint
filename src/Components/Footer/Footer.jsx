@@ -1,7 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import "./footer.css";
+import ModalDonate from "../ModalDonate/ModalDonate";
+import { useDispatch, useSelector } from "react-redux";
+import modaleActions from "../../Store/Modal/actions.js";
 
+const { openModal, closeModal } = modaleActions;
 export default function Footer() {
+  const modalName = "modalDonate";
+  const dispatch = useDispatch();
+  const render = useSelector((store) => store.modal.render);
+
+  const handleOpenModal = () => {
+    dispatch(openModal({ modalName }));
+  };
+  function handleCloseModal() {
+    dispatch(closeModal());
+  }
+
   return (
     <>
       <div className="container-footer">
@@ -20,17 +35,18 @@ export default function Footer() {
             <a href="">Home</a>
             <a href="">Mangas</a>
           </span>
-
-          <img src="./logo.png" alt="" />
+          <img src="../logo.png" alt="" />
           <div className="social-media">
             <span className="icons-media">
-              <img src="./Facebook.png" alt="" />
-              <img src="./Twitter.png" alt="" />
-              <img src="./Vimeo.png" alt="" />
-              <img src="./Youtube.png" alt="" />
+              <img src="../facebook.png" alt="" />
+              <img src="../twitter.png" alt="" />
+              <img src="../vimeo.png" alt="" />
+              <img src="../youtube.png" alt="" />
             </span>
-            <button className="button-suscribe">Donate ♡</button>
-
+            <button className="button-suscribe" onClick={handleOpenModal}>
+              Donate ♡
+            </button>
+            <ModalDonate render={render} onCloseModal={handleCloseModal} />
           </div>
         </div>
         <hr />

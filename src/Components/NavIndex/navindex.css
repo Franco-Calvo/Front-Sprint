@@ -9,13 +9,24 @@
 
 nav {
   background: linear-gradient(153.39deg, #f9a8d4 -13.9%, #f472b6 58.69%);
-  border-radius: 10px;
+  border-radius: 0px 10px 10px 0px;
   height: 100vh;
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   width: 26.875rem;
-  z-index: 100;
+  z-index: 10000;
+}
+
+.span-container-profile{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.span-container-profile2{
+  border: 1px solid red;
 }
 
 .profile {
@@ -23,14 +34,31 @@ nav {
   justify-content: space-evenly;
   align-items: flex-start;
   flex-direction: column;
-  width: 23.875rem;
-  padding: 1.4rem;
+  width: 100%;
+  padding: 10px 22px 0 22px;
   gap: 2rem;
+}
+
+.action-render {
+  color: #f472b6;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.action-render:hover {
+  text-decoration: underline;
+}
+
+svg {
+  cursor: pointer;
+  
 }
 
 .profile img {
   border-radius: 50px;
-  width: 3rem;
+  object-fit: cover;
+  width: 4rem;
+  height: 4rem;
 }
 
 #close-nav {
@@ -39,15 +67,19 @@ nav {
 
 .img-text-container {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
+  height: 5rem;
+  width: 100%;
   gap: 12px;
 }
+
+
 
 .text-container {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   flex-direction: column;
   width: 15.75rem;
   height: 1.5rem;
@@ -93,10 +125,10 @@ nav {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    position: absolute;
     height: 100vh;
     top: 0;
     z-index: 100;
+    border-radius: 0;
   }
 
   .profile {
@@ -117,11 +149,10 @@ nav {
     width: 100%;
   }
 
-  .a-links{
+  .a-links {
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 24px;
-
   }
 }
