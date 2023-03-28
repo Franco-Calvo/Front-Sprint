@@ -12,12 +12,16 @@ import Manga from "./Manga/Manga";
 import Author from "./Author/Author";
 import MangasView from "./MangasView/MangasView";
 import Page from "./Page/Pages";
-import EditChapter from "./EditChapter/EditChapter";
 import MyMangas from "../Components/MyMangas/MyMangas";
+<<<<<<< HEAD
 import AuthorProfile from "./AuthorProfile/Authorprofile"
 import AdminPanel from "./AdminPanel/AdminPanel";
 import CompanieForm from './CompanieForm/Companieform'
 import NewRole from "./NewRole/Newrole";
+=======
+import EditChapter from "./EditChapter/EditChapter";
+import AuthorProfile from "./AuthorProfile/Authorprofile";
+>>>>>>> 877d91834b28cb5a8880dc5b6b76963bf5895083
 
 export const router = createBrowserRouter([
   {
@@ -62,6 +66,7 @@ export const router = createBrowserRouter([
         path: "/create-mangas",
         element: <MangaForm />,
       },
+
       {
         path: "/create-company",
         element: <CompanieForm/>,

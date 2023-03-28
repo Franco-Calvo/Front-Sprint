@@ -7,8 +7,8 @@ const authorReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(read_author.fulfilled, (state, action) => {
       action.payload.author.createdAt = action.payload.author.createdAt
-        .slice(0, 10)
-        .split("-")
+       .slice(0, 10)
+       .split("-")
         .reverse()
         .join("/");
       let newState = {

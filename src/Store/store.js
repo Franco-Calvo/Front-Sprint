@@ -25,7 +25,6 @@ export const store = configureStore({
     checks: checksReducer,
     mangas: mangaReducer,
     checked: captureState,
-    editDeleteChapter: editDeleteChapter,
     mymanga: mymangasReducer,
     Mangaid: mangaidReducer,
     Company: companyReducer,

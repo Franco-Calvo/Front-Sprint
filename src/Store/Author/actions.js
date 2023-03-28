@@ -1,15 +1,6 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import axios from "axios";
 
-const read_author = createAsyncThunk("read_author", async ({author_id}) => {
-  try {
-    let res = await axios.get("http://localhost:8080/authors/" + author_id);
-    return {author: res.data.data};
-  } catch (error) {
-    return {author: []};
-  }
-});
-
 const read_all_authors = createAsyncThunk("read_all_authors", async () => {
   try {
     let token = localStorage.getItem('token')
@@ -42,6 +33,7 @@ const update_author = createAsyncThunk(
     }
   }
 )
+<<<<<<< HEAD
 const update_active_author =createAsyncThunk(
   "update_active_author",
   async({_id, active})=>{
@@ -64,5 +56,9 @@ const update_active_author =createAsyncThunk(
 )
 
 const authorActions = { read_author, update_author, read_all_authors, update_active_author};
+=======
+
+const authorActions = { read_author, update_author};
+>>>>>>> 877d91834b28cb5a8880dc5b6b76963bf5895083
 export default authorActions;
 
