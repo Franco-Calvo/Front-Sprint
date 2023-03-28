@@ -1,7 +1,6 @@
 import { useRef } from "react";
 import "./formregister.css";
 import InputGeneral from "../InputGeneral/InputGeneral";
-import ButtonGeneral from "../ButtonGeneral/ButtonGeneral";
 import axios from "axios";
 import { Link as Anchor, useNavigate, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,7 +8,6 @@ import alertActions from "../../Store/Alert/actions";
 import { GoogleLogin } from "react-google-login";
 import { gapi } from "gapi-script";
 import { useEffect } from "react";
-
 const { open } = alertActions;
 
 export default function FormRegister(props) {
@@ -71,16 +69,17 @@ export default function FormRegister(props) {
 
   const onSuccess = async (response) => {
     console.log(response)
+
     try {
-      const { name, email, imageUrl, password } = response.profileObj;
+      const { name, email, imageUrl, googleId } = response.profileObj;
 
       const data = {
         name: name,
         email: email,
         photo: imageUrl,
-        password: password
+        password: googleId,
       };
-
+      console.log(data)
       const url = "http://localhost:8080/auth/signup";
       await axios.post(url, data);
 
@@ -167,6 +166,8 @@ export default function FormRegister(props) {
         cookiePolicy={"sigle_host_policy"}
 
       />
+
+
       <span className="span-login">
         Already have an account?{" "}
         <span

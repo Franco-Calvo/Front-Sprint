@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios"
-import apiUrl from "../../url"
+
 
 const handleToken = () => {
     const BEARER_TOKEN = localStorage.getItem("token")
@@ -15,7 +15,7 @@ const handleToken = () => {
 
 const verify_account = createAsyncThunk("verify_account", async ({ verify_code }) => {
     try {
-        const response = await axios.get(`${apiUrl}/auth/verify/${verify_code}`, handleToken())
+        const response = await axios.get(`http://localhost:8080/auth/verify/${verify_code}`, handleToken())
         return {
             response: { user: response.data },
             message: "Author found",

@@ -6,7 +6,9 @@ import axios from "axios";
 import { Link as Anchor, useNavigate, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import alertActions from "../../Store/Alert/actions";
-
+import { GoogleLogin } from "react-google-login";
+import { gapi } from "gapi-script";
+import { useEffect } from "react";
 const { open } = alertActions;
 
 export default function FormLogin({ handleRender }) {
@@ -63,6 +65,72 @@ export default function FormLogin({ handleRender }) {
     }
   }
 
+
+  const clientID = '640688783170-uo0hk0tg02o18b5g964imm39s27nksp0.apps.googleusercontent.com'
+
+  useEffect(() => {
+    const start = () => {
+      gapi.auth2.init({
+        clientId: clientID,
+      })
+    }
+    gapi.load("client:auth2", start)
+  }, [])
+
+  const onSuccess = async (response) => {
+    console.log(response)
+
+    let url = "http://localhost:8080/auth/signin";
+    let token = localStorage.getItem("token");
+    let headers = { headers: { Authorization: `Bearer ${token}` } };
+
+    try {
+      const { name, email, imageUrl, googleId } = response.profileObj;
+
+      const data = {
+
+        email: email,
+
+        password: googleId,
+      };
+      if (email) await axios.post(url, data, headers);
+      let res = await axios.post(url, data, headers);
+      let dataAlert = {
+        icon: "success",
+        title: "Signed in successfully",
+      };
+      dispatch(open(dataAlert));
+
+      navigate("/");
+
+      formRef.current.reset();
+      localStorage.setItem(`token`, res.data.token);
+      localStorage.setItem(
+        `user`,
+        JSON.stringify({
+          name: name,
+          email: email,
+          photo: imageUrl,
+          user_id: res.data.user._id
+        })
+      );
+    } catch (error) {
+      console.log(error);
+      let dataAlert = {
+        icon: "error",
+        title: error.response.data.message,
+      };
+      dispatch(open(dataAlert));
+    }
+  }
+  const onFailure = () => {
+    console.log("Something went wrong")
+  }
+
+
+
+
+
   return (
     <div className="container-form-general">
       <h2>Welcome back!</h2>
@@ -96,10 +164,16 @@ export default function FormLogin({ handleRender }) {
           id="sign-in"
           style="style-1"
         />
-        <ButtonGeneral
-          style="style-3"
-          image="./Google.png"
+
+        <GoogleLogin
+          className="google"
+          image="./google.png"
           text="Sign in with Google"
+          clientId={clientID}
+          onSuccess={onSuccess}
+          onFailure={onFailure}
+          cookiePolicy={"sigle_host_policy"}
+
         />
         <span className="span-login">
           You don't have an account yet?

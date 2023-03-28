@@ -20,7 +20,7 @@ export default function Verify() {
     return (
         <div className="containerGeneral">
             <div className='content'>
-                <h1 id='h1verify'>Your account has been verified</h1>
+                <h1 id='h1verify'>Your account has been verified.</h1>
                 <Anchor className="anchor" to={"/signin"}>Sign In</Anchor>
             </div>
         </div>
