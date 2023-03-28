@@ -1,12 +1,13 @@
 import { useRef } from "react";
 import "./formregister.css";
 import InputGeneral from "../InputGeneral/InputGeneral";
-import ButtonGeneral from "../ButtonGeneral/ButtonGeneral";
 import axios from "axios";
 import { Link as Anchor, useNavigate, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import alertActions from "../../Store/Alert/actions";
-
+import { GoogleLogin } from "react-google-login";
+import { gapi } from "gapi-script";
+import { useEffect } from "react";
 const { open } = alertActions;
 
 export default function FormRegister(props) {
@@ -56,8 +57,63 @@ export default function FormRegister(props) {
     }
   }
 
+  const clientID = '640688783170-uo0hk0tg02o18b5g964imm39s27nksp0.apps.googleusercontent.com'
+
+  useEffect(() => {
+    const start = () => {
+      gapi.auth2.init({
+        clientId: clientID,
+      })
+    }
+    gapi.load("client:auth2", start)
+  }, [])
+
+  const onSuccess = async (response) => {
+    console.log(response)
+
+    try {
+      const { name, email, imageUrl, googleId } = response.profileObj;
+
+      const data = {
+        name: name,
+        email: email,
+        photo: imageUrl,
+        password: googleId,
+      };
+      console.log(data)
+      const url = "http://localhost:8080/auth/signup";
+      await axios.post(url, data);
+
+      let dataAlert = {
+        icon: "success",
+        title: "Session successfully",
+      };
+      dispatch(open(dataAlert));
+      formReg.current.reset();
+      navigate("/signin");
+
+    } catch (error) {
+      console.log(error);
+      let dataAlert = {
+        icon: "error",
+        title: "",
+      };
+      error.response.data.message.forEach((err) => {
+        dataAlert.title += err + "\n";
+      });
+      dispatch(open(dataAlert));
+    }
+  }
+  const onFailure = () => {
+    console.log("Something went wrong")
+  }
+
+
+
   return (
-    <form className="form-Register"ref={formReg} onSubmit={handleSubmit}>
+
+
+    <form className="form-Register" ref={formReg} onSubmit={handleSubmit}>
       <fieldset className="input-sim">
         <legend>Name</legend>
         <input ref={name} type="text" id="name" name="name" required />
@@ -98,13 +154,21 @@ export default function FormRegister(props) {
         value="Sign up"
         id="sign-up"
         style="style-1"
+
       />
 
-      <ButtonGeneral
-        style="style-3"
+      <GoogleLogin
+        className="google"
         image="./google.png"
         text="Sign in with Google"
+        clientId={clientID}
+        onSuccess={onSuccess}
+        onFailure={onFailure}
+        cookiePolicy={"sigle_host_policy"}
+
       />
+
+
       <span className="span-login">
         Already have an account?{" "}
         <span
@@ -124,5 +188,6 @@ export default function FormRegister(props) {
         <Anchor to={`/`}> home page</Anchor>
       </span>
     </form>
+
   );
 }

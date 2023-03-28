@@ -14,6 +14,7 @@ import modalReducer from "./Modal/reducer";
 import editDeleteChapter from "./EditDeleteChapter/reducer";
 import userReducer from './CaptureUser/reducer';
 import companyReducer from "./Company/reducer";
+import verifyReducer from './User/reducer'
 
 export const store = configureStore({
   reducer: {
@@ -31,7 +32,8 @@ export const store = configureStore({
     CaptureUser: userReducer,
     modal: modalReducer,
     editDeleteChapter: editDeleteChapter,
+    user: verifyReducer,
     Company: companyReducer,
-    
+
   },
 });
