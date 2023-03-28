@@ -5,7 +5,7 @@ import "./page.css";
 
 export default function Chapters() {
   let navigate = useNavigate();
-  let url = `http://localhost:8080/chapters/`;
+  let url = `https://minga-0gy1.onrender.com/chapters/`;
   let { id, page } = useParams();
   let [chapter, setChapter] = useState({});
   let [next, setNext] = useState("");
@@ -43,7 +43,7 @@ export default function Chapters() {
     getComments()
     try {
       // eslint-disable-next-line
-      let response = await axios.post(`http://localhost:8080/comments?chapter_id=${idChapter}`, inputComments, headers)
+      let response = await axios.post(`https://minga-0gy1.onrender.com/comments?chapter_id=${idChapter}`, inputComments, headers)
     } catch (error) {
       console.log(error);
     }
@@ -51,7 +51,7 @@ export default function Chapters() {
 
   const getComments = () => {
     axios
-      .get(`http://localhost:8080/comments?chapter_id=${idChapter}`, headers)
+      .get(`https://minga-0gy1.onrender.com/comments?chapter_id=${idChapter}`, headers)
       .then((response) => {
         setAllComments(response.data.comments);
         setUserIdComments(response.data.comments)
@@ -72,7 +72,7 @@ export default function Chapters() {
   const handleDelete = () => {
     getComments();
     try {
-      axios.delete(`http://localhost:8080/comments/${comentId}`, headers)
+      axios.delete(`https://minga-0gy1.onrender.com/comments/${comentId}`, headers)
 
     } catch (error) {
       console.log(error)
@@ -95,7 +95,7 @@ export default function Chapters() {
   const handleEdit = (id) => {
     getComments();
     try {
-      axios.put(`http://localhost:8080/comments/${idEdit}`, { text: textoEdit.text }, headers)
+      axios.put(`https://minga-0gy1.onrender.com/comments/${idEdit}`, { text: textoEdit.text }, headers)
     } catch (error) {
       console.log(error)
     }

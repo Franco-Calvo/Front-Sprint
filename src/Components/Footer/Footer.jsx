@@ -1,8 +1,8 @@
-import React, { useState } from "react";
 import "./footer.css";
 import ModalDonate from "../ModalDonate/ModalDonate";
 import { useDispatch, useSelector } from "react-redux";
 import modaleActions from "../../Store/Modal/actions.js";
+import { Link as Anchor } from "react-router-dom";
 
 const { openModal, closeModal } = modaleActions;
 export default function Footer() {
@@ -32,8 +32,8 @@ export default function Footer() {
       <div className="footer-menu">
         <div className="container-info">
           <span>
-            <a href="">Home</a>
-            <a href="">Mangas</a>
+            <Anchor to="/">Home</Anchor>
+            <Anchor to="/mangas">Mangas</Anchor>
           </span>
           <img src="../logo.png" alt="" />
           <div className="social-media">

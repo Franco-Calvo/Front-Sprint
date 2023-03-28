@@ -15,10 +15,10 @@ export default function ProtectedRouter({expectedRole, redirectTo="/"}) {
     const [reload, setReload] = useState(false)
 
     useEffect(()=>{
+        const token = localStorage.getItem(`token`);
         if (!admin&&!author&&token) {
-        dispatch(captureUser()).then(
+            dispatch(captureUser())
             setReload(!reload)
-        )
         }
     },[])
     
@@ -38,11 +38,15 @@ export default function ProtectedRouter({expectedRole, redirectTo="/"}) {
         if(!role.includes("admin")){role.push("admin")}
     }else if(role.includes("admin")){role=role.filter(e=>e!="admin")}
 
-
-    if(role.includes(expectedRole)){
+    if(author!=undefined&&admin!=undefined){
+        if(role.includes(expectedRole)){
+                return <Outlet/>
+            }else{
+                return <Navigate to={redirectTo}/>
+            }
+    }else if (expectedRole==="visitor"){
         return <Outlet/>
-    }else{
-        return <Navigate to={redirectTo}/>
     }
+    
     
 }

@@ -30,7 +30,7 @@ export default function EditChapter() {
     let headers = {headers: {Authorization: `Bearer ${token}`}};
 
     chapterSelect = select.current? AllChapter.find(each=>each._id===select.current.children[1].value):null
-    url = "http://localhost:8080/chapters/"+manga_id;
+    url = "https://minga-0gy1.onrender.com/chapters/"+manga_id;
     
     if(confirmEdit==="edited"){
         complete(true)
@@ -110,7 +110,7 @@ export default function EditChapter() {
                 }
             }}else 
                 if(!type){
-                    url = "http://localhost:8080/chapters/"+chapterSelect._id;
+                    url = "https://minga-0gy1.onrender.com/chapters/"+chapterSelect._id;
                     try {
                         await axios.delete(url, headers);
                         setReloadChapter(!reloadChapter)

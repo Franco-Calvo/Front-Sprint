@@ -28,7 +28,7 @@ export default function CreateManga() {
       cover_photo: coverPhoto.current.value,
       category_id: filteredCategory._id,
     };
-    const url = "http://localhost:8080/mangas";
+    const url = "https://minga-0gy1.onrender.com/mangas";
     let token = localStorage.getItem("token");
     let headers = { headers: { Authorization: `Bearer ${token}` } };
     try {
@@ -42,7 +42,7 @@ export default function CreateManga() {
 
   async function renderCategory() {
     try {
-      const response = await axios.get("http://localhost:8080/mangas");
+      const response = await axios.get("https://minga-0gy1.onrender.com/mangas");
       setCategorias(response.data.categories);
     } catch (error) {
       dispatch(open({icon: "errot", title: error.response.data.message, type: "basic"}));

@@ -30,7 +30,7 @@ export default function Modal({ setRender, setReload, reload }) {
       cover_photo: cover_photo.current.value || id.cover_photo,
     };
 
-    const url = "http://localhost:8080/mangas/" + id._id;
+    const url = "https://minga-0gy1.onrender.com/mangas/" + id._id;
     let token = localStorage.getItem("token");
     let headers = { headers: { Authorization: `Bearer ${token} ` } };
 

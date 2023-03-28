@@ -28,7 +28,7 @@ export default function MangasView() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/mangas")
+      .get("https://minga-0gy1.onrender.com/mangas")
       .then((response) => {
         setCate(response.data.categories);
       })
@@ -74,7 +74,7 @@ export default function MangasView() {
       <div className="mangas-background">
         <h1>Mangas</h1>
         <span className="manga-span">
-          <img src="./Search.png" alt="" />
+          <img src="./search.png" alt="" />
           <input
             type="text"
             className="Search"

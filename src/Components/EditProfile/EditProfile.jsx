@@ -22,7 +22,6 @@ export default function EditProfile() {
   const confirmEdit = useSelector((store) => store.alert.response);
   const authoresDate = authores?.date?.split("T")[0];
 
-
   if (confirmEdit === "edited") {
     completeEdit();
   } else if (confirmEdit === "deleted") {
@@ -71,8 +70,9 @@ export default function EditProfile() {
       dispatch(captureUser());
     }
   }, []);
+
   useEffect(() => {
-    if (authores) {
+    if (!authores) {
       dispatch(read_author({author_id: user._id}));
     }
   }, [update, user.length === 0]);
@@ -92,7 +92,6 @@ export default function EditProfile() {
     dispatch(responseAlert({response: ""}));
     dispatch(open({icon: "success", title: "Edited!", type: "toast"}));
   }
-
   function completeDelete() {
     const data = {active: false};
     dispatch(update_author({data: data}));

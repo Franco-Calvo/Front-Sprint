@@ -14,7 +14,7 @@ export default function NavIndex({ handleRender }) {
   let author=useSelector((store) => store.CaptureUser.user.is_author);
   const token = localStorage.getItem(`token`);
   let headers = { headers: { Authorization: `Bearer ${token}` } };
-  let url = "http://localhost:8080/auth/signout";
+  let url = "https://minga-0gy1.onrender.com/auth/signout";
   const [reload, setReload] = useState(false)
   let dispatch = useDispatch();
   const navigate = useNavigate();
@@ -72,7 +72,7 @@ export default function NavIndex({ handleRender }) {
   const photo = user.photo;
 
   useEffect(() => {
-    let url = "http://localhost:8080/auth/signintoken";
+    let url = "https://minga-0gy1.onrender.com/auth/signintoken";
     if (token) {
       let headers = { headers: { Authorization: `Bearer ${token}` } };
       axios.post(url, null, headers);

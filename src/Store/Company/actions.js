@@ -5,7 +5,7 @@ const read_all_companies = createAsyncThunk("read_all_companies", async () => {
   let token = localStorage.getItem('token')
   let headers = { headers: { 'Authorization': `Bearer ${token}` } }
   try {
-    let res = await axios.get("http://localhost:8080/companies/admin",headers);
+    let res = await axios.get("https://minga-0gy1.onrender.com/companies/admin",headers);
     //console.log(res)
     return { active_company: res.data.companyActive , inactive_company: res.data.companyInactive};
   } catch (error) {
@@ -18,7 +18,7 @@ const update_active =createAsyncThunk(
     let token = localStorage.getItem('token')
     let headers = { headers: { 'Authorization': `Bearer ${token}` } }
     try {
-      let response = await axios.put(`http://localhost:8080/companies/admin/${_id}` , {active:active},headers);
+      let response = await axios.put(`https://minga-0gy1.onrender.com/companies/admin/${_id}` , {active:active},headers);
       return {
         company: response.data.company,
         success: true

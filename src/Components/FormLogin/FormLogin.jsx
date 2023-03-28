@@ -31,7 +31,7 @@ export default function FormLogin({ handleRender }) {
       [password.current.name]: password.current.value,
     };
 
-    let url = "http://localhost:8080/auth/signin";
+    let url = "https://minga-0gy1.onrender.com/auth/signin";
 
     try {
       if (email) await axios.post(url, data, headers);
@@ -79,7 +79,7 @@ export default function FormLogin({ handleRender }) {
   }, [])
 
   const onSuccess = async (response) => {
-    let url = "http://localhost:8080/auth/signin";
+    let url = "https://minga-0gy1.onrender.com/auth/signin";
     let token = localStorage.getItem("token");
     let headers = { headers: { Authorization: `Bearer ${token}` } };
 

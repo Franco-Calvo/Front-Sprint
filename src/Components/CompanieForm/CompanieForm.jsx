@@ -15,7 +15,7 @@ export default function CompanyForm() {
     e.preventDefault();
     let token = localStorage.getItem("token");
     let headers = { headers: { Authorization: `Bearer ${token}` } };
-    let url = 'http://localhost:8080/companies'
+    let url = 'https://minga-0gy1.onrender.com/companies'
     
     let formData = new FormData(formRef.current);
   

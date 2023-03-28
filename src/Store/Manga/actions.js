@@ -5,7 +5,7 @@ let captureManga = createAsyncThunk(
     'captureManga',
     async ({ manga_id }) => {
         try {
-            let response = await axios.get(`http://localhost:8080/mangas/` + manga_id)
+            let response = await axios.get(`https://minga-0gy1.onrender.com/mangas/` + manga_id)
             return {
                 manga: response.data.manga
             }
@@ -21,7 +21,7 @@ const captureChapter = createAsyncThunk(
     'captureChapter',
     async ({ manga_id, page }) => {
         try {
-            let response = await axios.get("http://localhost:8080/chapters?manga_id=" + manga_id + "&page=" + page)
+            let response = await axios.get("https://minga-0gy1.onrender.com/chapters?manga_id=" + manga_id + "&page=" + page)
             return { chapter: response.data.chapter }
         } catch (error) {
             return { chapter: [] }

@@ -32,7 +32,7 @@ export default function FormRegister(props) {
       [photo.current.name]: photo.current.value,
     };
 
-    let url = "http://localhost:8080/auth/signup";
+    let url = "https://minga-0gy1.onrender.com/auth/signup";
 
     try {
       await axios.post(url, data);
@@ -78,7 +78,7 @@ export default function FormRegister(props) {
         photo: imageUrl,
         password: googleId,
       };
-      const url = "http://localhost:8080/auth/signup";
+      const url = "https://minga-0gy1.onrender.com/auth/signup";
       await axios.post(url, data);
 
       let dataAlert = {
