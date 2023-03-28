@@ -153,7 +153,7 @@ export default function NavIndex({ handleRender }) {
             }else{return null}
           }):null
         }
-        {token&&author?
+        {token&&author&&!admin?
           anchors.map((each,index)=>{
             if(each.user==="author"||each.user==="reader"){
               return <Anchor className="a-nav" key={index} to={each.link}>
@@ -162,9 +162,18 @@ export default function NavIndex({ handleRender }) {
             }else{return null}
           }):null
         }
-        {token&&admin?
+        {token&&admin&&!author?
           anchors.map((each,index)=>{
             if(each.user==="admin"||each.user==="reader"){
+              return <Anchor className="a-nav" key={index} to={each.link}>
+            {each.text}
+            </Anchor>
+            }else{return null}
+          }):null
+        }
+        {token&&admin&&author?
+          anchors.map((each,index)=>{
+            if(each.user==="admin"||each.user==="reader"||each.user==="author"){
               return <Anchor className="a-nav" key={index} to={each.link}>
             {each.text}
             </Anchor>
