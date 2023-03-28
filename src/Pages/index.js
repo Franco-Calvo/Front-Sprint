@@ -76,11 +76,11 @@ export const router = createBrowserRouter([
         element: <MyMangas />,
       },
       {
-        path: "/adminPanel",
+        path: "/admin",
         element: <AdminPanel />,
       },
       {
-        path: "/newRole",
+        path: "/new-role",
         element: <NewRole/>,
       },
       {
