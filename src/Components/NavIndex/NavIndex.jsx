@@ -120,6 +120,12 @@ export default function NavIndex({ handleRender }) {
           <Anchor className="a-nav" to="/">
             Favourites
           </Anchor>
+          <Anchor className="a-nav" to="/adminPanel">
+            Admin Panel
+          </Anchor>
+          <Anchor className="a-nav" to="/newRole">
+            NewRole
+          </Anchor>
           {token ? (
             <Anchor
               className="a-nav"
@@ -132,6 +138,12 @@ export default function NavIndex({ handleRender }) {
           {token ? (
             <Anchor className="a-nav" to="/author-form">
               New Author
+            </Anchor>
+          ) : null}
+
+          {token ? (
+            <Anchor className="a-nav" to="/create-company">
+              New Company
             </Anchor>
           ) : null}
           {token ? (
