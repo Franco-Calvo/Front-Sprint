@@ -33,7 +33,6 @@ const update_author = createAsyncThunk(
     }
   }
 )
-<<<<<<< HEAD
 const update_active_author =createAsyncThunk(
   "update_active_author",
   async({_id, active})=>{
@@ -56,9 +55,5 @@ const update_active_author =createAsyncThunk(
 )
 
 const authorActions = { read_author, update_author, read_all_authors, update_active_author};
-=======
-
-const authorActions = { read_author, update_author};
->>>>>>> 877d91834b28cb5a8880dc5b6b76963bf5895083
 export default authorActions;
 
