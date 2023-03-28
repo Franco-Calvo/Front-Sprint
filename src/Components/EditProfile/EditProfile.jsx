@@ -14,13 +14,6 @@ export default function EditProfile() {
   let authores = useSelector(store => store.Author.author)
   const authoresDate = authores?.date?.split('T')[0]
 
-/* 
-  if(confirmEdit==="edited"){
-    complete(true)
-}else if(confirmEdit==="deleted"){
-    complete(false)
-} */
-
   const handleSave = async (event) => {
     event.preventDefault();
     const cityCountry = formRef.current.city_country.value
