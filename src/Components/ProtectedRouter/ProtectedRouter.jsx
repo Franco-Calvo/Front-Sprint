@@ -15,7 +15,6 @@ export default function ProtectedRouter({expectedRole, redirectTo="/"}) {
     const [reload, setReload] = useState(false)
 
     useEffect(()=>{
-        const token = localStorage.getItem(`token`);
         if (!admin&&!author&&token) {
             dispatch(captureUser())
             setReload(!reload)
