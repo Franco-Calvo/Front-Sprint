@@ -1,8 +1,10 @@
 import {useRef} from "react";
 import "./AuthorForm.css";
 import axios from "axios";
-import swal from "sweetalert";
+import alertActions from "../../Store/Alert/actions";
+import { useDispatch } from "react-redux";
 
+const { open } = alertActions;
 
 export default function AuthorForm() {
   const firstName = useRef();
@@ -11,6 +13,7 @@ export default function AuthorForm() {
   const date = useRef();
   const urlProfile = useRef();
   const formRef = useRef();
+  const dispatch = useDispatch();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -26,37 +29,17 @@ export default function AuthorForm() {
         country: country,
         [date.current.name]: date.current.value,
         [urlProfile.current.name]: urlProfile.current.value,
-        active:true
       };
       let url = "http://localhost:8080/authors";
       try {
         await axios.post(url, data, headers);
         formRef.current.reset();
-        swal({
-          title: "Great!",
-          text: "Author created successfully.",
-          icon: "success",
-          button: "Accept",
-          timer: "10000",
-        });
+        dispatch(open({icon: "success", title: "Author created successfully.", type: "toast"}));
       } catch (error) {
-        console.log(error);
-        swal({
-          title: "Erro",
-          text: error.response.data.message[0],
-          icon: "error",
-          button: "Go Back",
-          timer: "10000",
-        });
+        dispatch(open({icon: "errot", title: error.response.data.message, type: "basic"}));
       }
     } else {
-      swal({
-        title: "Upss!",
-        text: "The city and the country must be separated by a comma.",
-        icon: "warning",
-        button: "Go Back",
-        timer: "10000",
-      });
+      dispatch(open({icon: "errot", title: "The city and the country must be separated by a comma.", type: "basic"}));
     }
   }
   return (

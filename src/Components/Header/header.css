@@ -18,6 +18,9 @@ header {
   height: 6rem;
 }
 
+#logo-navbar{
+  width: 70px;
+}
 @media (min-width: 320px) and (max-width: 767px) {
   header {
     width: 100%;
@@ -30,11 +33,10 @@ header {
   }
 }
 
-@media (min-width: 1024px) and (max-width: 1440px) {
+@media (min-width: 1024px) {
   header {
     width: 100%;
   }
-
   .container {
     width: 90%;
   }

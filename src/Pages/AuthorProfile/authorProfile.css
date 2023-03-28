@@ -6,8 +6,9 @@
     box-sizing: border-box;
 }
 .contenedor {
+    height: 100vh;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     flex-direction: column;
 }
@@ -35,7 +36,6 @@
     min-height: 50vh;
     position: static;
     margin-top: -50px;
-    z-index: 100;
     border-radius: 1rem;
     margin-bottom: 2rem;
 }
@@ -54,8 +54,7 @@
         width: 95%;
         min-height: 20vh;
         position: static;
-        margin-top: 0;
-        z-index: 100;
+        margin-top: 50px;
         border-radius: 1rem;
         margin-bottom: 3rem;
     }
@@ -64,6 +63,6 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        margin-top: 4rem;
+        padding-top: 4rem;
     }
 }

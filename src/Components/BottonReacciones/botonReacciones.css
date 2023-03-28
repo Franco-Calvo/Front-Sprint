@@ -20,3 +20,12 @@
     flex-direction: row;
     justify-content: space-around;
 }
+.button-reaction img{
+    width: 64px;
+}
+@media(max-width:550px){
+    .button-reaction{
+        width: 100%;
+        height: 4rem;
+    }
+}

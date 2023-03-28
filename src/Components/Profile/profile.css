@@ -14,7 +14,6 @@
     border-radius: 100%;
 }
 .data-Profile-author {
-    width: 30%;
     font-family: "Montserrat";
     font-style: normal;
     font-weight: 400;
@@ -28,8 +27,8 @@
 }
 @media  (max-width: 748px){
     #profile-img {
-        width: 5rem;
-        height: 5rem;
+        width: 7rem;
+        height: 7rem;
         border-radius: 100%;
     }
     .data-Profile-author {
@@ -51,11 +50,11 @@
         align-content: center;
         justify-items: center;
     }
-    h2{
+    .data-Profile-author h2{
         font-size: 1rem;
         text-align: center;
     }
-    p{
+    .data-Profile-author p{
         font-size: 0.8rem;
         text-align: start;
         display: flex;

@@ -52,9 +52,7 @@ export default function FormLogin({ handleRender }) {
           photo: res.data.user.photo,
         })
       );
-      console.log(res);
     } catch (error) {
-      console.log(error);
       let dataAlert = {
         icon: "error",
         title: error.response.data.message,

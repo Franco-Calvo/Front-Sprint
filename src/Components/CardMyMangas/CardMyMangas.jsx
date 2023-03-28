@@ -38,7 +38,12 @@ export default function CardMyMangas({ manga, categories, setReload, reload }) {
       };
       dispatch(open(dataAlert));
     } catch (error) {
-      console.log(error);
+      let dataAlert = {
+        icon: "error",
+        title: error.response.data.message,
+        type: "basic"
+      };
+      dispatch(open(dataAlert));
     }
 
     setRender(false);

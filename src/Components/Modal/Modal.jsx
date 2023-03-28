@@ -40,7 +40,12 @@ export default function Modal({ setRender, setReload, reload }) {
       };
       dispatch(open(dataAlert));
     } catch (error) {
-      console.log(error);
+      let dataAlert = {
+        icon: "success",
+        title: error.response.data.message,
+        type: "toast",
+      };
+      dispatch(open(dataAlert));
     }
     setRender(false);
     setReload(reload);

@@ -2,8 +2,11 @@ import { React, useRef } from "react";
 import InputGeneral from "../InputGeneral/InputGeneral";
 import "./formchapter.css";
 import axios from "axios";
-import Swal from "sweetalert2";
 import { useParams } from "react-router-dom";
+import alertActions from "../../Store/Alert/actions";
+import { useDispatch } from "react-redux";
+
+const { open } = alertActions;
 
 export default function FormChapter() {
   const { manga_id } = useParams();
@@ -11,12 +14,12 @@ export default function FormChapter() {
   const order = useRef();
   const pages = useRef();
   const formRef = useRef();
+  const dispatch = useDispatch();
 
   async function handleSubmit(e) {
     e.preventDefault();
     let token = localStorage.getItem("token");
     let headers = { headers: { Authorization: `Bearer ${token}` } };
-    console.log(manga_id);
 
     let chapter = {
       [title.current.name]: title.current.value,
@@ -30,60 +33,58 @@ export default function FormChapter() {
     let url = "http://localhost:8080/chapters";
 
     if (title.current.value.length < 4 && !pages.current.value.startsWith("")) {
-      Swal.fire({
+      dispatch(open({
         icon: "error",
-        title: "Error",
-        text: "The title must be at least 4 characteres y Pages must be a valid URL.",
-      });
+        type: "basic",
+        title: "The title must be at least 4 characteres y Pages must be a valid URL.",
+      }));
       return;
     } else if (
       title.current.value.length > 30 &&
       !pages.current.value.startsWith("")
     ) {
-      Swal.fire({
+      dispatch(open({
         icon: "error",
-        title: "Error",
-        text: "The title must not have more than 30 characters y Pages must be a valid URL.",
-      });
+        type: "basic",
+        title: "The title must not have more than 30 characters y Pages must be a valid URL.",
+      }));
       return;
     } else if (title.current.value.length < 4) {
-      Swal.fire({
+      dispatch(open({
         icon: "error",
-        title: "Error",
-        text: "The title must be at least 4 characteres ",
-      });
+        title: "The title must be at least 4 characteres ",
+        type: "basic",
+      }));
       return;
     } else if (title.current.value.length > 30) {
-      Swal.fire({
+      dispatch(open({
         icon: "error",
-        title: "Error",
-        text: "The title must not have more than 30 characters ",
-      });
+        type: "basic",
+        title: "The title must not have more than 30 characters ",
+      }));
       return;
     } else if (!pages.current.value.startsWith("")) {
-      Swal.fire({
+      dispatch(open({
         icon: "error",
-        title: "Error",
-        text: "Pages must be a valid URL.",
-      });
+        type: "basic",
+        title: "Pages must be a valid URL.",
+      }));
       return;
     }
 
     try {
       let response = await axios.post(url, chapter, headers);
-      Swal.fire({
+      dispatch(open({
         icon: "success",
-        title: "EXITO",
-        text: "Chapter created successfully",
-      });
-      console.log(response);
+        type: "toast",
+        title: "Chapter created successfully",
+      }));
     } catch (error) {
-      console.log(error);
-      Swal.fire({
+      dispatch(open({
         icon: "error",
-        title: "ERROR",
-        text: error.response.data.message,
-      });
+        type: "basic",
+        title: error.response.data.message,
+      }));
     }
     formRef.current.reset();
   }

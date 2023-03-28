@@ -14,8 +14,6 @@ const read_events = createAsyncThunk(
           pages
       );
 
-      console.log(response);
-
       return {
         events: response.data.mangas,
       };

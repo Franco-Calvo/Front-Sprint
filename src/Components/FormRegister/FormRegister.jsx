@@ -44,7 +44,6 @@ export default function FormRegister(props) {
       formReg.current.reset();
       navigate("/signin");
     } catch (error) {
-      console.log(error);
       let dataAlert = {
         icon: "error",
         title: "",

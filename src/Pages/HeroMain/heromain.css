@@ -1,13 +1,13 @@
 .hero1 {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   flex-direction: column;
   height: 100vh;
   width: 100%;
   gap: 1.5rem;
   padding: 1rem;
-  margin-top: 5rem;
+  padding-top: 7rem;
 }
 
 @media (min-width: 320px) and (max-width: 767px) {
@@ -15,7 +15,7 @@
     background-image: url(../../../public/backgroundMobile.png);
     background-size: cover;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     flex-direction: column;
     align-items: center;
     padding: 2rem;

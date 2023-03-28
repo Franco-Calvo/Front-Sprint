@@ -83,7 +83,7 @@
   }
 }
 
-@media (min-width: 1024px) and (max-width: 1440px) {
+@media (min-width: 1024px) {
   .background-action {
     background-size: cover;
     width: 90%;

@@ -9,6 +9,7 @@ export default function Index() {
   const location = useLocation();
   const navigate = useNavigate();
 
+  const token = localStorage.getItem(`token`);
   const { pathname } = location;
   const [render, setRender] = useState(false);
 
@@ -21,14 +22,13 @@ export default function Index() {
       navigate("/signup");
     }
   };
-
   return (
     <>
       <HeroMain />
-      {render ? (
-        <Auth handleRender={handleRender} />
+      {token ? (
+        null
       ) : (
-        <HeroRegister handleRender={handleRender} />
+        render? <Auth handleRender={handleRender} />:<HeroRegister handleRender={handleRender} />
       )}
     </>
   );
