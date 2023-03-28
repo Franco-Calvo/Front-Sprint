@@ -92,7 +92,6 @@ export default function NavIndex({ handleRender }) {
     {user:"visitor",link:"/signin",text:"Signin"},
     {user:"reader",link:"/",text:"Home"},
     {user:"reader",link:"/mangas",text:"Mangas"},
-    {user:"reader",link:"/myreactions",text:"Favourites"},
     {user:"reader",link:"/new-role",text:"New Role"},
     {user:"author",link:"/profile",text:"Edit Profile"},
     {user:"author",link:"/create-mangas",text:"New Manga"},
