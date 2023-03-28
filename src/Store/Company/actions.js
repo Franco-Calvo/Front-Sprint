@@ -18,9 +18,7 @@ const update_active =createAsyncThunk(
     let token = localStorage.getItem('token')
     let headers = { headers: { 'Authorization': `Bearer ${token}` } }
     try {
-      console.log(_id)
       let response = await axios.put(`http://localhost:8080/companies/admin/${_id}` , {active:active},headers);
-      console.log(response)
       return {
         company: response.data.company,
         success: true

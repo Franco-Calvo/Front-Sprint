@@ -79,8 +79,6 @@ export default function FormLogin({ handleRender }) {
   }, [])
 
   const onSuccess = async (response) => {
-    console.log(response)
-
     let url = "http://localhost:8080/auth/signin";
     let token = localStorage.getItem("token");
     let headers = { headers: { Authorization: `Bearer ${token}` } };
@@ -99,6 +97,7 @@ export default function FormLogin({ handleRender }) {
       let dataAlert = {
         icon: "success",
         title: "Signed in successfully",
+        type:"toast",
       };
       dispatch(open(dataAlert));
 
@@ -116,16 +115,21 @@ export default function FormLogin({ handleRender }) {
         })
       );
     } catch (error) {
-      console.log(error);
       let dataAlert = {
         icon: "error",
         title: error.response.data.message,
+        type:"basic",
       };
       dispatch(open(dataAlert));
     }
   }
   const onFailure = () => {
-    console.log("Something went wrong")
+    let dataAlert = {
+      icon: "error",
+      title: "Something went wrong",
+      type:"basic",
+    };
+    dispatch(open(dataAlert));
   }
 
 

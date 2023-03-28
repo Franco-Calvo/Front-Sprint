@@ -15,7 +15,6 @@ const read_all_authors = createAsyncThunk("read_all_authors", async () => {
     let token = localStorage.getItem('token')
     let headers = { headers: { 'Authorization': `Bearer ${token}` } }
     let res = await axios.get("http://localhost:8080/authors/admin/prueba", headers);
-    //console.log(res)
     return { active_authors: res.data.authorActive, inactive_authors: res.data.authorInactive };
   } catch (error) {
     console.log(error)
