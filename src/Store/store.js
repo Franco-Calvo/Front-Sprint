@@ -13,6 +13,7 @@ import mangaidReducer from "./MangaEdit/reducer";
 import modalReducer from "./Modal/reducer";
 import editDeleteChapter from "./EditDeleteChapter/reducer";
 import userReducer from './CaptureUser/reducer';
+import companyReducer from "./Company/reducer";
 
 export const store = configureStore({
   reducer: {
@@ -30,5 +31,7 @@ export const store = configureStore({
     CaptureUser: userReducer,
     modal: modalReducer,
     editDeleteChapter: editDeleteChapter,
+    Company: companyReducer,
+    
   },
 });
